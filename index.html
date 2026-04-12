@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Help Recrutamento</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  (function(){
-    emailjs.init({ publicKey: "SEU_PUBLIC_KEY_AQUI" });
-  })();
+  // ============================================================
+  //  HELP RECRUTAMENTO — Configuração Google Sheets
+  //  Substitua a URL abaixo pela URL gerada no Google Apps Script
+  // ============================================================
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBcmZ7chAuQHvj-hHkPF3Ht5W3V6HfOlyfBaexexGj35PwtFpITDoV0WYcKaJCSFng/exec';
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -535,11 +536,16 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
 </div>
 
 <script>
-// ===== EMAILJS CONFIG =====
-// SERVICE_ID e TEMPLATE_ID são gerados no painel do EmailJS (emailjs.com)
-const EMAILJS_SERVICE_ID  = 'SEU_SERVICE_ID';
-const EMAILJS_TEMPLATE_CANDIDATURA = 'SEU_TEMPLATE_CANDIDATURA';
-const EMAILJS_TEMPLATE_BANCO       = 'SEU_TEMPLATE_BANCO';
+// ===== GOOGLE SHEETS — helper de envio =====
+async function enviarParaSheets(payload) {
+  const resp = await fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(payload),
+  });
+  const json = await resp.json();
+  if (json.status !== 'ok') throw new Error(json.msg || 'Erro desconhecido');
+}
 
 // ===== VAGAS =====
 const vagas=[
@@ -621,27 +627,30 @@ function openBancoModal(){
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 
 // ===== ENVIO DE CANDIDATURA POR VAGA =====
-function submitForm(){
+async function submitForm(){
   const btn = document.querySelector('#form-area .btn-submit');
-  const empresa = document.getElementById('modal-empresa').textContent;
-  const titulo  = document.getElementById('modal-titulo').textContent;
+  const empresa   = document.getElementById('modal-empresa').textContent;
+  const titulo    = document.getElementById('modal-titulo').textContent;
+  const categoria = vagas.find(v => v.titulo === titulo)?.cat || '';
 
-  // Coleta os campos do formulário
   const inputs = document.querySelectorAll('#form-area .form-input');
-  const nome      = inputs[0]?.value || '';
-  const nascimento= inputs[1]?.value || '';
-  const email     = inputs[2]?.value || '';
-  const whatsapp  = inputs[3]?.value || '';
-  const cidade    = inputs[4]?.value || '';
-  const estado    = inputs[5]?.value || '';
+  const nome         = inputs[0]?.value || '';
+  const nascimento   = inputs[1]?.value || '';
+  const email        = inputs[2]?.value || '';
+  const whatsapp     = inputs[3]?.value || '';
+  const cidade       = inputs[4]?.value || '';
+  const estado       = inputs[5]?.value || '';
   const escolaridade = inputs[6]?.value || '';
-  const curso     = inputs[7]?.value || '';
-  const ultimoCargo   = inputs[8]?.value || '';
-  const ultimaEmpresa = inputs[9]?.value || '';
-  const expTempo  = inputs[10]?.value || '';
-  const pretensao = inputs[11]?.value || '';
-  const cnh       = inputs[12]?.value || '';
-  const areaAtuacao = inputs[13]?.value || '';
+  const curso        = inputs[7]?.value || '';
+  const ultimoCargo  = inputs[8]?.value || '';
+  const ultimaEmpresa= inputs[9]?.value || '';
+  const expTempo     = inputs[10]?.value || '';
+  const pretensao    = inputs[11]?.value || '';
+  const cnh          = inputs[12]?.value || '';
+  const areaAtuacao  = inputs[13]?.value || '';
+  const dispHorario  = document.getElementById('cb1')?.checked ? 'Sim' : 'Não';
+  const dispEscala   = document.getElementById('cb2')?.checked ? 'Sim' : 'Não';
+  const dispViagem   = document.getElementById('cb3')?.checked ? 'Sim' : 'Não';
 
   if(!nome || !email || !whatsapp){
     alert('Por favor, preencha Nome, E-mail e WhatsApp.');
@@ -651,45 +660,37 @@ function submitForm(){
   btn.textContent = 'Enviando...';
   btn.disabled = true;
 
-  const templateParams = {
-    to_email: 'gestormarcel@gmail.com',
-    tipo_envio: 'Candidatura por Vaga',
-    empresa: empresa,
-    vaga: titulo,
-    nome, nascimento, email, whatsapp, cidade, estado,
-    escolaridade, curso,
-    ultimo_cargo: ultimoCargo,
-    ultima_empresa: ultimaEmpresa,
-    exp_tempo: expTempo,
-    pretensao_salarial: pretensao,
-    cnh, area_atuacao: areaAtuacao,
-  };
-
-  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CANDIDATURA, templateParams)
-    .then(()=>{
-      document.getElementById('form-area').style.display='none';
-      document.getElementById('success-msg').style.display='block';
-    })
-    .catch((err)=>{
-      console.error('EmailJS erro:', err);
-      alert('Erro ao enviar. Verifique sua conexão e tente novamente.');
-      btn.textContent = 'Enviar candidatura';
-      btn.disabled = false;
+  try {
+    await enviarParaSheets({
+      tipo: 'candidatura',
+      empresa, vaga: titulo, categoria,
+      nome, nascimento, email, whatsapp, cidade, estado,
+      escolaridade, curso, ultimoCargo, ultimaEmpresa,
+      expTempo, pretensao, cnh, areaAtuacao,
+      dispHorario, dispEscala, dispViagem,
     });
+    document.getElementById('form-area').style.display='none';
+    document.getElementById('success-msg').style.display='block';
+  } catch(err){
+    console.error('Erro:', err);
+    alert('Erro ao enviar. Verifique sua conexão e tente novamente.');
+    btn.textContent = 'Enviar candidatura';
+    btn.disabled = false;
+  }
 }
 
 // ===== ENVIO DE BANCO DE TALENTOS =====
-function submitBanco(){
+async function submitBanco(){
   const btn = document.querySelector('#banco-form-area .btn-submit');
   const inputs = document.querySelectorAll('#banco-form-area .form-input');
-  const nome      = inputs[0]?.value || '';
-  const whatsapp  = inputs[1]?.value || '';
-  const email     = inputs[2]?.value || '';
+  const nome         = inputs[0]?.value || '';
+  const whatsapp     = inputs[1]?.value || '';
+  const email        = inputs[2]?.value || '';
   const cidadeEstado = inputs[3]?.value || '';
-  const areaInteresse = inputs[4]?.value || '';
-  const escolaridade  = inputs[5]?.value || '';
-  const pretensao     = inputs[6]?.value || '';
-  const cnh           = inputs[7]?.value || '';
+  const areaInteresse= inputs[4]?.value || '';
+  const escolaridade = inputs[5]?.value || '';
+  const pretensao    = inputs[6]?.value || '';
+  const cnh          = inputs[7]?.value || '';
 
   if(!nome || !email || !whatsapp){
     alert('Por favor, preencha Nome, E-mail e WhatsApp.');
@@ -699,28 +700,20 @@ function submitBanco(){
   btn.textContent = 'Enviando...';
   btn.disabled = true;
 
-  const templateParams = {
-    to_email: 'gestormarcel@gmail.com',
-    tipo_envio: 'Banco de Talentos',
-    nome, whatsapp, email,
-    cidade_estado: cidadeEstado,
-    area_interesse: areaInteresse,
-    escolaridade,
-    pretensao_salarial: pretensao,
-    cnh,
-  };
-
-  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_BANCO, templateParams)
-    .then(()=>{
-      document.getElementById('banco-form-area').style.display='none';
-      document.getElementById('banco-success-msg').style.display='block';
-    })
-    .catch((err)=>{
-      console.error('EmailJS erro:', err);
-      alert('Erro ao enviar. Verifique sua conexão e tente novamente.');
-      btn.textContent = 'Cadastrar no banco de talentos';
-      btn.disabled = false;
+  try {
+    await enviarParaSheets({
+      tipo: 'banco',
+      nome, whatsapp, email, cidadeEstado,
+      areaInteresse, escolaridade, pretensao, cnh,
     });
+    document.getElementById('banco-form-area').style.display='none';
+    document.getElementById('banco-success-msg').style.display='block';
+  } catch(err){
+    console.error('Erro:', err);
+    alert('Erro ao enviar. Verifique sua conexão e tente novamente.');
+    btn.textContent = 'Cadastrar no banco de talentos';
+    btn.disabled = false;
+  }
 }
 
 // ===== FECHAR MODAL AO CLICAR FORA =====
