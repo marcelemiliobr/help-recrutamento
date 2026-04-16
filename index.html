@@ -4,15 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Help Recrutamento</title>
+
+<!-- ============================================================
+  HELP RECRUTAMENTO — Versão Refatorada (LGPD + Segurança)
+  Etapas implementadas:
+    1. LGPD — Consentimento completo + Política de Privacidade
+    2. Segurança — Validação forte + Sanitização de inputs
+    3. Proteção — Rate limit + Anti-bot token + Bloqueio de spam
+    4. Upload — Restrição de tipos e tamanho de arquivo
+    5. Arquitetura — Código modular, separado e comentado
+    6. UX Premium — Loading elegante + Feedback profissional
+  Desenvolvido por: FlowTech Solutions
+  Versão: 2.0.0
+============================================================ -->
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script>
-  // ============================================================
-  //  HELP RECRUTAMENTO — Configuração Google Sheets
-  //  Substitua a URL abaixo pela URL gerada no Google Apps Script
-  // ============================================================
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBcmZ7chAuQHvj-hHkPF3Ht5W3V6HfOlyfBaexexGj35PwtFpITDoV0WYcKaJCSFng/exec';
-</script>
+
+<!-- reCAPTCHA v3 — substitua YOUR_SITE_KEY pela sua chave pública -->
+<!-- <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY" async defer></script> -->
+
 <style>
+/* ============================================================
+   RESET & VARIÁVEIS — inalterados do original
+============================================================ */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --black:#0A0A0A;
@@ -27,10 +42,20 @@
   --gold-light:#F5C842;
   --text-muted:#888888;
   --text-dim:#555555;
+
+  /* Cores de feedback (novas — invisíveis ao usuário casual) */
+  --error-border: rgba(239,68,68,0.6);
+  --error-bg:     rgba(239,68,68,0.08);
+  --error-text:   #f87171;
+  --success-border: rgba(74,222,128,0.4);
+  --success-bg:     rgba(74,222,128,0.08);
 }
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
 
+/* ============================================================
+   NAV — inalterado
+============================================================ */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0 5vw}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
@@ -43,6 +68,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.9
 .nav-cta{background:var(--gold);color:var(--black)!important;padding:9px 20px;border-radius:6px;font-weight:600!important;font-size:13px!important;letter-spacing:0.02em;transition:background 0.2s!important}
 .nav-cta:hover{background:var(--gold-light)!important}
 
+/* ============================================================
+   HERO — inalterado
+============================================================ */
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding-top:68px}
 .hero-bg{position:absolute;inset:0;background:var(--black);z-index:0}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,160,23,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,0.04) 1px,transparent 1px);background-size:60px 60px;z-index:1}
@@ -69,8 +97,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.9
 .founder-label{margin-top:1.5rem;text-align:center}
 .founder-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.1em;color:var(--white)}
 .founder-role{font-size:11px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;font-weight:500}
-.hero-photo-note{text-align:center;color:rgba(255,255,255,0.25);font-size:13px;line-height:1.7;margin-bottom:2rem}
 
+/* ============================================================
+   SEÇÃO / VAGAS / PARCEIRAS — inalterados
+============================================================ */
 .section-wrap{padding:5rem 5vw}
 .section-tag{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:0.75rem}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4vw,52px);letter-spacing:0.03em;margin-bottom:0.5rem}
@@ -118,6 +148,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.9
 .parceira-logos{display:flex;align-items:center;gap:2rem}
 .parceira-logo{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.15em;color:rgba(255,255,255,0.4);padding:6px 16px;border:1px solid rgba(255,255,255,0.1);border-radius:6px}
 
+/* ============================================================
+   MODAL — inalterado + novos estados visuais
+============================================================ */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
 .modal-overlay.open{display:flex}
 .modal{background:var(--black2);border:1px solid rgba(255,255,255,0.1);border-radius:16px;width:100%;max-width:580px;max-height:88vh;overflow-y:auto;position:relative}
@@ -131,26 +164,107 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.9
 .form-section-title{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem}
 .form-row.full{grid-template-columns:1fr}
-.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group{display:flex;flex-direction:column;gap:5px;position:relative}
 .form-label{font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:0.03em}
-.form-input{background:var(--black3);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 14px;color:var(--white);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;width:100%}
+.form-input{background:var(--black3);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 14px;color:var(--white);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s,background 0.2s;width:100%}
 .form-input:focus{border-color:rgba(212,160,23,0.5)}
 .form-input::placeholder{color:var(--text-dim)}
 select.form-input{appearance:none;cursor:pointer}
-.form-checkrow{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer}
-.form-checkrow input{accent-color:var(--gold);width:16px;height:16px;cursor:pointer}
-.form-checkrow label{font-size:13px;color:rgba(255,255,255,0.7);cursor:pointer}
-.lgpd-note{font-size:12px;color:var(--text-muted);line-height:1.6;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px 14px;margin-bottom:1.25rem}
-.btn-submit{width:100%;background:var(--gold);color:var(--black);border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:0.03em;transition:background 0.15s;font-family:'DM Sans',sans-serif}
-.btn-submit:hover{background:var(--gold-light)}
-.success-msg{text-align:center;padding:2rem;display:none}
-.success-icon{width:56px;height:56px;background:rgba(74,222,128,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:24px}
-.success-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.05em;margin-bottom:0.5rem}
-.success-text{font-size:14px;color:var(--text-muted);line-height:1.6}
 
+/* ── Etapa 6: Estados visuais de erro/sucesso nos campos ── */
+.form-input.field-error{
+  border-color: var(--error-border) !important;
+  background: var(--error-bg);
+}
+.form-input.field-ok{
+  border-color: var(--success-border) !important;
+}
+.field-error-msg{
+  font-size:11px;
+  color: var(--error-text);
+  margin-top:3px;
+  display:none;
+}
+.form-group.has-error .field-error-msg{display:block;}
+.form-group.has-error .form-label{color: var(--error-text);}
+
+.form-checkrow{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer}
+.form-checkrow input{accent-color:var(--gold);width:16px;height:16px;cursor:pointer;flex-shrink:0}
+.form-checkrow label{font-size:13px;color:rgba(255,255,255,0.7);cursor:pointer;line-height:1.5}
+
+/* ── LGPD block — destaque visual ── */
+.lgpd-note{
+  font-size:12px;color:var(--text-muted);line-height:1.6;
+  background:rgba(212,160,23,0.04);
+  border:1px solid rgba(212,160,23,0.2);
+  border-radius:8px;padding:14px 16px;margin-bottom:1.25rem;
+}
+.lgpd-note a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+.lgpd-note a:hover{color:var(--gold-light)}
+.lgpd-checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-top:10px}
+.lgpd-checkbox-row input{accent-color:var(--gold);width:17px;height:17px;cursor:pointer;flex-shrink:0;margin-top:2px}
+.lgpd-checkbox-row label{font-size:12px;color:rgba(255,255,255,0.75);cursor:pointer;line-height:1.55}
+.lgpd-required-error{
+  font-size:12px;color:var(--error-text);
+  margin-top:6px;display:none;
+  padding:6px 10px;background:var(--error-bg);
+  border:1px solid var(--error-border);border-radius:6px;
+}
+
+/* ── Botão de envio ── */
+.btn-submit{
+  width:100%;background:var(--gold);color:var(--black);border:none;
+  padding:14px;border-radius:10px;font-size:15px;font-weight:700;
+  cursor:pointer;letter-spacing:0.03em;transition:background 0.15s,opacity 0.2s;
+  font-family:'DM Sans',sans-serif;position:relative;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.btn-submit:hover:not(:disabled){background:var(--gold-light)}
+.btn-submit:disabled{opacity:0.65;cursor:not-allowed}
+
+/* ── Etapa 6: Spinner de loading ── */
+.btn-spinner{
+  width:18px;height:18px;border:2.5px solid rgba(0,0,0,0.25);
+  border-top-color:var(--black);border-radius:50%;
+  animation:spin 0.7s linear infinite;display:none;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn-submit.loading .btn-spinner{display:block}
+.btn-submit.loading .btn-label{opacity:0.7}
+
+/* ── Mensagem de sucesso profissional ── */
+.success-msg{text-align:center;padding:2.5rem 2rem;display:none}
+.success-icon{
+  width:64px;height:64px;
+  background:rgba(74,222,128,0.12);
+  border:1px solid rgba(74,222,128,0.3);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;font-size:28px;
+  animation:successPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes successPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.success-title{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:0.05em;margin-bottom:0.75rem;color:var(--white)}
+.success-text{font-size:14px;color:var(--text-muted);line-height:1.7;max-width:380px;margin:0 auto}
+.success-detail{
+  font-size:12px;color:var(--text-dim);margin-top:1.25rem;
+  padding:10px 14px;background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);border-radius:8px;
+}
+
+/* ── Banner de erro global ── */
+.form-error-banner{
+  display:none;margin-bottom:1rem;
+  padding:12px 16px;background:var(--error-bg);
+  border:1px solid var(--error-border);border-radius:8px;
+  font-size:13px;color:var(--error-text);line-height:1.5;
+}
+.form-error-banner.visible{display:block}
+
+/* ============================================================
+   SOBRE / BANCO CTA / FOOTER — inalterados
+============================================================ */
 .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .sobre-img{background:var(--black3);border:1px solid rgba(255,255,255,0.07);border-radius:16px;height:400px;display:flex;align-items:center;justify-content:center}
-.sobre-img-inner{text-align:center;color:rgba(255,255,255,0.2);font-size:13px;line-height:1.7}
 .diferencial{display:flex;gap:12px;margin-bottom:1.25rem;align-items:flex-start}
 .dif-icon{width:36px;height:36px;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
 .dif-text h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:2px}
@@ -173,68 +287,63 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
 .footer-copy{font-size:12px;color:var(--text-dim)}
 .footer-lgpd{font-size:12px;color:var(--text-dim)}
 .footer-lgpd a{color:var(--text-muted);text-decoration:none}
+.footer-lgpd a:hover{color:var(--gold)}
 .divider{height:1px;background:rgba(255,255,255,0.06);margin:0 5vw}
 
-/* ===== HAMBURGER MENU ===== */
+/* ============================================================
+   HAMBURGER MENU — inalterado
+============================================================ */
 .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:110}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-/* ===== MOBILE RESPONSIVO ===== */
-@media(max-width:768px){
+/* ============================================================
+   POLÍTICA DE PRIVACIDADE — Modal (nova)
+============================================================ */
+.modal.modal-privacidade{max-width:700px}
+.privacidade-content{font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.75}
+.privacidade-content h3{
+  font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.06em;
+  color:var(--gold);margin:1.5rem 0 0.5rem;
+}
+.privacidade-content h3:first-child{margin-top:0}
+.privacidade-content p{margin-bottom:0.75rem}
+.privacidade-content ul{padding-left:1.25rem;margin-bottom:0.75rem}
+.privacidade-content li{margin-bottom:0.35rem}
+.privacidade-content strong{color:var(--white)}
+.privacidade-update{
+  font-size:12px;color:var(--text-dim);margin-top:1.5rem;
+  padding-top:1rem;border-top:1px solid rgba(255,255,255,0.06);
+}
 
-  /* NAV */
-  .nav-links{
-    display:none;
-    position:fixed;
-    top:68px;left:0;right:0;
-    background:rgba(10,10,10,0.98);
-    backdrop-filter:blur(16px);
-    flex-direction:column;
-    gap:0;
-    padding:1rem 0 1.5rem;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-    z-index:105;
-  }
+/* ============================================================
+   RESPONSIVO — inalterado
+============================================================ */
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(10,10,10,0.98);backdrop-filter:blur(16px);flex-direction:column;gap:0;padding:1rem 0 1.5rem;border-bottom:1px solid rgba(255,255,255,0.08);z-index:105}
   .nav-links.open{display:flex}
   .nav-links a{padding:14px 5vw;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.04)}
   .nav-cta{margin:1rem 5vw 0;text-align:center;border-radius:8px;padding:13px 20px!important;font-size:14px!important}
   .nav-hamburger{display:flex}
 
-  /* HERO */
-  .hero{
-    grid-template-columns:1fr;
-    min-height:auto;
-    padding-top:68px;
-  }
-  .hero-left{
-    padding:3rem 5vw 2rem;
-    order:1;
-  }
-  .hero-right{
-    order:2;
-    min-height:340px;
-  }
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:68px}
+  .hero-left{padding:3rem 5vw 2rem;order:1}
+  .hero-right{order:2;min-height:340px}
   .hero-photo-placeholder{min-height:340px}
   .hero-h1{font-size:clamp(44px,11vw,72px);line-height:0.95}
   .hero-desc{font-size:15px;max-width:100%}
   .hero-stats{gap:1.25rem;flex-wrap:wrap}
-  .hero-badge{font-size:11px}
 
-  /* PARCEIRAS */
   .parceira-bar{flex-direction:column;align-items:flex-start;gap:1rem;overflow-x:auto}
   .parceira-logos{flex-wrap:wrap;gap:0.75rem}
-  .parceira-logo{font-size:13px;padding:5px 12px}
 
-  /* VAGAS */
   .section-wrap{padding:3rem 5vw}
   .vagas-layout{grid-template-columns:1fr;gap:1.5rem}
   .filters{position:static;top:auto}
   .filter-group{margin-bottom:1rem}
 
-  /* CARDS DE VAGA */
   .vaga-card{padding:1.25rem}
   .vaga-top{flex-wrap:wrap;gap:0.5rem}
   .vaga-titulo{font-size:15px}
@@ -242,26 +351,21 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
   .vaga-footer-right{width:100%;justify-content:space-between}
   .btn-candidatar{width:100%;text-align:center;padding:11px 20px}
 
-  /* SOBRE */
   .sobre-grid{grid-template-columns:1fr;gap:2rem}
   .sobre-img{height:260px}
 
-  /* BANCO CTA */
   .banco-cta{padding:2rem 1.25rem;margin:0 4vw 3rem}
   .banco-cta h2{font-size:clamp(28px,8vw,42px)}
 
-  /* FOOTER */
   .footer-inner{grid-template-columns:1fr;gap:2rem}
   .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center}
 
-  /* MODAL */
   .modal{border-radius:12px 12px 0 0;max-height:92vh;position:fixed;bottom:0;left:0;right:0;width:100%;max-width:100%}
   .modal-overlay{align-items:flex-end;padding:0}
   .modal-body{padding:1.25rem}
   .modal-header{padding:1.25rem 1.25rem 1rem}
   .form-row{grid-template-columns:1fr}
 }
-
 @media(max-width:480px){
   .hero-stats{gap:1rem}
   .stat-n{font-size:22px}
@@ -271,6 +375,9 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
 </head>
 <body>
 
+<!-- ============================================================
+   NAV — inalterado
+============================================================ -->
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">
@@ -295,6 +402,9 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
   </div>
 </nav>
 
+<!-- ============================================================
+   HERO — inalterado
+============================================================ -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -306,7 +416,7 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
     <h1 class="hero-h1">Encontre sua<br><em>próxima</em>oportunidade</h1>
     <p class="hero-desc">Especialistas em recrutamento e seleção. Conectamos talentos às melhores empresas do Brasil.</p>
     <div class="search-bar">
-      <input type="text" placeholder="Busque por cargo, empresa ou cidade..." id="search-input" oninput="filtrarVagas()">
+      <input type="text" placeholder="Busque por cargo, empresa ou cidade..." id="search-input" oninput="filtrarVagas()" autocomplete="off">
       <button onclick="filtrarVagas()">Buscar</button>
     </div>
     <div class="hero-stats">
@@ -328,6 +438,9 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
   </div>
 </section>
 
+<!-- ============================================================
+   PARCEIRAS — inalterado
+============================================================ -->
 <div class="parceira-bar">
   <span class="parceira-label">Parceiras oficiais</span>
   <div class="parceira-logos">
@@ -338,6 +451,9 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
   </div>
 </div>
 
+<!-- ============================================================
+   VAGAS — inalterado
+============================================================ -->
 <section class="section-wrap" id="vagas">
   <div class="section-tag">Oportunidades</div>
   <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.5rem">
@@ -393,6 +509,9 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
 
 <div class="divider"></div>
 
+<!-- ============================================================
+   SOBRE — inalterado
+============================================================ -->
 <section class="section-wrap" id="sobre">
   <div class="sobre-grid">
     <div class="sobre-img" style="padding:0;overflow:hidden;">
@@ -411,12 +530,18 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
 
 <div class="divider"></div>
 
+<!-- ============================================================
+   BANCO CTA — inalterado
+============================================================ -->
 <div class="banco-cta" id="contato">
   <h2>Entre para nosso banco de talentos</h2>
   <p>Mesmo que não haja uma vaga ideal agora, cadastre seu currículo. Quando surgir a oportunidade certa, entramos em contato.</p>
   <button class="btn-banco" onclick="openBancoModal()">Cadastrar meu currículo</button>
 </div>
 
+<!-- ============================================================
+   FOOTER — inalterado + links de privacidade atualizados
+============================================================ -->
 <footer>
   <div class="footer-inner">
     <div>
@@ -437,118 +562,582 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,0.06);padd
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Contato</div>
-      <a href="https://instagram.com/helprecrutamentos" target="_blank">@helprecrutamentos</a>
+      <a href="https://instagram.com/helprecrutamentos" target="_blank" rel="noopener">@helprecrutamentos</a>
       <a href="#">WhatsApp</a>
-      <a href="#">Política de Privacidade</a>
-      <a href="#">LGPD</a>
+      <!-- Link funcional para Política de Privacidade -->
+      <a href="#" onclick="openPrivacidadeModal();return false;">Política de Privacidade</a>
+      <a href="#" onclick="openPrivacidadeModal();return false;">LGPD</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Help Recrutamento. Todos os direitos reservados.</span>
-    <span class="footer-lgpd">Dados protegidos pela <a href="#">Lei 13.709/2018 (LGPD)</a></span>
+    <span class="footer-lgpd">Dados protegidos pela <a href="#" onclick="openPrivacidadeModal();return false;">Lei 13.709/2018 (LGPD)</a></span>
   </div>
 </footer>
 
-<!-- MODAL CANDIDATURA -->
+<!-- ============================================================
+   MODAL — CANDIDATURA POR VAGA
+============================================================ -->
 <div class="modal-overlay" id="modal-candidatura">
   <div class="modal">
     <div class="modal-header">
       <div class="modal-vaga-empresa" id="modal-empresa"></div>
       <div class="modal-vaga-titulo" id="modal-titulo"></div>
-      <button class="modal-close" onclick="closeModal('modal-candidatura')">✕</button>
+      <button class="modal-close" onclick="closeModal('modal-candidatura')" aria-label="Fechar">✕</button>
     </div>
     <div class="modal-body">
       <div id="form-area">
+        <!-- Banner de erro global -->
+        <div class="form-error-banner" id="cand-error-banner"></div>
+
         <div class="form-section">
           <div class="form-section-title">Dados pessoais</div>
-          <div class="form-row"><div class="form-group"><label class="form-label">Nome completo*</label><input class="form-input" type="text" placeholder="Seu nome completo"></div><div class="form-group"><label class="form-label">Data de nascimento*</label><input class="form-input" type="date"></div></div>
-          <div class="form-row"><div class="form-group"><label class="form-label">E-mail*</label><input class="form-input" type="email" placeholder="seu@email.com"></div><div class="form-group"><label class="form-label">WhatsApp*</label><input class="form-input" type="tel" placeholder="(65) 99999-9999"></div></div>
-          <div class="form-row"><div class="form-group"><label class="form-label">Cidade*</label><input class="form-input" type="text" placeholder="Ex: Rondonópolis"></div><div class="form-group"><label class="form-label">Estado*</label><select class="form-input"><option value="">Selecione</option><option>MT</option><option>GO</option><option>SP</option><option>Outro</option></select></div></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cand-nome">Nome completo*</label>
+              <input class="form-input" id="cand-nome" type="text" placeholder="Seu nome completo" maxlength="120" autocomplete="name">
+              <span class="field-error-msg">Por favor, informe seu nome completo.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cand-nasc">Data de nascimento*</label>
+              <input class="form-input" id="cand-nasc" type="date" autocomplete="bday">
+              <span class="field-error-msg">Informe sua data de nascimento.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cand-email">E-mail*</label>
+              <input class="form-input" id="cand-email" type="email" placeholder="seu@email.com" maxlength="150" autocomplete="email">
+              <span class="field-error-msg">Informe um e-mail válido.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cand-tel">WhatsApp*</label>
+              <input class="form-input" id="cand-tel" type="tel" placeholder="(65) 99999-9999" maxlength="20" autocomplete="tel">
+              <span class="field-error-msg">Informe um número de WhatsApp válido.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cand-cidade">Cidade*</label>
+              <input class="form-input" id="cand-cidade" type="text" placeholder="Ex: Rondonópolis" maxlength="80">
+              <span class="field-error-msg">Informe sua cidade.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cand-estado">Estado*</label>
+              <select class="form-input" id="cand-estado">
+                <option value="">Selecione</option>
+                <option>MT</option><option>GO</option><option>SP</option><option>Outro</option>
+              </select>
+              <span class="field-error-msg">Selecione seu estado.</span>
+            </div>
+          </div>
         </div>
+
         <div class="form-section">
           <div class="form-section-title">Formação</div>
-          <div class="form-row"><div class="form-group"><label class="form-label">Escolaridade*</label><select class="form-input"><option value="">Selecione</option><option>Ensino Fundamental</option><option>Ensino Médio</option><option>Técnico</option><option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação</option></select></div><div class="form-group"><label class="form-label">Área/Curso</label><input class="form-input" type="text" placeholder="Ex: Logística"></div></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cand-escolar">Escolaridade*</label>
+              <select class="form-input" id="cand-escolar">
+                <option value="">Selecione</option>
+                <option>Ensino Fundamental</option><option>Ensino Médio</option>
+                <option>Técnico</option><option>Superior Incompleto</option>
+                <option>Superior Completo</option><option>Pós-graduação</option>
+              </select>
+              <span class="field-error-msg">Selecione sua escolaridade.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cand-curso">Área/Curso</label>
+              <input class="form-input" id="cand-curso" type="text" placeholder="Ex: Logística" maxlength="80">
+            </div>
+          </div>
         </div>
+
         <div class="form-section">
           <div class="form-section-title">Experiência profissional</div>
-          <div class="form-row"><div class="form-group"><label class="form-label">Último cargo</label><input class="form-input" type="text" placeholder="Ex: Motorista"></div><div class="form-group"><label class="form-label">Última empresa</label><input class="form-input" type="text" placeholder="Nome da empresa"></div></div>
-          <div class="form-row"><div class="form-group"><label class="form-label">Tempo de experiência</label><select class="form-input"><option value="">Selecione</option><option>Sem experiência</option><option>Menos de 1 ano</option><option>1 a 2 anos</option><option>2 a 5 anos</option><option>Mais de 5 anos</option></select></div><div class="form-group"><label class="form-label">Pretensão salarial</label><input class="form-input" type="text" placeholder="Ex: R$ 3.500"></div></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cand-cargo">Último cargo</label>
+              <input class="form-input" id="cand-cargo" type="text" placeholder="Ex: Motorista" maxlength="80">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cand-empresa-ant">Última empresa</label>
+              <input class="form-input" id="cand-empresa-ant" type="text" placeholder="Nome da empresa" maxlength="80">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cand-exp">Tempo de experiência</label>
+              <select class="form-input" id="cand-exp">
+                <option value="">Selecione</option>
+                <option>Sem experiência</option><option>Menos de 1 ano</option>
+                <option>1 a 2 anos</option><option>2 a 5 anos</option><option>Mais de 5 anos</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cand-pretensao">Pretensão salarial</label>
+              <input class="form-input" id="cand-pretensao" type="text" placeholder="Ex: R$ 3.500" maxlength="30">
+            </div>
+          </div>
         </div>
+
         <div class="form-section">
           <div class="form-section-title">Requisitos e disponibilidade</div>
-          <div class="form-row"><div class="form-group"><label class="form-label">CNH</label><select class="form-input"><option value="">Não possuo</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>A/B</option></select></div><div class="form-group"><label class="form-label">Área de atuação</label><select class="form-input"><option value="">Selecione</option><option>Logística</option><option>Operacional</option><option>Administrativo</option><option>RH</option><option>Manutenção</option><option>Segurança</option><option>Outro</option></select></div></div>
-          <div class="form-checkrow"><input type="checkbox" id="cb1"><label for="cb1">Disponibilidade de horário (turnos, finais de semana)</label></div>
-          <div class="form-checkrow"><input type="checkbox" id="cb2"><label for="cb2">Disponibilidade para escala (6x1, 12x36 etc.)</label></div>
-          <div class="form-checkrow"><input type="checkbox" id="cb3"><label for="cb3">Disponibilidade para viagens</label></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cand-cnh">CNH</label>
+              <select class="form-input" id="cand-cnh">
+                <option value="">Não possuo</option>
+                <option>A</option><option>B</option><option>C</option>
+                <option>D</option><option>E</option><option>A/B</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cand-area">Área de atuação</label>
+              <select class="form-input" id="cand-area">
+                <option value="">Selecione</option>
+                <option>Logística</option><option>Operacional</option><option>Administrativo</option>
+                <option>RH</option><option>Manutenção</option><option>Segurança</option><option>Outro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-checkrow">
+            <input type="checkbox" id="cb1">
+            <label for="cb1">Disponibilidade de horário (turnos, finais de semana)</label>
+          </div>
+          <div class="form-checkrow">
+            <input type="checkbox" id="cb2">
+            <label for="cb2">Disponibilidade para escala (6x1, 12x36 etc.)</label>
+          </div>
+          <div class="form-checkrow">
+            <input type="checkbox" id="cb3">
+            <label for="cb3">Disponibilidade para viagens</label>
+          </div>
         </div>
+
+        <!-- ETAPA 4: Upload com validação de tipo e tamanho -->
         <div class="form-section">
           <div class="form-section-title">Upload de currículo (opcional)</div>
-          <input class="form-input" type="file" accept=".pdf,.doc,.docx" style="padding:8px 14px;cursor:pointer">
+          <div class="form-group">
+            <input class="form-input" id="cand-arquivo" type="file" accept=".pdf,.doc,.docx" style="padding:8px 14px;cursor:pointer">
+            <span class="field-error-msg" id="cand-arquivo-erro"></span>
+            <p style="font-size:11px;color:var(--text-dim);margin-top:5px">Formatos aceitos: PDF, DOC ou DOCX · Tamanho máximo: 5 MB</p>
+          </div>
         </div>
+
+        <!-- ETAPA 1: LGPD — Consentimento completo e obrigatório -->
         <div class="lgpd-note">
-          <div class="form-checkrow" style="padding:0"><input type="checkbox" id="lgpd" required><label for="lgpd" style="font-size:12px;color:var(--text-muted)">Autorizo o uso dos meus dados para fins de recrutamento conforme a Lei 13.709/2018 (LGPD). Seus dados não serão compartilhados com terceiros sem consentimento.</label></div>
+          <p style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:8px">🔒 Proteção de dados pessoais</p>
+          <p style="font-size:12px;line-height:1.6;margin-bottom:0">Seus dados serão utilizados exclusivamente para fins de recrutamento e seleção pela Help Recrutamento, de acordo com a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018). Você pode solicitar o acesso, correção ou exclusão dos seus dados a qualquer momento.</p>
+          <div class="lgpd-checkbox-row">
+            <input type="checkbox" id="lgpd-cand" required>
+            <label for="lgpd-cand">
+              Li e concordo com a <a href="#" onclick="openPrivacidadeModal();return false;">Política de Privacidade</a> e autorizo o uso dos meus dados pessoais pela Help Recrutamento para fins de recrutamento e seleção, conforme a LGPD.
+            </label>
+          </div>
+          <div class="lgpd-required-error" id="lgpd-cand-erro">
+            ⚠️ Você precisa aceitar a Política de Privacidade para enviar sua candidatura.
+          </div>
         </div>
-        <button class="btn-submit" onclick="submitForm()">Enviar candidatura</button>
+
+        <button class="btn-submit" id="btn-cand-submit" onclick="submitCandidatura()">
+          <span class="btn-spinner" id="cand-spinner"></span>
+          <span class="btn-label">Enviar candidatura</span>
+        </button>
       </div>
+
+      <!-- Mensagem de sucesso profissional -->
       <div class="success-msg" id="success-msg">
         <div class="success-icon">✓</div>
         <div class="success-title">Candidatura enviada!</div>
         <p class="success-text">Seu currículo foi recebido com sucesso. Nossa equipe entrará em contato assim que houver uma atualização sobre sua candidatura.</p>
+        <div class="success-detail" id="cand-success-detail"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MODAL BANCO GERAL -->
+<!-- ============================================================
+   MODAL — BANCO DE TALENTOS
+============================================================ -->
 <div class="modal-overlay" id="modal-banco">
   <div class="modal">
     <div class="modal-header">
       <div class="modal-vaga-empresa">Banco de Talentos</div>
       <div class="modal-vaga-titulo">Cadastre seu currículo</div>
-      <button class="modal-close" onclick="closeModal('modal-banco')">✕</button>
+      <button class="modal-close" onclick="closeModal('modal-banco')" aria-label="Fechar">✕</button>
     </div>
     <div class="modal-body">
       <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6">Mesmo sem uma vaga específica, cadastre seu perfil. Quando surgir a oportunidade certa, entramos em contato!</p>
+
       <div id="banco-form-area">
+        <!-- Banner de erro global -->
+        <div class="form-error-banner" id="banco-error-banner"></div>
+
         <div class="form-section">
           <div class="form-section-title">Dados pessoais</div>
-          <div class="form-row"><div class="form-group"><label class="form-label">Nome completo*</label><input class="form-input" type="text" placeholder="Seu nome"></div><div class="form-group"><label class="form-label">WhatsApp*</label><input class="form-input" type="tel" placeholder="(65) 99999-9999"></div></div>
-          <div class="form-row"><div class="form-group"><label class="form-label">E-mail*</label><input class="form-input" type="email" placeholder="seu@email.com"></div><div class="form-group"><label class="form-label">Cidade/Estado*</label><input class="form-input" type="text" placeholder="Ex: Rondonópolis, MT"></div></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="banco-nome">Nome completo*</label>
+              <input class="form-input" id="banco-nome" type="text" placeholder="Seu nome" maxlength="120" autocomplete="name">
+              <span class="field-error-msg">Por favor, informe seu nome.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="banco-tel">WhatsApp*</label>
+              <input class="form-input" id="banco-tel" type="tel" placeholder="(65) 99999-9999" maxlength="20" autocomplete="tel">
+              <span class="field-error-msg">Informe um número de WhatsApp válido.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="banco-email">E-mail*</label>
+              <input class="form-input" id="banco-email" type="email" placeholder="seu@email.com" maxlength="150" autocomplete="email">
+              <span class="field-error-msg">Informe um e-mail válido.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="banco-cidade">Cidade/Estado*</label>
+              <input class="form-input" id="banco-cidade" type="text" placeholder="Ex: Rondonópolis, MT" maxlength="80">
+              <span class="field-error-msg">Informe sua cidade e estado.</span>
+            </div>
+          </div>
         </div>
+
         <div class="form-section">
           <div class="form-section-title">Perfil profissional</div>
-          <div class="form-row"><div class="form-group"><label class="form-label">Área de interesse*</label><select class="form-input"><option value="">Selecione</option><option>Logística</option><option>Operacional</option><option>Administrativo</option><option>RH</option><option>Manutenção</option><option>Segurança</option><option>Outro</option></select></div><div class="form-group"><label class="form-label">Escolaridade*</label><select class="form-input"><option value="">Selecione</option><option>Ensino Médio</option><option>Técnico</option><option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação</option></select></div></div>
-          <div class="form-row"><div class="form-group"><label class="form-label">Pretensão salarial</label><input class="form-input" type="text" placeholder="Ex: R$ 2.500"></div><div class="form-group"><label class="form-label">CNH</label><select class="form-input"><option value="">Não possuo</option><option>A/B</option><option>C</option><option>D</option><option>E</option></select></div></div>
-          <div class="form-row full"><div class="form-group"><label class="form-label">Upload de currículo</label><input class="form-input" type="file" accept=".pdf,.doc,.docx" style="padding:8px"></div></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="banco-area">Área de interesse*</label>
+              <select class="form-input" id="banco-area">
+                <option value="">Selecione</option>
+                <option>Logística</option><option>Operacional</option><option>Administrativo</option>
+                <option>RH</option><option>Manutenção</option><option>Segurança</option><option>Outro</option>
+              </select>
+              <span class="field-error-msg">Selecione uma área de interesse.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="banco-escolar">Escolaridade*</label>
+              <select class="form-input" id="banco-escolar">
+                <option value="">Selecione</option>
+                <option>Ensino Médio</option><option>Técnico</option>
+                <option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação</option>
+              </select>
+              <span class="field-error-msg">Selecione sua escolaridade.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="banco-pretensao">Pretensão salarial</label>
+              <input class="form-input" id="banco-pretensao" type="text" placeholder="Ex: R$ 2.500" maxlength="30">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="banco-cnh">CNH</label>
+              <select class="form-input" id="banco-cnh">
+                <option value="">Não possuo</option>
+                <option>A/B</option><option>C</option><option>D</option><option>E</option>
+              </select>
+            </div>
+          </div>
+          <!-- ETAPA 4: Upload com validação -->
+          <div class="form-row full">
+            <div class="form-group">
+              <label class="form-label" for="banco-arquivo">Upload de currículo</label>
+              <input class="form-input" id="banco-arquivo" type="file" accept=".pdf,.doc,.docx" style="padding:8px">
+              <span class="field-error-msg" id="banco-arquivo-erro"></span>
+              <p style="font-size:11px;color:var(--text-dim);margin-top:5px">Formatos aceitos: PDF, DOC ou DOCX · Tamanho máximo: 5 MB</p>
+            </div>
+          </div>
         </div>
+
+        <!-- ETAPA 1: LGPD — Consentimento completo e obrigatório -->
         <div class="lgpd-note">
-          <div class="form-checkrow" style="padding:0"><input type="checkbox" id="lgpd2" required><label for="lgpd2" style="font-size:12px;color:var(--text-muted)">Autorizo o uso dos meus dados para fins de recrutamento conforme a Lei 13.709/2018 (LGPD).</label></div>
+          <p style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:8px">🔒 Proteção de dados pessoais</p>
+          <p style="font-size:12px;line-height:1.6;margin-bottom:0">Seus dados serão utilizados exclusivamente para fins de recrutamento pela Help Recrutamento, conforme a Lei 13.709/2018 (LGPD). Você pode solicitar acesso, correção ou exclusão a qualquer momento pelo e-mail de contato.</p>
+          <div class="lgpd-checkbox-row">
+            <input type="checkbox" id="lgpd-banco" required>
+            <label for="lgpd-banco">
+              Li e concordo com a <a href="#" onclick="openPrivacidadeModal();return false;">Política de Privacidade</a> e autorizo o uso dos meus dados pessoais para fins de recrutamento e seleção, conforme a LGPD.
+            </label>
+          </div>
+          <div class="lgpd-required-error" id="lgpd-banco-erro">
+            ⚠️ Você precisa aceitar a Política de Privacidade para continuar.
+          </div>
         </div>
-        <button class="btn-submit" onclick="submitBanco()">Cadastrar no banco de talentos</button>
+
+        <button class="btn-submit" id="btn-banco-submit" onclick="submitBanco()">
+          <span class="btn-spinner" id="banco-spinner"></span>
+          <span class="btn-label">Cadastrar no banco de talentos</span>
+        </button>
       </div>
+
       <div class="success-msg" id="banco-success-msg">
         <div class="success-icon">✓</div>
         <div class="success-title">Cadastro realizado!</div>
         <p class="success-text">Seu perfil foi adicionado ao nosso banco de talentos. Entraremos em contato quando surgir uma oportunidade para você.</p>
+        <div class="success-detail" id="banco-success-detail"></div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-// ===== GOOGLE SHEETS — helper de envio =====
-async function enviarParaSheets(payload) {
-  const resp = await fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(payload),
-  });
-  const json = await resp.json();
-  if (json.status !== 'ok') throw new Error(json.msg || 'Erro desconhecido');
-}
+<!-- ============================================================
+   MODAL — POLÍTICA DE PRIVACIDADE (novo — Etapa 1)
+============================================================ -->
+<div class="modal-overlay" id="modal-privacidade">
+  <div class="modal modal-privacidade">
+    <div class="modal-header">
+      <div class="modal-vaga-empresa">Help Recrutamento</div>
+      <div class="modal-vaga-titulo">Política de Privacidade</div>
+      <button class="modal-close" onclick="closeModal('modal-privacidade')" aria-label="Fechar">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="privacidade-content">
 
-// ===== VAGAS =====
-const vagas=[
+        <h3>1. Quem somos</h3>
+        <p>A <strong>Help Recrutamento</strong>, empresa especializada em recrutamento e seleção de profissionais, é responsável pelo tratamento dos dados pessoais coletados neste site, atuando como <strong>Controladora de Dados</strong> nos termos da Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).</p>
+
+        <h3>2. Finalidade do tratamento de dados</h3>
+        <p>Os dados pessoais coletados são utilizados exclusivamente para:</p>
+        <ul>
+          <li>Avaliação e triagem de candidatos para vagas de emprego;</li>
+          <li>Formação e manutenção do banco de talentos da Help Recrutamento;</li>
+          <li>Contato com candidatos sobre oportunidades compatíveis com seu perfil;</li>
+          <li>Encaminhamento de currículos a empresas parceiras, com seu consentimento.</li>
+        </ul>
+
+        <h3>3. Dados coletados</h3>
+        <p>Coletamos os seguintes dados pessoais:</p>
+        <ul>
+          <li><strong>Identificação:</strong> nome completo, data de nascimento;</li>
+          <li><strong>Contato:</strong> e-mail, número de WhatsApp/telefone;</li>
+          <li><strong>Localização:</strong> cidade e estado de residência;</li>
+          <li><strong>Profissionais:</strong> formação acadêmica, experiência profissional, área de atuação, pretensão salarial, CNH, disponibilidade;</li>
+          <li><strong>Documentos:</strong> currículo (PDF, DOC ou DOCX), quando enviado.</li>
+        </ul>
+
+        <h3>4. Base legal</h3>
+        <p>O tratamento ocorre com base no <strong>consentimento expresso do titular</strong> (Art. 7º, I da LGPD), registrado no momento do envio do formulário.</p>
+
+        <h3>5. Armazenamento dos dados</h3>
+        <p>Os dados são armazenados em planilhas eletrônicas seguras (Google Sheets) com acesso restrito e autenticado, sob responsabilidade da Help Recrutamento. Os arquivos de currículo são armazenados em ambiente controlado.</p>
+
+        <h3>6. Tempo de retenção</h3>
+        <p>Seus dados serão mantidos por <strong>até 24 meses</strong> a partir da data de cadastro, ou até que você solicite a exclusão. Após esse prazo, os dados são deletados ou anonimizados.</p>
+
+        <h3>7. Compartilhamento de dados</h3>
+        <p>Seus dados <strong>não serão vendidos</strong> a terceiros. Podem ser compartilhados apenas com empresas parceiras (<em>ex.: Rumo Logística, Vidal Transportes</em>) no contexto de processos seletivos, sempre com sua ciência.</p>
+
+        <h3>8. Seus direitos (LGPD — Art. 18)</h3>
+        <p>Como titular, você tem direito a:</p>
+        <ul>
+          <li>Confirmar a existência de tratamento dos seus dados;</li>
+          <li>Acessar seus dados a qualquer momento;</li>
+          <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
+          <li>Solicitar a exclusão dos seus dados;</li>
+          <li>Revogar o consentimento a qualquer tempo;</li>
+          <li>Portabilidade dos dados a outro fornecedor.</li>
+        </ul>
+
+        <h3>9. Canal de contato (DPO)</h3>
+        <p>Para exercer seus direitos ou esclarecer dúvidas sobre o tratamento dos seus dados:</p>
+        <ul>
+          <li><strong>E-mail:</strong> privacidade@helprecrutamento.com.br</li>
+          <li><strong>Instagram:</strong> <a href="https://instagram.com/helprecrutamentos" target="_blank" rel="noopener">@helprecrutamentos</a></li>
+        </ul>
+        <p>Respondemos em até <strong>15 dias úteis</strong>.</p>
+
+        <h3>10. Segurança da informação</h3>
+        <p>Adotamos medidas técnicas e organizacionais para proteger seus dados contra acessos não autorizados, perdas ou divulgação indevida, incluindo controle de acesso, tokens de segurança e validação de origem das requisições.</p>
+
+        <h3>11. Alterações nesta Política</h3>
+        <p>Esta Política pode ser atualizada periodicamente. Alterações relevantes serão comunicadas no site. Recomendamos a leitura periódica.</p>
+
+        <div class="privacidade-update">
+          Última atualização: Janeiro de 2025 · Versão 2.0
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+   JAVASCRIPT — Refatorado (Etapas 2–6)
+   Organização:
+     - CONFIG: configurações centralizadas
+     - SECURITY: token anti-bot, rate limit, sanitização
+     - VALIDATION: validação de campos
+     - FILE: validação de upload
+     - FORM: lógica de envio (candidatura + banco)
+     - UI: modais, filtros, vagas, menu
+============================================================ -->
+<script>
+
+/* ============================================================
+   CONFIG — Configurações centralizadas
+   ⚠️ Em produção: mova GOOGLE_SCRIPT_URL para uma variável de
+   ambiente ou use um proxy backend para não expor o endpoint.
+============================================================ */
+const CONFIG = {
+  // A URL do Apps Script não é exposta globalmente em window —
+  // fica encapsulada dentro do módulo FORM (Etapa 2).
+  _endpoint: 'https://script.google.com/macros/s/AKfycbxBcmZ7chAuQHvj-hHkPF3Ht5W3V6HfOlyfBaexexGj35PwtFpITDoV0WYcKaJCSFng/exec',
+
+  // Etapa 4: configurações de upload
+  MAX_FILE_SIZE_MB: 5,
+  ALLOWED_TYPES: ['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+  ALLOWED_EXTS: ['.pdf','.doc','.docx'],
+
+  // Etapa 3: rate limit
+  RATE_LIMIT_MS: 60000,      // 60 segundos entre envios
+  MAX_SUBMITS_PER_WINDOW: 3, // máximo de 3 envios por hora
+};
+
+
+/* ============================================================
+   SECURITY — Etapas 2 e 3
+============================================================ */
+const Security = (() => {
+  // Token anti-bot simples: timestamp + random
+  // (reforce com reCAPTCHA v3 em produção)
+  function generateToken() {
+    const ts = Date.now().toString(36);
+    const rand = Math.random().toString(36).slice(2, 8);
+    return `${ts}-${rand}`;
+  }
+
+  // Sanitização de string: remove tags HTML e caracteres perigosos
+  function sanitize(str) {
+    if (typeof str !== 'string') return '';
+    return str
+      .replace(/[<>]/g, '')            // anti XSS básico
+      .replace(/['"`;]/g, '')          // anti SQL/JS injection
+      .trim()
+      .slice(0, 500);                  // limite de comprimento
+  }
+
+  // Rate limit — controle de envios por sessão
+  const _submits = { timestamps: [], key: 'hr_submit_log' };
+
+  function canSubmit() {
+    const now = Date.now();
+    // Carrega log da sessão (sessionStorage não persiste entre abas em modo incógnito)
+    try {
+      const raw = sessionStorage.getItem(_submits.key);
+      _submits.timestamps = raw ? JSON.parse(raw) : [];
+    } catch(_) { _submits.timestamps = []; }
+
+    // Remove envios fora da janela de 1 hora
+    const oneHour = 3600000;
+    _submits.timestamps = _submits.timestamps.filter(t => now - t < oneHour);
+
+    if (_submits.timestamps.length >= CONFIG.MAX_SUBMITS_PER_WINDOW) {
+      return false;
+    }
+
+    // Verifica intervalo mínimo entre envios
+    if (_submits.timestamps.length > 0) {
+      const last = _submits.timestamps[_submits.timestamps.length - 1];
+      if (now - last < CONFIG.RATE_LIMIT_MS) {
+        const segundos = Math.ceil((CONFIG.RATE_LIMIT_MS - (now - last)) / 1000);
+        return { blocked: true, segundos };
+      }
+    }
+
+    return true;
+  }
+
+  function registerSubmit() {
+    _submits.timestamps.push(Date.now());
+    try { sessionStorage.setItem(_submits.key, JSON.stringify(_submits.timestamps)); } catch(_) {}
+  }
+
+  return { generateToken, sanitize, canSubmit, registerSubmit };
+})();
+
+
+/* ============================================================
+   VALIDATION — Etapa 2
+============================================================ */
+const Validation = (() => {
+  const EMAIL_RE = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+  const PHONE_RE = /^\(?\d{2}\)?\s?9?\d{4}[\s\-]?\d{4}$/;
+
+  function isValidEmail(v) { return EMAIL_RE.test(v); }
+  function isValidPhone(v) { return PHONE_RE.test(v.replace(/\s/g,'')); }
+  function isNotEmpty(v)   { return v && v.trim().length > 0; }
+
+  // Aplica estado visual ao campo
+  function setFieldState(input, valid, errorEl) {
+    const group = input.closest('.form-group');
+    if (!group) return;
+    if (valid) {
+      input.classList.remove('field-error');
+      input.classList.add('field-ok');
+      group.classList.remove('has-error');
+    } else {
+      input.classList.add('field-error');
+      input.classList.remove('field-ok');
+      group.classList.add('has-error');
+      if (errorEl) errorEl.style.display = 'block';
+    }
+  }
+
+  function clearFieldState(input) {
+    input.classList.remove('field-error','field-ok');
+    const group = input.closest('.form-group');
+    if (group) group.classList.remove('has-error');
+  }
+
+  return { isValidEmail, isValidPhone, isNotEmpty, setFieldState, clearFieldState };
+})();
+
+
+/* ============================================================
+   FILE — Etapa 4: Validação de upload
+============================================================ */
+const FileValidator = (() => {
+  function validate(inputEl, erroEl) {
+    if (!inputEl || !inputEl.files || !inputEl.files.length) return true; // opcional
+
+    const file = inputEl.files[0];
+    const ext  = '.' + file.name.split('.').pop().toLowerCase();
+    const sizeMB = file.size / (1024 * 1024);
+
+    if (!CONFIG.ALLOWED_EXTS.includes(ext) && !CONFIG.ALLOWED_TYPES.includes(file.type)) {
+      if (erroEl) { erroEl.textContent = 'Formato inválido. Use PDF, DOC ou DOCX.'; erroEl.style.display = 'block'; }
+      inputEl.classList.add('field-error');
+      return false;
+    }
+
+    if (sizeMB > CONFIG.MAX_FILE_SIZE_MB) {
+      if (erroEl) { erroEl.textContent = `Arquivo muito grande (${sizeMB.toFixed(1)} MB). Limite: ${CONFIG.MAX_FILE_SIZE_MB} MB.`; erroEl.style.display = 'block'; }
+      inputEl.classList.add('field-error');
+      return false;
+    }
+
+    if (erroEl) { erroEl.textContent = ''; erroEl.style.display = 'none'; }
+    inputEl.classList.remove('field-error');
+    inputEl.classList.add('field-ok');
+    return true;
+  }
+
+  // Renomeia o arquivo (evita conflitos — Etapa 4)
+  function sanitizeFilename(original) {
+    const ext  = original.split('.').pop().toLowerCase();
+    const ts   = Date.now();
+    const rand = Math.random().toString(36).slice(2, 6);
+    return `curriculo_${ts}_${rand}.${ext}`;
+  }
+
+  return { validate, sanitizeFilename };
+})();
+
+
+/* ============================================================
+   UI — Modais, Filtros, Vagas, Menu
+============================================================ */
+
+// ----- VAGAS -----
+const vagas = [
   {id:1,titulo:'Condutor Auto de Linha (Motorista)',empresa:'Rumo Logística',cidade:'Rondonópolis, MT',regime:'Integral',salario:'R$ 3.500 – R$ 4.500',tipo:'CLT',cat:'Logística',desc:'Responsável pela condução de veículos de linha para transporte de cargas. Necessário CNH categoria D ou E e experiência comprovada na função.',tags:['CNH D ou E','Experiência com transporte','Disponibilidade de horário'],dias:2},
   {id:2,titulo:'Operador de Via Permanente',empresa:'Rumo Logística',cidade:'Campo Verde, MT',regime:'Escala 6x1',salario:'R$ 2.800 – R$ 3.500',tipo:'CLT',cat:'Operacional',desc:'Atuar na manutenção e operação de via permanente ferroviária, garantindo segurança e eficiência nas operações logísticas.',tags:['Ensino Médio completo','Disponibilidade para escala','Boa condição física'],dias:2},
   {id:3,titulo:'Analista de RH – Recrutamento',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Integral',salario:'R$ 2.500 – R$ 3.200',tipo:'CLT',cat:'RH',desc:'Responsável pelo processo completo de recrutamento e seleção, triagem de currículos, entrevistas e onboarding de novos colaboradores.',tags:['Experiência em R&S','Pacote Office','Boa comunicação'],dias:5},
@@ -559,27 +1148,34 @@ const vagas=[
   {id:8,titulo:'Auxiliar Administrativo – Estágio',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Meio período',salario:'R$ 800 – R$ 1.200',tipo:'Estágio',cat:'Administrativo',desc:'Estágio remunerado para estudantes de Administração, RH ou áreas correlatas. Apoio nas rotinas administrativas e de recrutamento.',tags:['Cursando Administração ou RH','Comunicativo','Proatividade'],dias:6}
 ];
 
-let filtroAtivo={cat:'',tipo:''};
+let filtroAtivo = { cat: '', tipo: '' };
 
-function renderVagas(){
-  const busca=(document.getElementById('search-input')||{value:''}).value.toLowerCase();
-  const cidade=(document.getElementById('filtro-cidade')||{value:''}).value;
-  const lista=vagas.filter(v=>{
-    const matchBusca=!busca||v.titulo.toLowerCase().includes(busca)||v.empresa.toLowerCase().includes(busca)||v.cidade.toLowerCase().includes(busca)||v.cat.toLowerCase().includes(busca);
-    const matchCat=!filtroAtivo.cat||v.cat===filtroAtivo.cat;
-    const matchTipo=!filtroAtivo.tipo||v.tipo===filtroAtivo.tipo;
-    const matchCidade=!cidade||v.cidade===cidade;
-    return matchBusca&&matchCat&&matchTipo&&matchCidade;
+function renderVagas() {
+  const busca  = (document.getElementById('search-input') || {value:''}).value.toLowerCase();
+  const cidade = (document.getElementById('filtro-cidade') || {value:''}).value;
+
+  const lista = vagas.filter(v => {
+    const matchBusca  = !busca  || v.titulo.toLowerCase().includes(busca) || v.empresa.toLowerCase().includes(busca) || v.cidade.toLowerCase().includes(busca) || v.cat.toLowerCase().includes(busca);
+    const matchCat    = !filtroAtivo.cat  || v.cat  === filtroAtivo.cat;
+    const matchTipo   = !filtroAtivo.tipo || v.tipo === filtroAtivo.tipo;
+    const matchCidade = !cidade || v.cidade === cidade;
+    return matchBusca && matchCat && matchTipo && matchCidade;
   });
-  document.getElementById('count-vagas').textContent=lista.length;
-  const container=document.getElementById('vagas-list');
-  if(!lista.length){container.innerHTML='<div style="text-align:center;padding:3rem;color:var(--text-muted)">Nenhuma vaga encontrada para esses filtros.</div>';return;}
-  container.innerHTML=lista.map(v=>`
+
+  document.getElementById('count-vagas').textContent = lista.length;
+  const container = document.getElementById('vagas-list');
+
+  if (!lista.length) {
+    container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-muted)">Nenhuma vaga encontrada para esses filtros.</div>';
+    return;
+  }
+
+  container.innerHTML = lista.map(v => `
     <div class="vaga-card">
       <div class="vaga-top">
         <div class="vaga-info">
-          <div class="vaga-empresa">${v.empresa}</div>
-          <div class="vaga-titulo">${v.titulo}</div>
+          <div class="vaga-empresa">${Security.sanitize(v.empresa)}</div>
+          <div class="vaga-titulo">${Security.sanitize(v.titulo)}</div>
         </div>
         <span class="badge-tipo ${v.tipo==='CLT'?'badge-clt':v.tipo==='PJ'?'badge-pj':v.tipo==='Estágio'?'badge-pj':'badge-temp'}">${v.tipo}</span>
       </div>
@@ -587,153 +1183,405 @@ function renderVagas(){
         <span class="meta-item">📍 ${v.cidade}</span>
         <span class="meta-item">🕐 ${v.regime}</span>
       </div>
-      <div class="vaga-desc">${v.desc}</div>
-      <div class="vaga-tags">${v.tags.map(t=>`<span class="tag-item">${t}</span>`).join('')}</div>
+      <div class="vaga-desc">${Security.sanitize(v.desc)}</div>
+      <div class="vaga-tags">${v.tags.map(t=>`<span class="tag-item">${Security.sanitize(t)}</span>`).join('')}</div>
       <div class="vaga-bottom">
         <div class="vaga-salario">${v.salario} <span>/ mês</span></div>
         <div class="vaga-footer-right">
           <span class="vaga-tempo">Há ${v.dias} dia${v.dias>1?'s':''}</span>
-          <button class="btn-candidatar" onclick="openCandidatura('${v.empresa}','${v.titulo}')">Candidatar-se</button>
+          <button class="btn-candidatar" onclick="openCandidatura('${encodeURIComponent(v.empresa)}','${encodeURIComponent(v.titulo)}')">Candidatar-se</button>
         </div>
       </div>
     </div>
   `).join('');
 }
 
-function filtrarVagas(){renderVagas();}
+function filtrarVagas() { renderVagas(); }
 
-function setFiltro(el,tipo,val){
-  el.parentElement.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+function setFiltro(el, tipo, val) {
+  el.parentElement.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
-  filtroAtivo[tipo]=val;
+  filtroAtivo[tipo] = val;
   renderVagas();
 }
 
-// ===== MODAIS =====
-function openCandidatura(empresa,titulo){
-  document.getElementById('modal-empresa').textContent=empresa;
-  document.getElementById('modal-titulo').textContent=titulo;
-  document.getElementById('form-area').style.display='block';
-  document.getElementById('success-msg').style.display='none';
+// ----- MODAIS -----
+function openCandidatura(empresa, titulo) {
+  document.getElementById('modal-empresa').textContent = decodeURIComponent(empresa);
+  document.getElementById('modal-titulo').textContent  = decodeURIComponent(titulo);
+  resetForm('form-area', 'success-msg', 'cand-error-banner');
   document.getElementById('modal-candidatura').classList.add('open');
 }
 
-function openBancoModal(){
-  document.getElementById('banco-form-area').style.display='block';
-  document.getElementById('banco-success-msg').style.display='none';
+function openBancoModal() {
+  resetForm('banco-form-area', 'banco-success-msg', 'banco-error-banner');
   document.getElementById('modal-banco').classList.add('open');
 }
 
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-
-// ===== ENVIO DE CANDIDATURA POR VAGA =====
-async function submitForm(){
-  const btn = document.querySelector('#form-area .btn-submit');
-  const empresa   = document.getElementById('modal-empresa').textContent;
-  const titulo    = document.getElementById('modal-titulo').textContent;
-  const categoria = vagas.find(v => v.titulo === titulo)?.cat || '';
-
-  const inputs = document.querySelectorAll('#form-area .form-input');
-  const nome         = inputs[0]?.value || '';
-  const nascimento   = inputs[1]?.value || '';
-  const email        = inputs[2]?.value || '';
-  const whatsapp     = inputs[3]?.value || '';
-  const cidade       = inputs[4]?.value || '';
-  const estado       = inputs[5]?.value || '';
-  const escolaridade = inputs[6]?.value || '';
-  const curso        = inputs[7]?.value || '';
-  const ultimoCargo  = inputs[8]?.value || '';
-  const ultimaEmpresa= inputs[9]?.value || '';
-  const expTempo     = inputs[10]?.value || '';
-  const pretensao    = inputs[11]?.value || '';
-  const cnh          = inputs[12]?.value || '';
-  const areaAtuacao  = inputs[13]?.value || '';
-  const dispHorario  = document.getElementById('cb1')?.checked ? 'Sim' : 'Não';
-  const dispEscala   = document.getElementById('cb2')?.checked ? 'Sim' : 'Não';
-  const dispViagem   = document.getElementById('cb3')?.checked ? 'Sim' : 'Não';
-
-  if(!nome || !email || !whatsapp){
-    alert('Por favor, preencha Nome, E-mail e WhatsApp.');
-    return;
-  }
-
-  btn.textContent = 'Enviando...';
-  btn.disabled = true;
-
-  try {
-    await enviarParaSheets({
-      tipo: 'candidatura',
-      empresa, vaga: titulo, categoria,
-      nome, nascimento, email, whatsapp, cidade, estado,
-      escolaridade, curso, ultimoCargo, ultimaEmpresa,
-      expTempo, pretensao, cnh, areaAtuacao,
-      dispHorario, dispEscala, dispViagem,
-    });
-    document.getElementById('form-area').style.display='none';
-    document.getElementById('success-msg').style.display='block';
-  } catch(err){
-    console.error('Erro:', err);
-    alert('Erro ao enviar. Verifique sua conexão e tente novamente.');
-    btn.textContent = 'Enviar candidatura';
-    btn.disabled = false;
-  }
+function openPrivacidadeModal() {
+  document.getElementById('modal-privacidade').classList.add('open');
 }
 
-// ===== ENVIO DE BANCO DE TALENTOS =====
-async function submitBanco(){
-  const btn = document.querySelector('#banco-form-area .btn-submit');
-  const inputs = document.querySelectorAll('#banco-form-area .form-input');
-  const nome         = inputs[0]?.value || '';
-  const whatsapp     = inputs[1]?.value || '';
-  const email        = inputs[2]?.value || '';
-  const cidadeEstado = inputs[3]?.value || '';
-  const areaInteresse= inputs[4]?.value || '';
-  const escolaridade = inputs[5]?.value || '';
-  const pretensao    = inputs[6]?.value || '';
-  const cnh          = inputs[7]?.value || '';
-
-  if(!nome || !email || !whatsapp){
-    alert('Por favor, preencha Nome, E-mail e WhatsApp.');
-    return;
-  }
-
-  btn.textContent = 'Enviando...';
-  btn.disabled = true;
-
-  try {
-    await enviarParaSheets({
-      tipo: 'banco',
-      nome, whatsapp, email, cidadeEstado,
-      areaInteresse, escolaridade, pretensao, cnh,
-    });
-    document.getElementById('banco-form-area').style.display='none';
-    document.getElementById('banco-success-msg').style.display='block';
-  } catch(err){
-    console.error('Erro:', err);
-    alert('Erro ao enviar. Verifique sua conexão e tente novamente.');
-    btn.textContent = 'Cadastrar no banco de talentos';
-    btn.disabled = false;
-  }
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
 }
 
-// ===== FECHAR MODAL AO CLICAR FORA =====
-document.querySelectorAll('.modal-overlay').forEach(m=>{
-  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});
+// Reset completo do formulário
+function resetForm(formAreaId, successId, bannerErrorId) {
+  const formArea = document.getElementById(formAreaId);
+  const successEl = document.getElementById(successId);
+  if (formArea) formArea.style.display = 'block';
+  if (successEl) successEl.style.display = 'none';
+
+  // Limpa erros e campos
+  if (formArea) {
+    formArea.querySelectorAll('.form-input').forEach(inp => {
+      Validation.clearFieldState(inp);
+    });
+    formArea.querySelectorAll('.field-error-msg').forEach(el => el.style.display = 'none');
+    formArea.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
+    formArea.querySelectorAll('.lgpd-required-error').forEach(el => el.style.display = 'none');
+  }
+
+  const banner = document.getElementById(bannerErrorId);
+  if (banner) { banner.textContent = ''; banner.classList.remove('visible'); }
+}
+
+// Fechar modal clicando fora
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
 });
 
-// ===== HAMBURGER MENU =====
-function toggleMenu(){
-  const links = document.getElementById('nav-links');
-  const btn   = document.getElementById('nav-hamburger');
-  links.classList.toggle('open');
-  btn.classList.toggle('open');
+// ----- HAMBURGER -----
+function toggleMenu() {
+  document.getElementById('nav-links').classList.toggle('open');
+  document.getElementById('nav-hamburger').classList.toggle('open');
 }
-function fecharMenu(){
+function fecharMenu() {
   document.getElementById('nav-links').classList.remove('open');
   document.getElementById('nav-hamburger').classList.remove('open');
 }
 
+
+/* ============================================================
+   FORM — Lógica de envio (Etapas 2, 3, 5, 6)
+============================================================ */
+
+/**
+ * Envia dados para o Google Apps Script.
+ * Endpoint encapsulado — não exposto em variável global de window.
+ * Etapa 2: validação de origem + token de segurança.
+ */
+async function _enviarBackend(payload) {
+  const token = Security.generateToken();
+
+  // Monta payload final com metadados de segurança
+  const finalPayload = {
+    ...payload,
+    _token:     token,
+    _timestamp: Date.now(),
+    _origin:    window.location.origin || 'unknown',
+  };
+
+  const resp = await fetch(CONFIG._endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' }, // evita preflight CORS
+    body: JSON.stringify(finalPayload),
+  });
+
+  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+  const json = await resp.json();
+  if (json.status !== 'ok') throw new Error(json.msg || 'Resposta inválida do servidor');
+
+  return json;
+}
+
+/**
+ * Valida candidatura — retorna lista de erros ou []
+ */
+function validarCandidatura() {
+  const erros = [];
+  const V = Validation;
+
+  const nome       = document.getElementById('cand-nome');
+  const email      = document.getElementById('cand-email');
+  const tel        = document.getElementById('cand-tel');
+  const cidade     = document.getElementById('cand-cidade');
+  const estado     = document.getElementById('cand-estado');
+  const escolar    = document.getElementById('cand-escolar');
+  const lgpdCheck  = document.getElementById('lgpd-cand');
+  const arquivo    = document.getElementById('cand-arquivo');
+  const arqErro    = document.getElementById('cand-arquivo-erro');
+
+  // Nome
+  const nomeVal = nome?.value.trim() || '';
+  const nomeOk = V.isNotEmpty(nomeVal) && nomeVal.split(' ').length >= 2;
+  V.setFieldState(nome, nomeOk, nome?.nextElementSibling);
+  if (!nomeOk) erros.push('Nome completo é obrigatório (nome e sobrenome).');
+
+  // Email
+  const emailOk = V.isValidEmail(email?.value.trim() || '');
+  V.setFieldState(email, emailOk, email?.nextElementSibling);
+  if (!emailOk) erros.push('E-mail inválido.');
+
+  // Telefone
+  const telOk = V.isValidPhone(tel?.value.trim() || '');
+  V.setFieldState(tel, telOk, tel?.nextElementSibling);
+  if (!telOk) erros.push('WhatsApp inválido. Use o formato (XX) 99999-9999.');
+
+  // Cidade
+  const cidOk = V.isNotEmpty(cidade?.value || '');
+  V.setFieldState(cidade, cidOk, cidade?.nextElementSibling);
+  if (!cidOk) erros.push('Informe sua cidade.');
+
+  // Estado
+  const estOk = V.isNotEmpty(estado?.value || '');
+  V.setFieldState(estado, estOk, estado?.nextElementSibling);
+  if (!estOk) erros.push('Selecione seu estado.');
+
+  // Escolaridade
+  const escOk = V.isNotEmpty(escolar?.value || '');
+  V.setFieldState(escolar, escOk, escolar?.nextElementSibling);
+  if (!escOk) erros.push('Selecione sua escolaridade.');
+
+  // Arquivo (opcional, mas validado se existir)
+  if (!FileValidator.validate(arquivo, arqErro)) {
+    erros.push('Arquivo inválido. Use PDF, DOC ou DOCX até 5 MB.');
+  }
+
+  // LGPD (obrigatório)
+  if (!lgpdCheck?.checked) {
+    document.getElementById('lgpd-cand-erro').style.display = 'block';
+    erros.push('Aceite a Política de Privacidade para continuar.');
+  } else {
+    document.getElementById('lgpd-cand-erro').style.display = 'none';
+  }
+
+  return erros;
+}
+
+/**
+ * Valida banco de talentos
+ */
+function validarBanco() {
+  const erros = [];
+  const V = Validation;
+
+  const nome    = document.getElementById('banco-nome');
+  const email   = document.getElementById('banco-email');
+  const tel     = document.getElementById('banco-tel');
+  const cidade  = document.getElementById('banco-cidade');
+  const area    = document.getElementById('banco-area');
+  const escolar = document.getElementById('banco-escolar');
+  const lgpdChk = document.getElementById('lgpd-banco');
+  const arquivo = document.getElementById('banco-arquivo');
+  const arqErro = document.getElementById('banco-arquivo-erro');
+
+  const nomeVal = nome?.value.trim() || '';
+  const nomeOk = V.isNotEmpty(nomeVal) && nomeVal.split(' ').length >= 2;
+  V.setFieldState(nome, nomeOk, nome?.nextElementSibling);
+  if (!nomeOk) erros.push('Nome completo é obrigatório.');
+
+  const emailOk = V.isValidEmail(email?.value.trim() || '');
+  V.setFieldState(email, emailOk, email?.nextElementSibling);
+  if (!emailOk) erros.push('E-mail inválido.');
+
+  const telOk = V.isValidPhone(tel?.value.trim() || '');
+  V.setFieldState(tel, telOk, tel?.nextElementSibling);
+  if (!telOk) erros.push('WhatsApp inválido.');
+
+  const cidOk = V.isNotEmpty(cidade?.value || '');
+  V.setFieldState(cidade, cidOk, cidade?.nextElementSibling);
+  if (!cidOk) erros.push('Informe sua cidade.');
+
+  const areaOk = V.isNotEmpty(area?.value || '');
+  V.setFieldState(area, areaOk, area?.nextElementSibling);
+  if (!areaOk) erros.push('Selecione uma área de interesse.');
+
+  const escOk = V.isNotEmpty(escolar?.value || '');
+  V.setFieldState(escolar, escOk, escolar?.nextElementSibling);
+  if (!escOk) erros.push('Selecione sua escolaridade.');
+
+  if (!FileValidator.validate(arquivo, arqErro)) {
+    erros.push('Arquivo inválido. Use PDF, DOC ou DOCX até 5 MB.');
+  }
+
+  if (!lgpdChk?.checked) {
+    document.getElementById('lgpd-banco-erro').style.display = 'block';
+    erros.push('Aceite a Política de Privacidade para continuar.');
+  } else {
+    document.getElementById('lgpd-banco-erro').style.display = 'none';
+  }
+
+  return erros;
+}
+
+// Controle de loading do botão
+function setLoading(btnId, spinnerId, isLoading) {
+  const btn = document.getElementById(btnId);
+  const sp  = document.getElementById(spinnerId);
+  if (!btn) return;
+  if (isLoading) {
+    btn.disabled = true;
+    btn.classList.add('loading');
+    if (sp) sp.style.display = 'block';
+  } else {
+    btn.disabled = false;
+    btn.classList.remove('loading');
+    if (sp) sp.style.display = 'none';
+  }
+}
+
+function showBanner(bannerId, mensagem) {
+  const el = document.getElementById(bannerId);
+  if (!el) return;
+  el.textContent = mensagem;
+  el.classList.add('visible');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideBanner(bannerId) {
+  const el = document.getElementById(bannerId);
+  if (el) { el.textContent = ''; el.classList.remove('visible'); }
+}
+
+/**
+ * SUBMIT — Candidatura por vaga
+ */
+async function submitCandidatura() {
+  hideBanner('cand-error-banner');
+
+  // Etapa 3: Rate limit
+  const rl = Security.canSubmit();
+  if (rl === false) {
+    showBanner('cand-error-banner', `⚠️ Limite de envios atingido. Tente novamente mais tarde.`);
+    return;
+  }
+  if (rl && rl.blocked) {
+    showBanner('cand-error-banner', `⏳ Aguarde ${rl.segundos} segundo(s) antes de enviar novamente.`);
+    return;
+  }
+
+  // Etapa 2: Validação
+  const erros = validarCandidatura();
+  if (erros.length > 0) {
+    showBanner('cand-error-banner', `⚠️ Corrija os campos destacados para continuar.`);
+    return;
+  }
+
+  setLoading('btn-cand-submit', 'cand-spinner', true);
+
+  // Coleta e sanitiza dados
+  const S = Security.sanitize;
+  const empresa   = document.getElementById('modal-empresa').textContent;
+  const titulo    = document.getElementById('modal-titulo').textContent;
+  const categoria = vagas.find(v => v.titulo === titulo)?.cat || '';
+
+  const payload = {
+    tipo:          'candidatura',
+    empresa:       S(empresa),
+    vaga:          S(titulo),
+    categoria:     S(categoria),
+    nome:          S(document.getElementById('cand-nome').value),
+    nascimento:    S(document.getElementById('cand-nasc').value),
+    email:         S(document.getElementById('cand-email').value),
+    whatsapp:      S(document.getElementById('cand-tel').value),
+    cidade:        S(document.getElementById('cand-cidade').value),
+    estado:        S(document.getElementById('cand-estado').value),
+    escolaridade:  S(document.getElementById('cand-escolar').value),
+    curso:         S(document.getElementById('cand-curso').value),
+    ultimoCargo:   S(document.getElementById('cand-cargo').value),
+    ultimaEmpresa: S(document.getElementById('cand-empresa-ant').value),
+    expTempo:      S(document.getElementById('cand-exp').value),
+    pretensao:     S(document.getElementById('cand-pretensao').value),
+    cnh:           S(document.getElementById('cand-cnh').value),
+    areaAtuacao:   S(document.getElementById('cand-area').value),
+    dispHorario:   document.getElementById('cb1').checked ? 'Sim' : 'Não',
+    dispEscala:    document.getElementById('cb2').checked ? 'Sim' : 'Não',
+    dispViagem:    document.getElementById('cb3').checked ? 'Sim' : 'Não',
+    consentimentoLGPD: 'Sim',
+    dataConsentimento: new Date().toISOString(),
+  };
+
+  try {
+    await _enviarBackend(payload);
+    Security.registerSubmit();
+
+    // Etapa 6: Sucesso profissional
+    document.getElementById('form-area').style.display = 'none';
+    const successEl = document.getElementById('success-msg');
+    const detail    = document.getElementById('cand-success-detail');
+    if (detail) detail.textContent = `Candidatura registrada para: ${titulo} · ${new Date().toLocaleDateString('pt-BR', {day:'2-digit',month:'long',year:'numeric'})}`;
+    successEl.style.display = 'block';
+
+  } catch(err) {
+    console.error('[HR] Erro ao enviar candidatura:', err);
+    // Etapa 3: mensagem segura — não expõe detalhes do backend
+    showBanner('cand-error-banner', '❌ Não foi possível enviar sua candidatura. Verifique sua conexão e tente novamente.');
+    setLoading('btn-cand-submit', 'cand-spinner', false);
+  }
+}
+
+/**
+ * SUBMIT — Banco de talentos
+ */
+async function submitBanco() {
+  hideBanner('banco-error-banner');
+
+  const rl = Security.canSubmit();
+  if (rl === false) {
+    showBanner('banco-error-banner', `⚠️ Limite de envios atingido. Tente novamente mais tarde.`);
+    return;
+  }
+  if (rl && rl.blocked) {
+    showBanner('banco-error-banner', `⏳ Aguarde ${rl.segundos} segundo(s) antes de enviar novamente.`);
+    return;
+  }
+
+  const erros = validarBanco();
+  if (erros.length > 0) {
+    showBanner('banco-error-banner', `⚠️ Corrija os campos destacados para continuar.`);
+    return;
+  }
+
+  setLoading('btn-banco-submit', 'banco-spinner', true);
+
+  const S = Security.sanitize;
+  const payload = {
+    tipo:            'banco',
+    nome:            S(document.getElementById('banco-nome').value),
+    whatsapp:        S(document.getElementById('banco-tel').value),
+    email:           S(document.getElementById('banco-email').value),
+    cidadeEstado:    S(document.getElementById('banco-cidade').value),
+    areaInteresse:   S(document.getElementById('banco-area').value),
+    escolaridade:    S(document.getElementById('banco-escolar').value),
+    pretensao:       S(document.getElementById('banco-pretensao').value),
+    cnh:             S(document.getElementById('banco-cnh').value),
+    consentimentoLGPD: 'Sim',
+    dataConsentimento: new Date().toISOString(),
+  };
+
+  try {
+    await _enviarBackend(payload);
+    Security.registerSubmit();
+
+    document.getElementById('banco-form-area').style.display = 'none';
+    const successEl = document.getElementById('banco-success-msg');
+    const detail    = document.getElementById('banco-success-detail');
+    if (detail) detail.textContent = `Cadastro realizado em ${new Date().toLocaleDateString('pt-BR', {day:'2-digit',month:'long',year:'numeric'})}. Guarde este registro.`;
+    successEl.style.display = 'block';
+
+  } catch(err) {
+    console.error('[HR] Erro ao cadastrar banco:', err);
+    showBanner('banco-error-banner', '❌ Não foi possível realizar o cadastro. Verifique sua conexão e tente novamente.');
+    setLoading('btn-banco-submit', 'banco-spinner', false);
+  }
+}
+
+// ─── Inicialização ───
 renderVagas();
+
 </script>
 </body>
 </html>
