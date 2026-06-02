@@ -125,8 +125,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.9
 .vaga-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
 .tag-item{font-size:11.5px;padding:4px 10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:100px;color:rgba(255,255,255,0.5)}
 .vaga-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
-.vaga-salario{font-size:15px;font-weight:600;color:var(--white)}
-.vaga-salario span{font-size:12px;color:var(--text-muted);font-weight:400;margin-left:4px}
+
+
 .vaga-footer-right{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
 .vaga-tempo{font-size:12px;color:var(--text-dim)}
 .btn-candidatar{background:var(--gold);color:var(--black);border:none;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.02em;transition:background 0.15s,transform 0.1s;font-family:var(--sans)}
@@ -634,8 +634,7 @@ select.form-input{appearance:none;cursor:pointer}
     </div>
     <div class="modal-body">
       <div class="detalhe-salario-box">
-        <div><div class="detalhe-salario-label">Remuneração</div><div class="detalhe-salario-valor" id="det-salario"></div></div>
-        <div class="detalhe-salario-right"><div class="detalhe-salario-label">Regime</div><div class="detalhe-salario-regime" id="det-regime"></div></div>
+        <div><div class="detalhe-salario-label">Regime</div><div class="detalhe-salario-valor" id="det-regime"></div></div>
       </div>
       <div class="detalhe-section"><div class="detalhe-section-title">Horário de trabalho</div><div class="horario-grid" id="det-horario"></div></div>
       <div class="detalhe-section"><div class="detalhe-section-title">Sobre a vaga</div><div class="detalhe-desc" id="det-desc"></div></div>
@@ -704,10 +703,6 @@ select.form-input{appearance:none;cursor:pointer}
           <div class="form-checkrow"><input type="checkbox" id="cb2"><label for="cb2">Disponibilidade para escala (6x1, 12x36 etc.)</label></div>
           <div class="form-checkrow"><input type="checkbox" id="cb3"><label for="cb3">Disponibilidade para viagens</label></div>
         </div>
-        <div class="form-section">
-          <div class="form-section-title">Upload de currículo (opcional)</div>
-          <div class="form-group"><input class="form-input" id="cand-arquivo" type="file" accept=".pdf,.doc,.docx" style="padding:8px 14px;cursor:pointer"><span class="field-error-msg" id="cand-arquivo-erro"></span><p style="font-size:11px;color:var(--text-dim);margin-top:5px">PDF, DOC ou DOCX · Máximo: 5 MB</p></div>
-        </div>
         <div class="lgpd-note">
           <p style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:8px">🔒 Proteção de dados pessoais</p>
           <p style="font-size:12px;line-height:1.6;margin-bottom:0">Seus dados serão utilizados exclusivamente para fins de recrutamento pela Help Recrutamento, conforme a LGPD (Lei 13.709/2018).</p>
@@ -718,7 +713,7 @@ select.form-input{appearance:none;cursor:pointer}
       </div>
       <div class="success-msg" id="success-msg">
         <div class="success-icon">✓</div><div class="success-title">Candidatura enviada!</div>
-        <p class="success-text">Seu currículo foi recebido. Entraremos em contato sobre sua candidatura.</p>
+        <p class="success-text">Seus dados foram recebidos. Entraremos em contato sobre sua candidatura.</p>
         <div class="success-detail" id="cand-success-detail"></div>
       </div>
     </div>
@@ -758,9 +753,6 @@ select.form-input{appearance:none;cursor:pointer}
             <div class="form-group"><label class="form-label" for="banco-pretensao">Pretensão salarial</label><input class="form-input" id="banco-pretensao" type="text" placeholder="Ex: R$ 2.500" maxlength="30"></div>
             <div class="form-group"><label class="form-label" for="banco-cnh">CNH</label><select class="form-input" id="banco-cnh"><option value="">Não possuo</option><option>A/B</option><option>C</option><option>D</option><option>E</option></select></div>
           </div>
-          <div class="form-row full">
-            <div class="form-group"><label class="form-label" for="banco-arquivo">Upload de currículo</label><input class="form-input" id="banco-arquivo" type="file" accept=".pdf,.doc,.docx" style="padding:8px"><span class="field-error-msg" id="banco-arquivo-erro"></span><p style="font-size:11px;color:var(--text-dim);margin-top:5px">PDF, DOC ou DOCX · Máximo: 5 MB</p></div>
-          </div>
         </div>
         <div class="lgpd-note">
           <p style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:8px">🔒 Proteção de dados pessoais</p>
@@ -794,7 +786,7 @@ select.form-input{appearance:none;cursor:pointer}
         <h3>2. Finalidade do tratamento</h3>
         <ul><li>Avaliação e triagem de candidatos;</li><li>Manutenção do banco de talentos;</li><li>Contato sobre oportunidades;</li><li>Encaminhamento a parceiras com consentimento.</li></ul>
         <h3>3. Dados coletados</h3>
-        <ul><li><strong>Identificação:</strong> nome, data de nascimento;</li><li><strong>Contato:</strong> e-mail, WhatsApp;</li><li><strong>Localização:</strong> cidade e estado;</li><li><strong>Profissionais:</strong> formação, experiência, área, pretensão, CNH;</li><li><strong>Documentos:</strong> currículo.</li></ul>
+        <ul><li><strong>Identificação:</strong> nome, data de nascimento;</li><li><strong>Contato:</strong> e-mail, WhatsApp;</li><li><strong>Localização:</strong> cidade e estado;</li><li><strong>Profissionais:</strong> formação, experiência, área, pretensão, CNH;</li></ul>
         <h3>4. Base legal</h3>
         <p>Consentimento expresso do titular (Art. 7º, I da LGPD).</p>
         <h3>5. Tempo de retenção</h3>
@@ -811,15 +803,17 @@ select.form-input{appearance:none;cursor:pointer}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 
 const CONFIG = {
-  _endpoint: 'https://script.google.com/macros/s/AKfycbxBcmZ7chAuQHvj-hHkPF3Ht5W3V6HfOlyfBaexexGj35PwtFpITDoV0WYcKaJCSFng/exec',
-  MAX_FILE_SIZE_MB: 5,
-  ALLOWED_TYPES: ['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
-  ALLOWED_EXTS: ['.pdf','.doc','.docx'],
+  // 🔑 Settings → API no painel do Supabase. A anon key é pública por design:
+  // a segurança vem das policies de RLS (anon só pode INSERT, nunca ler dados).
+  SUPABASE_URL: 'https://jwykdtwwhwccghbqzqys.supabase.co',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3eWtkdHd3aHdjY2doYnF6cXlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzODY3NzAsImV4cCI6MjA5NTk2Mjc3MH0.6cx9Pb49-LvUXs4VzRl071BVVG509k5vSRFdXfz_fZ4',
   RATE_LIMIT_MS: 60000, MAX_SUBMITS_PER_WINDOW: 3,
 };
+const sbClient = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
 const Security = (() => {
   function generateToken() { return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,8); }
   function sanitize(str) { if (typeof str !== 'string') return ''; return str.replace(/[<>]/g,'').replace(/["'`;]/g,'').trim().slice(0,500); }
@@ -845,61 +839,51 @@ const Validation = (() => {
   function clearFieldState(input){ if(!input)return; input.classList.remove('field-error','field-ok'); const g=input.closest('.form-group'); if(g)g.classList.remove('has-error'); }
   return { isValidEmail, isValidPhone, isNotEmpty, setFieldState, clearFieldState };
 })();
-const FileValidator = (() => {
-  function validate(inputEl, erroEl) {
-    if (!inputEl||!inputEl.files||!inputEl.files.length) return true;
-    const file=inputEl.files[0]; const ext='.'+file.name.split('.').pop().toLowerCase(); const sizeMB=file.size/(1024*1024);
-    if (!CONFIG.ALLOWED_EXTS.includes(ext)&&!CONFIG.ALLOWED_TYPES.includes(file.type)) { if(erroEl){erroEl.textContent='Formato inválido. Use PDF, DOC ou DOCX.';erroEl.style.display='block';} inputEl.classList.add('field-error'); return false; }
-    if (sizeMB>CONFIG.MAX_FILE_SIZE_MB) { if(erroEl){erroEl.textContent='Arquivo muito grande ('+sizeMB.toFixed(1)+' MB). Limite: '+CONFIG.MAX_FILE_SIZE_MB+' MB.';erroEl.style.display='block';} inputEl.classList.add('field-error'); return false; }
-    if(erroEl){erroEl.textContent='';erroEl.style.display='none';} inputEl.classList.remove('field-error'); inputEl.classList.add('field-ok'); return true;
-  }
-  return { validate };
-})();
 
 const vagas = [
-  {id:1,titulo:'Condutor Auto de Linha (Motorista)',empresa:'Rumo Logística',cidade:'Rondonópolis, MT',regime:'Integral',salario:'R$ 3.500 – R$ 4.500',tipo:'CLT',cat:'Logística',dias:2,
+  {id:1,titulo:'Condutor Auto de Linha (Motorista)',empresa:'Rumo Logística',cidade:'Rondonópolis, MT',regime:'Integral',tipo:'CLT',cat:'Logística',dias:2,
    desc:'Responsável pela condução de veículos de linha para transporte de cargas em rotas intermunicipais e estaduais, em conformidade com as normas de trânsito e segurança da empresa.',
    horario:[{label:'Jornada',valor:'Segunda a Sábado'},{label:'Turno',valor:'Integral (8h/dia)'},{label:'Escala',valor:'6x1'},{label:'Horas semanais',valor:'44h/semana'}],
    requisitos:[{texto:'CNH categoria D ou E',obr:true},{texto:'Experiência mínima de 2 anos na função',obr:true},{texto:'Ensino Médio completo',obr:true},{texto:'Disponibilidade de horário e finais de semana',obr:true},{texto:'Curso de transporte de cargas',obr:false},{texto:'Experiência com rastreamento veicular',obr:false}],
    responsabilidades:['Conduzir veículos de linha nas rotas determinadas','Realizar inspeção diária do veículo antes da saída','Cumprir prazos de entrega e normas de segurança','Registrar ocorrências e comunicar à supervisão','Zelar pela conservação do veículo'],
    beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🛒',texto:'Vale Alimentação'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'🦷',texto:'Plano Odontológico'},{icon:'💰',texto:'PLR Anual'}]},
-  {id:2,titulo:'Operador de Via Permanente',empresa:'Rumo Logística',cidade:'Campo Verde, MT',regime:'Escala 6x1',salario:'R$ 2.800 – R$ 3.500',tipo:'CLT',cat:'Operacional',dias:2,
+  {id:2,titulo:'Operador de Via Permanente',empresa:'Rumo Logística',cidade:'Campo Verde, MT',regime:'Escala 6x1',tipo:'CLT',cat:'Operacional',dias:2,
    desc:'Atuar na manutenção e operação de via permanente ferroviária, garantindo segurança e eficiência nas operações logísticas. Trabalho externo em ambientes ferroviários.',
    horario:[{label:'Escala',valor:'6x1'},{label:'Turno',valor:'Diurno / Noturno'},{label:'Jornada',valor:'12h por turno'},{label:'Folga',valor:'1 dia por semana'}],
    requisitos:[{texto:'Ensino Médio completo',obr:true},{texto:'Boa condição física para trabalho externo',obr:true},{texto:'Disponibilidade para escalas',obr:true},{texto:'Experiência em manutenção',obr:false},{texto:'Curso de NR-10 ou NR-35',obr:false}],
    responsabilidades:['Monitorar e inspecionar a via permanente','Executar manutenção preventiva e corretiva','Sinalizar e isolar áreas de trabalho','Reportar anomalias ao supervisor','Utilizar EPIs conforme normas'],
    beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🛒',texto:'Vale Alimentação'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'🦺',texto:'EPI Fornecido'},{icon:'🌙',texto:'Adicional Noturno'}]},
-  {id:3,titulo:'Analista de RH – Recrutamento',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Integral',salario:'R$ 2.500 – R$ 3.200',tipo:'CLT',cat:'RH',dias:5,
+  {id:3,titulo:'Analista de RH – Recrutamento',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Integral',tipo:'CLT',cat:'RH',dias:5,
    desc:'Responsável pelo processo completo de recrutamento e seleção: atração, triagem, entrevistas e integração de novos colaboradores para nossas empresas parceiras.',
    horario:[{label:'Jornada',valor:'Segunda a Sexta'},{label:'Horário',valor:'08h – 17h'},{label:'Regime',valor:'Presencial'},{label:'Horas semanais',valor:'40h/semana'}],
    requisitos:[{texto:'Superior completo em RH, Psicologia ou Administração',obr:true},{texto:'Experiência em Recrutamento e Seleção',obr:true},{texto:'Domínio do Pacote Office',obr:true},{texto:'Boa comunicação',obr:true},{texto:'Experiência com ATS',obr:false},{texto:'Pós-graduação em Gestão de Pessoas',obr:false}],
    responsabilidades:['Conduzir processos seletivos end-to-end','Triagem e análise de currículos','Realizar entrevistas por competências','Aplicar testes e dinâmicas','Manter banco de talentos atualizado','Elaborar relatórios e indicadores'],
    beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'📚',texto:'Treinamentos'},{icon:'🏖️',texto:'Férias remuneradas'},{icon:'🤝',texto:'Ambiente colaborativo'}]},
-  {id:4,titulo:'Técnico de Manutenção Ferroviária',empresa:'Rumo Logística',cidade:'Campo Verde, MT',regime:'Escala 12x36',salario:'R$ 4.000 – R$ 5.500',tipo:'CLT',cat:'Manutenção',dias:3,
+  {id:4,titulo:'Técnico de Manutenção Ferroviária',empresa:'Rumo Logística',cidade:'Campo Verde, MT',regime:'Escala 12x36',tipo:'CLT',cat:'Manutenção',dias:3,
    desc:'Responsável pela manutenção preventiva e corretiva de equipamentos ferroviários, garantindo a operacionalidade e segurança da frota de locomotivas e vagões.',
    horario:[{label:'Escala',valor:'12x36'},{label:'Turno',valor:'Diurno e Noturno'},{label:'Jornada',valor:'12h por turno'},{label:'Folga',valor:'36h consecutivas'}],
    requisitos:[{texto:'Técnico em Mecânica, Elétrica ou Eletromecânica',obr:true},{texto:'Experiência em manutenção industrial',obr:true},{texto:'CNH categoria B',obr:true},{texto:'Disponibilidade para escalas noturnas',obr:true},{texto:'Experiência com locomotivas',obr:false},{texto:'Certificações NR-10 ou NR-12',obr:false}],
    responsabilidades:['Executar manutenção preventiva e corretiva','Diagnosticar falhas mecânicas e elétricas','Registrar serviços no sistema','Garantir cumprimento das normas','Requisitar peças e materiais'],
    beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🛒',texto:'Vale Alimentação'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'🦷',texto:'Plano Odontológico'},{icon:'🌙',texto:'Adicional Noturno'}]},
-  {id:5,titulo:'Assistente Administrativo',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Integral',salario:'R$ 1.800 – R$ 2.200',tipo:'CLT',cat:'Administrativo',dias:7,
+  {id:5,titulo:'Assistente Administrativo',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Integral',tipo:'CLT',cat:'Administrativo',dias:7,
    desc:'Suporte às atividades administrativas com atendimento ao público, organização de documentos, controle de planilhas e comunicação interna com clientes e parceiros.',
    horario:[{label:'Jornada',valor:'Segunda a Sexta'},{label:'Horário',valor:'08h – 17h'},{label:'Regime',valor:'Presencial'},{label:'Horas semanais',valor:'40h/semana'}],
    requisitos:[{texto:'Ensino Médio completo',obr:true},{texto:'Noções básicas de Excel',obr:true},{texto:'Organização e atenção aos detalhes',obr:true},{texto:'Boa comunicação',obr:true},{texto:'Experiência em escritório',obr:false},{texto:'Ensino Superior cursando',obr:false}],
    responsabilidades:['Atendimento presencial e telefônico','Organizar e arquivar documentos','Controlar planilhas e relatórios','Apoiar comunicação interna','Auxiliar em processos seletivos'],
    beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'📚',texto:'Cursos e treinamentos'},{icon:'🏖️',texto:'Férias remuneradas'},{icon:'🎯',texto:'Crescimento profissional'}]},
-  {id:6,titulo:'Inspetor de Segurança do Trabalho',empresa:'Rumo Logística',cidade:'Rondonópolis, MT',regime:'Integral',salario:'R$ 3.800 – R$ 4.800',tipo:'CLT',cat:'Segurança',dias:4,
+  {id:6,titulo:'Inspetor de Segurança do Trabalho',empresa:'Rumo Logística',cidade:'Rondonópolis, MT',regime:'Integral',tipo:'CLT',cat:'Segurança',dias:4,
    desc:'Fiscalizar e garantir o cumprimento das normas de segurança do trabalho nas operações logísticas e ferroviárias, preservando a integridade dos colaboradores.',
    horario:[{label:'Jornada',valor:'Segunda a Sexta'},{label:'Horário',valor:'07h – 16h'},{label:'Regime',valor:'Presencial / Campo'},{label:'Plantão',valor:'Eventual fins de semana'}],
    requisitos:[{texto:'Técnico em Segurança do Trabalho (registro ativo)',obr:true},{texto:'Experiência com CIPA e laudos',obr:true},{texto:'Conhecimento das NRs',obr:true},{texto:'Experiência em logística ou indústria',obr:false},{texto:'Pós em Engenharia de Segurança',obr:false}],
    responsabilidades:['Fiscalizar normas de segurança','Realizar inspeções periódicas','Elaborar laudos e relatórios','Treinar colaboradores em SST','Investigar acidentes','Atualizar documentação de CIPA'],
    beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🛒',texto:'Vale Alimentação'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'🦷',texto:'Plano Odontológico'},{icon:'💰',texto:'PLR Anual'}]},
-  {id:7,titulo:'Estoquista / Auxiliar de Logística',empresa:'Parceira confidencial',cidade:'Alto Garças, MT',regime:'Integral',salario:'R$ 1.600 – R$ 2.000',tipo:'Temporário',cat:'Logística',dias:1,
+  {id:7,titulo:'Estoquista / Auxiliar de Logística',empresa:'Parceira confidencial',cidade:'Alto Garças, MT',regime:'Integral',tipo:'Temporário',cat:'Logística',dias:1,
    desc:'Recebimento, armazenagem e controle de estoque. Atividades de separação, conferência e expedição de mercadorias em ambiente de armazém.',
    horario:[{label:'Jornada',valor:'Segunda a Sábado'},{label:'Horário',valor:'07h – 16h'},{label:'Regime',valor:'Temporário (6 meses)'},{label:'Renovação',valor:'Possibilidade de efetivação'}],
    requisitos:[{texto:'Ensino Médio completo',obr:true},{texto:'Disponibilidade de horário',obr:true},{texto:'Condicionamento físico para galpão',obr:true},{texto:'CNH categoria B',obr:false},{texto:'Experiência em estoque',obr:false}],
    responsabilidades:['Receber e conferir mercadorias','Organizar e controlar estoque','Separar pedidos para expedição','Manter organização do armazém','Registrar entradas e saídas'],
    beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Seguro de Vida'},{icon:'📋',texto:'Contrato temporário'},{icon:'🎯',texto:'Possibilidade de efetivação'},{icon:'🏖️',texto:'Férias proporcionais'}]},
-  {id:8,titulo:'Auxiliar Administrativo – Estágio',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Meio período',salario:'R$ 800 – R$ 1.200',tipo:'Estágio',cat:'Administrativo',dias:6,
+  {id:8,titulo:'Auxiliar Administrativo – Estágio',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Meio período',tipo:'Estágio',cat:'Administrativo',dias:6,
    desc:'Estágio remunerado para estudantes de Administração, RH ou correlatas. Apoio nas rotinas administrativas, atendimento e processos de recrutamento.',
    horario:[{label:'Jornada',valor:'Segunda a Sexta'},{label:'Horário',valor:'13h – 17h (tarde)'},{label:'Regime',valor:'Meio período (4h/dia)'},{label:'Duração',valor:'6 meses (renovável)'}],
    requisitos:[{texto:'Cursando Administração, RH ou correlatos',obr:true},{texto:'Comunicativo e proativo',obr:true},{texto:'Noções de informática e Office',obr:true},{texto:'Disponibilidade presencial',obr:true},{texto:'Interesse em RH',obr:false}],
@@ -929,7 +913,7 @@ function renderVagas() {
       '<div class="vaga-meta"><span class="meta-item">📍 '+v.cidade+'</span><span class="meta-item">🕐 '+v.regime+'</span></div>'+
       '<div class="vaga-desc">'+Security.sanitize(v.desc).substring(0,140)+'...</div>'+
       '<div class="vaga-tags">'+tags+'</div>'+
-      '<div class="vaga-bottom"><div class="vaga-salario">'+v.salario+' <span>/ mês</span></div>'+
+      '<div class="vaga-bottom">'+
       '<div class="vaga-footer-right"><span class="vaga-tempo">Há '+v.dias+' dia'+(v.dias>1?'s':'')+'</span>'+
       '<button class="btn-ver-detalhes" onclick="event.stopPropagation();openDetalhes('+v.id+')">Ver detalhes</button>'+
       '<button class="btn-candidatar" onclick="event.stopPropagation();openCandidaturaById('+v.id+')">Candidatar-se</button></div></div></div>';
@@ -942,7 +926,6 @@ function openDetalhes(id){
   const v=vagas.find(x=>x.id===id); if(!v)return; vagaAtiva=v;
   document.getElementById('det-empresa').textContent=v.empresa;
   document.getElementById('det-titulo').textContent=v.titulo;
-  document.getElementById('det-salario').textContent=v.salario;
   document.getElementById('det-regime').textContent=v.regime;
   const tc=v.tipo==='CLT'?'tipo-clt':v.tipo==='Estágio'?'tipo-estagio':'tipo-temp';
   document.getElementById('det-meta').innerHTML='<span class="detalhe-badge '+tc+'">'+v.tipo+'</span><span class="detalhe-badge info">📍 '+v.cidade+'</span><span class="detalhe-badge info">🗂️ '+v.cat+'</span><span class="detalhe-badge info">📅 Há '+v.dias+' dia'+(v.dias>1?'s':'')+'</span>';
@@ -969,35 +952,59 @@ document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('clic
 function toggleMenu(){document.getElementById('nav-links').classList.toggle('open');document.getElementById('nav-hamburger').classList.toggle('open');}
 function fecharMenu(){document.getElementById('nav-links').classList.remove('open');document.getElementById('nav-hamburger').classList.remove('open');}
 
+// camelCase (front) -> snake_case (colunas Postgres)
+function _mapCandidatura(p){
+  return {
+    empresa:p.empresa, vaga:p.vaga, categoria:p.categoria,
+    nome:p.nome, nascimento:p.nascimento||null, email:(p.email||'').toLowerCase(), whatsapp:p.whatsapp,
+    cidade:p.cidade, estado:p.estado, escolaridade:p.escolaridade, curso:p.curso,
+    ultimo_cargo:p.ultimoCargo, ultima_empresa:p.ultimaEmpresa,
+    exp_tempo:p.expTempo, pretensao:p.pretensao, cnh:p.cnh, area_atuacao:p.areaAtuacao,
+    disp_horario:p.dispHorario==='Sim', disp_escala:p.dispEscala==='Sim', disp_viagem:p.dispViagem==='Sim',
+    consentimento_lgpd:p.consentimentoLGPD==='Sim', data_consentimento:p.dataConsentimento
+  };
+}
+function _mapBanco(p){
+  return {
+    nome:p.nome, whatsapp:p.whatsapp, email:(p.email||'').toLowerCase(),
+    cidade_estado:p.cidadeEstado, area_interesse:p.areaInteresse,
+    escolaridade:p.escolaridade, pretensao:p.pretensao, cnh:p.cnh,
+    consentimento_lgpd:p.consentimentoLGPD==='Sim', data_consentimento:p.dataConsentimento
+  };
+}
 async function _enviarBackend(payload){
-  const fp=Object.assign({},payload,{_token:Security.generateToken(),_timestamp:Date.now(),_origin:window.location.origin||'unknown'});
-  const r=await fetch(CONFIG._endpoint,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(fp)});
-  if(!r.ok)throw new Error('HTTP '+r.status);
-  const j=await r.json(); if(j.status!=='ok')throw new Error(j.msg||'Resposta inválida'); return j;
+  const tabela = payload.tipo==='candidatura' ? 'candidaturas' : 'banco_talentos';
+  const row = payload.tipo==='candidatura' ? _mapCandidatura(payload) : _mapBanco(payload);
+  const { error } = await sbClient.from(tabela).insert(row);
+  if(error){
+    console.error('[HR][Supabase]', error);
+    // 23505 = unique_violation: candidato/email repetido
+    if(error.code==='23505') throw new Error('DUPLICADO');
+    throw new Error(error.message);
+  }
+  return { status:'ok' };
 }
 function validarCandidatura(){
   const e=[],V=Validation;
-  const nome=document.getElementById('cand-nome'),email=document.getElementById('cand-email'),tel=document.getElementById('cand-tel'),cidade=document.getElementById('cand-cidade'),estado=document.getElementById('cand-estado'),escolar=document.getElementById('cand-escolar'),lg=document.getElementById('lgpd-cand'),arq=document.getElementById('cand-arquivo'),ae=document.getElementById('cand-arquivo-erro');
+  const nome=document.getElementById('cand-nome'),email=document.getElementById('cand-email'),tel=document.getElementById('cand-tel'),cidade=document.getElementById('cand-cidade'),estado=document.getElementById('cand-estado'),escolar=document.getElementById('cand-escolar'),lg=document.getElementById('lgpd-cand');
   const nv=nome?nome.value.trim():'';const nok=V.isNotEmpty(nv)&&nv.split(' ').length>=2;V.setFieldState(nome,nok,nome?nome.nextElementSibling:null);if(!nok)e.push('nome');
   const emok=V.isValidEmail(email?email.value.trim():'');V.setFieldState(email,emok,email?email.nextElementSibling:null);if(!emok)e.push('email');
   const tok=V.isValidPhone(tel?tel.value.trim():'');V.setFieldState(tel,tok,tel?tel.nextElementSibling:null);if(!tok)e.push('tel');
   const cok=V.isNotEmpty(cidade?cidade.value:'');V.setFieldState(cidade,cok,cidade?cidade.nextElementSibling:null);if(!cok)e.push('cidade');
   const estok=V.isNotEmpty(estado?estado.value:'');V.setFieldState(estado,estok,estado?estado.nextElementSibling:null);if(!estok)e.push('estado');
   const esok=V.isNotEmpty(escolar?escolar.value:'');V.setFieldState(escolar,esok,escolar?escolar.nextElementSibling:null);if(!esok)e.push('escolar');
-  if(!FileValidator.validate(arq,ae))e.push('arq');
   if(!lg||!lg.checked){const x=document.getElementById('lgpd-cand-erro');if(x)x.style.display='block';e.push('lgpd');}else{const x=document.getElementById('lgpd-cand-erro');if(x)x.style.display='none';}
   return e;
 }
 function validarBanco(){
   const e=[],V=Validation;
-  const nome=document.getElementById('banco-nome'),email=document.getElementById('banco-email'),tel=document.getElementById('banco-tel'),cidade=document.getElementById('banco-cidade'),area=document.getElementById('banco-area'),escolar=document.getElementById('banco-escolar'),lg=document.getElementById('lgpd-banco'),arq=document.getElementById('banco-arquivo'),ae=document.getElementById('banco-arquivo-erro');
+  const nome=document.getElementById('banco-nome'),email=document.getElementById('banco-email'),tel=document.getElementById('banco-tel'),cidade=document.getElementById('banco-cidade'),area=document.getElementById('banco-area'),escolar=document.getElementById('banco-escolar'),lg=document.getElementById('lgpd-banco');
   const nv=nome?nome.value.trim():'';const nok=V.isNotEmpty(nv)&&nv.split(' ').length>=2;V.setFieldState(nome,nok,nome?nome.nextElementSibling:null);if(!nok)e.push('nome');
   const emok=V.isValidEmail(email?email.value.trim():'');V.setFieldState(email,emok,email?email.nextElementSibling:null);if(!emok)e.push('email');
   const tok=V.isValidPhone(tel?tel.value.trim():'');V.setFieldState(tel,tok,tel?tel.nextElementSibling:null);if(!tok)e.push('tel');
   const cok=V.isNotEmpty(cidade?cidade.value:'');V.setFieldState(cidade,cok,cidade?cidade.nextElementSibling:null);if(!cok)e.push('cidade');
   const aok=V.isNotEmpty(area?area.value:'');V.setFieldState(area,aok,area?area.nextElementSibling:null);if(!aok)e.push('area');
   const esok=V.isNotEmpty(escolar?escolar.value:'');V.setFieldState(escolar,esok,escolar?escolar.nextElementSibling:null);if(!esok)e.push('escolar');
-  if(!FileValidator.validate(arq,ae))e.push('arq');
   if(!lg||!lg.checked){const x=document.getElementById('lgpd-banco-erro');if(x)x.style.display='block';e.push('lgpd');}else{const x=document.getElementById('lgpd-banco-erro');if(x)x.style.display='none';}
   return e;
 }
@@ -1030,7 +1037,7 @@ async function submitCandidatura(){
     document.getElementById('form-area').style.display='none';
     const d=document.getElementById('cand-success-detail');if(d)d.textContent='Candidatura para: '+titulo+' · '+new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
     document.getElementById('success-msg').style.display='block';
-  }catch(err){console.error('[HR]',err);showBanner('cand-error-banner','❌ Não foi possível enviar. Verifique sua conexão.');setLoading('btn-cand-submit','cand-spinner',false);}
+  }catch(err){console.error('[HR]',err);const msg=(err&&err.message==='DUPLICADO')?'⚠️ Você já se candidatou para esta vaga.':'❌ Não foi possível enviar. Verifique sua conexão.';showBanner('cand-error-banner',msg);setLoading('btn-cand-submit','cand-spinner',false);}
 }
 async function submitBanco(){
   hideBanner('banco-error-banner');
@@ -1050,7 +1057,7 @@ async function submitBanco(){
     document.getElementById('banco-form-area').style.display='none';
     const d=document.getElementById('banco-success-detail');if(d)d.textContent='Cadastro em '+new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'})+'.';
     document.getElementById('banco-success-msg').style.display='block';
-  }catch(err){console.error('[HR]',err);showBanner('banco-error-banner','❌ Não foi possível cadastrar. Verifique sua conexão.');setLoading('btn-banco-submit','banco-spinner',false);}
+  }catch(err){console.error('[HR]',err);const msg=(err&&err.message==='DUPLICADO')?'⚠️ Este e-mail já está no nosso banco de talentos.':'❌ Não foi possível cadastrar. Verifique sua conexão.';showBanner('banco-error-banner',msg);setLoading('btn-banco-submit','banco-spinner',false);}
 }
 
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',renderVagas);}else{renderVagas();}
