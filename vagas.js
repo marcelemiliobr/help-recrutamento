@@ -1047,7 +1047,7 @@ const vagas = [
     "id": 2,
     "titulo": "Auxiliar Administrativo",
     "empresa": "Help recrutamentos",
-    "cidade": "Rondonópilis,MT",
+    "cidade": "Rondonópolis,MT",
     "regime": "Integral",
     "tipo": "CLT",
     "cat": "Administrativo",
