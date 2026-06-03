@@ -9,7 +9,7 @@ const vagas = [
   {
     "id": 11,
     "titulo": "Analista Ambiental",
-    "empresa": "help recrutamentos",
+    "empresa": "Help Recrutamentos",
     "cidade": "Rondonópolis,MT",
     "regime": "Integral",
     "tipo": "CLT",
@@ -1046,7 +1046,7 @@ const vagas = [
   {
     "id": 2,
     "titulo": "Auxiliar Administrativo",
-    "empresa": "Help recrutamentos",
+    "empresa": "Help Recrutamentos",
     "cidade": "Rondonópolis,MT",
     "regime": "Integral",
     "tipo": "CLT",
