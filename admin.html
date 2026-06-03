@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Vagas — Help Recrutamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0A0A0A;--black2:#0E0E0E;--black3:#161616;--black4:#1C1A16;
+  --gray:#2A2A2A;--gray2:#3A3A3A;
+  --white:#FFFFFF;--offwhite:#F2EFE9;
+  --gold:#C9A24B;--gold2:#D9B45F;--gold-light:#E8CB85;--gold-deep:#A8842F;
+  --text-muted:#8A8A85;--text-dim:#555550;
+  --error:#f87171;--ok:#4ade80;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.5;min-height:100vh;
+  background-image:radial-gradient(ellipse at 80% -10%,rgba(201,162,75,0.10),transparent 50%),radial-gradient(ellipse at 0% 100%,rgba(201,162,75,0.05),transparent 45%)}
+em.gold{color:var(--gold);font-style:italic;font-family:var(--serif)}
+
+.wrap{max-width:1180px;margin:0 auto;padding:2.5rem 5vw 5rem}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:0.4rem}
+.brand{display:flex;align-items:baseline;gap:.7rem}
+.brand h1{font-family:var(--serif);font-size:30px;font-weight:600}
+.brand .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.sub{color:var(--text-muted);font-size:14.5px;margin-bottom:2rem;max-width:640px}
+.sub strong{color:var(--offwhite);font-weight:500}
+
+/* TOOLBAR */
+.toolbar{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:1.6rem;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:13.5px;letter-spacing:.01em;padding:11px 18px;border-radius:8px;transition:all .18s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--black)}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-ghost{background:var(--black3);color:var(--offwhite);border:1px solid rgba(255,255,255,.1)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--white)}
+.btn-danger-ghost{background:transparent;color:var(--error);border:1px solid rgba(248,113,113,.3)}
+.btn-danger-ghost:hover{background:rgba(248,113,113,.08)}
+.count-pill{margin-left:auto;font-size:13px;color:var(--text-muted)}
+.count-pill strong{color:var(--white);font-weight:600}
+
+/* GRID DE VAGAS */
+.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem;margin-bottom:2rem}
+.card{background:var(--black3);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.3rem;position:relative;overflow:hidden;transition:border-color .2s,transform .15s}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);opacity:0;transition:opacity .2s}
+.card:hover{border-color:rgba(201,162,75,.3);transform:translateY(-1px)}
+.card:hover::before{opacity:1}
+.card .emp{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.card h3{font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.25;margin-bottom:.6rem}
+.card .meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.9rem}
+.chip{font-size:11.5px;color:rgba(255,255,255,.62);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:3px 9px;border-radius:6px}
+.chip.tipo{color:var(--gold-light);border-color:rgba(201,162,75,.3);background:rgba(201,162,75,.08)}
+.card .acoes{display:flex;gap:.5rem;border-top:1px solid rgba(255,255,255,.06);padding-top:.85rem}
+.mini{flex:1;text-align:center;font-size:12.5px;font-weight:600;padding:8px;border-radius:7px;cursor:pointer;border:1px solid transparent;transition:all .15s;background:rgba(255,255,255,.05);color:var(--offwhite)}
+.mini:hover{background:rgba(255,255,255,.1)}
+.mini.del{color:var(--error)}
+.mini.del:hover{background:rgba(248,113,113,.1)}
+
+.vazio{text-align:center;padding:3.5rem 1rem;color:var(--text-muted);border:1px dashed rgba(255,255,255,.12);border-radius:14px}
+
+/* MODAL FORM */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:3rem 1rem;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--black2);border:1px solid rgba(255,255,255,.1);border-radius:18px;width:100%;max-width:720px;padding:2rem 2rem 2.2rem;position:relative;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.modal h2{font-family:var(--serif);font-size:23px;font-weight:600;margin-bottom:.3rem}
+.modal .mh-sub{color:var(--text-muted);font-size:13.5px;margin-bottom:1.6rem}
+.close-x{position:absolute;top:1.1rem;right:1.1rem;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--text-muted);cursor:pointer;font-size:18px;line-height:1;transition:all .15s}
+.close-x:hover{color:var(--white);border-color:var(--gold)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{margin-bottom:1rem}
+.fg.full{grid-column:1/-1}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--offwhite);margin-bottom:.4rem;letter-spacing:.01em}
+label .hint{font-weight:400;color:var(--text-dim);font-size:11.5px}
+input,select,textarea{width:100%;background:var(--black3);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:var(--white);font-family:var(--sans);font-size:14px;padding:11px 13px;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+textarea{resize:vertical;min-height:78px;line-height:1.55}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238A8A85' d='M6 8L2 4h8z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center}
+.help-block{font-size:11.5px;color:var(--text-dim);margin-top:.35rem;line-height:1.45}
+.modal-actions{display:flex;gap:.7rem;justify-content:flex-end;margin-top:1.4rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.3rem}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--black3);border:1px solid var(--gold);color:var(--white);padding:13px 22px;border-radius:10px;font-size:14px;font-weight:500;z-index:300;transition:transform .3s ease;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.ok{border-color:var(--ok)}
+.toast.err{border-color:var(--error)}
+
+/* EXPORT modal */
+.export-box{background:var(--black);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1rem;max-height:260px;overflow:auto;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--gold-light);white-space:pre;line-height:1.5;margin-bottom:1rem}
+.steps{list-style:none;counter-reset:s;margin:1rem 0}
+.steps li{counter-increment:s;position:relative;padding-left:2.2rem;margin-bottom:.85rem;font-size:14px;color:var(--offwhite);line-height:1.55}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--black);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.steps code{background:var(--black3);padding:2px 7px;border-radius:5px;color:var(--gold-light);font-size:12.5px}
+
+@media(max-width:600px){.grid2{grid-template-columns:1fr}.wrap{padding:1.8rem 6vw 4rem}.brand h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Painel de <em class="gold">Vagas</em></h1>
+      <span class="tag">Help Recrutamento</span>
+    </div>
+  </header>
+  <p class="sub">Cadastre, edite e exclua vagas com poucos cliques. Tudo fica salvo aqui no seu navegador. Quando terminar, clique em <strong>“Gerar vagas.js”</strong>, baixe o arquivo e suba no GitHub — o site se atualiza sozinho.</p>
+
+  <div class="toolbar">
+    <button class="btn btn-gold" onclick="abrirForm()">+ Nova vaga</button>
+    <button class="btn btn-ghost" onclick="exportar()">⬇ Gerar vagas.js (publicar)</button>
+    <button class="btn btn-ghost" onclick="importarArquivo()">↻ Importar vagas.js</button>
+    <button class="btn btn-danger-ghost" onclick="restaurar()">Restaurar exemplos</button>
+    <input type="file" id="file-import" accept=".js,.txt" style="display:none">
+    <span class="count-pill"><strong id="total">0</strong> vaga(s)</span>
+  </div>
+
+  <div class="lista" id="lista"></div>
+</div>
+
+<!-- FORM MODAL -->
+<div class="overlay" id="overlay-form">
+  <div class="modal">
+    <button class="close-x" onclick="fechar('overlay-form')">×</button>
+    <h2 id="form-title">Nova vaga</h2>
+    <p class="mh-sub">Os campos com * são obrigatórios. Os demais ajudam a deixar a vaga mais completa.</p>
+
+    <div class="grid2">
+      <div class="fg"><label>Título da vaga *</label><input id="f-titulo" placeholder="Ex: Auxiliar Administrativo"></div>
+      <div class="fg"><label>Empresa *</label><input id="f-empresa" placeholder="Ex: Rumo Logística"></div>
+      <div class="fg"><label>Cidade *</label><input id="f-cidade" placeholder="Ex: Rondonópolis, MT"></div>
+      <div class="fg"><label>Regime / Jornada *</label><input id="f-regime" placeholder="Ex: Integral, Escala 6x1..."></div>
+      <div class="fg"><label>Tipo de contrato *</label>
+        <select id="f-tipo"><option>CLT</option><option>Temporário</option><option>Estágio</option><option>PJ</option><option>Freelance</option></select>
+      </div>
+      <div class="fg"><label>Categoria / Área *</label>
+        <select id="f-cat"><option>Administrativo</option><option>Logística</option><option>Operacional</option><option>RH</option><option>Manutenção</option><option>Segurança</option><option>Vendas</option><option>Financeiro</option><option>TI</option><option>Saúde</option><option>Outro</option></select>
+      </div>
+      <div class="fg full"><label>Descrição da vaga *</label><textarea id="f-desc" placeholder="Resumo do que a pessoa vai fazer no dia a dia..."></textarea></div>
+
+      <div class="fg full"><label>Horários / Detalhes da jornada <span class="hint">— um por linha, no formato <b>Rótulo: valor</b></span></label>
+        <textarea id="f-horario" placeholder="Jornada: Segunda a Sexta&#10;Horário: 08h às 17h&#10;Escala: 6x1"></textarea>
+        <div class="help-block">Exemplo: <code>Jornada: Segunda a Sexta</code> (uma linha para cada item)</div>
+      </div>
+
+      <div class="fg"><label>Requisitos obrigatórios <span class="hint">— um por linha</span></label>
+        <textarea id="f-req-obr" placeholder="Ensino Médio completo&#10;Experiência mínima de 1 ano"></textarea>
+      </div>
+      <div class="fg"><label>Diferenciais <span class="hint">— um por linha (opcional)</span></label>
+        <textarea id="f-req-dif" placeholder="CNH categoria B&#10;Cursos na área"></textarea>
+      </div>
+
+      <div class="fg full"><label>Responsabilidades <span class="hint">— uma por linha</span></label>
+        <textarea id="f-resp" placeholder="Atendimento ao público&#10;Organização de documentos&#10;Controle de planilhas"></textarea>
+      </div>
+
+      <div class="fg full"><label>Benefícios <span class="hint">— um por linha. Pode começar com um emoji</span></label>
+        <textarea id="f-benef" placeholder="🍽️ Vale Refeição&#10;🚌 Vale Transporte&#10;❤️ Plano de Saúde"></textarea>
+      </div>
+
+      <div class="fg"><label>Publicada há quantos dias? <span class="hint">— só um número</span></label><input id="f-dias" type="number" min="0" value="1"></div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="fechar('overlay-form')">Cancelar</button>
+      <button class="btn btn-gold" onclick="salvar()">Salvar vaga</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="overlay" id="overlay-export">
+  <div class="modal">
+    <button class="close-x" onclick="fechar('overlay-export')">×</button>
+    <h2>Publicar as vagas</h2>
+    <p class="mh-sub">Seu arquivo <code style="color:var(--gold-light)">vagas.js</code> está pronto. Faça assim:</p>
+    <ol class="steps">
+      <li>Clique em <b>Baixar vagas.js</b> (ou copie o conteúdo abaixo).</li>
+      <li>No GitHub, entre no repositório <code>help-recrutamento</code> e abra o arquivo <code>vagas.js</code>.</li>
+      <li>Clique no lápis (✏️ <i>Edit</i>), apague tudo e cole o novo conteúdo — ou arraste o arquivo baixado para substituir.</li>
+      <li>Clique em <code>Commit changes</code>. Pronto! Em 1–2 min o site mostra as vagas atualizadas.</li>
+    </ol>
+    <div class="export-box" id="export-code"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="copiar()">📋 Copiar</button>
+      <button class="btn btn-gold" onclick="baixar()">⬇ Baixar vagas.js</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORE='hr_vagas_admin';
+let vagas=[];
+let editId=null;
+
+/* ---- exemplos iniciais (as 8 vagas do site) ---- */
+const EXEMPLOS=[
+  {id:1,titulo:'Condutor Auto de Linha (Motorista)',empresa:'Rumo Logística',cidade:'Rondonópolis, MT',regime:'Integral',tipo:'CLT',cat:'Logística',dias:2,
+   desc:'Responsável pela condução de veículos de linha para transporte de cargas em rotas intermunicipais e estaduais, em conformidade com as normas de trânsito e segurança da empresa.',
+   horario:[{label:'Jornada',valor:'Segunda a Sábado'},{label:'Turno',valor:'Integral (8h/dia)'},{label:'Escala',valor:'6x1'},{label:'Horas semanais',valor:'44h/semana'}],
+   requisitos:[{texto:'CNH categoria D ou E',obr:true},{texto:'Experiência mínima de 2 anos na função',obr:true},{texto:'Ensino Médio completo',obr:true},{texto:'Disponibilidade de horário e finais de semana',obr:true},{texto:'Curso de transporte de cargas',obr:false},{texto:'Experiência com rastreamento veicular',obr:false}],
+   responsabilidades:['Conduzir veículos de linha nas rotas determinadas','Realizar inspeção diária do veículo antes da saída','Cumprir prazos de entrega e normas de segurança','Registrar ocorrências e comunicar à supervisão','Zelar pela conservação do veículo'],
+   beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🛒',texto:'Vale Alimentação'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'🦷',texto:'Plano Odontológico'},{icon:'💰',texto:'PLR Anual'}]},
+  {id:2,titulo:'Operador de Via Permanente',empresa:'Rumo Logística',cidade:'Campo Verde, MT',regime:'Escala 6x1',tipo:'CLT',cat:'Operacional',dias:2,
+   desc:'Atuar na manutenção e operação de via permanente ferroviária, garantindo segurança e eficiência nas operações logísticas. Trabalho externo em ambientes ferroviários.',
+   horario:[{label:'Escala',valor:'6x1'},{label:'Turno',valor:'Diurno / Noturno'},{label:'Jornada',valor:'12h por turno'},{label:'Folga',valor:'1 dia por semana'}],
+   requisitos:[{texto:'Ensino Médio completo',obr:true},{texto:'Boa condição física para trabalho externo',obr:true},{texto:'Disponibilidade para escalas',obr:true},{texto:'Experiência em manutenção',obr:false},{texto:'Curso de NR-10 ou NR-35',obr:false}],
+   responsabilidades:['Monitorar e inspecionar a via permanente','Executar manutenção preventiva e corretiva','Sinalizar e isolar áreas de trabalho','Reportar anomalias ao supervisor','Utilizar EPIs conforme normas'],
+   beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🛒',texto:'Vale Alimentação'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'🦺',texto:'EPI Fornecido'},{icon:'🌙',texto:'Adicional Noturno'}]},
+  {id:3,titulo:'Analista de RH – Recrutamento',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Integral',tipo:'CLT',cat:'RH',dias:5,
+   desc:'Responsável pelo processo completo de recrutamento e seleção: atração, triagem, entrevistas e integração de novos colaboradores para nossas empresas parceiras.',
+   horario:[{label:'Jornada',valor:'Segunda a Sexta'},{label:'Horário',valor:'08h – 17h'},{label:'Regime',valor:'Presencial'},{label:'Horas semanais',valor:'40h/semana'}],
+   requisitos:[{texto:'Superior completo em RH, Psicologia ou Administração',obr:true},{texto:'Experiência em Recrutamento e Seleção',obr:true},{texto:'Domínio do Pacote Office',obr:true},{texto:'Boa comunicação',obr:true},{texto:'Experiência com ATS',obr:false},{texto:'Pós-graduação em Gestão de Pessoas',obr:false}],
+   responsabilidades:['Conduzir processos seletivos end-to-end','Triagem e análise de currículos','Realizar entrevistas por competências','Aplicar testes e dinâmicas','Manter banco de talentos atualizado','Elaborar relatórios e indicadores'],
+   beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'📚',texto:'Treinamentos'},{icon:'🏖️',texto:'Férias remuneradas'},{icon:'🤝',texto:'Ambiente colaborativo'}]},
+  {id:4,titulo:'Técnico de Manutenção Ferroviária',empresa:'Rumo Logística',cidade:'Campo Verde, MT',regime:'Escala 12x36',tipo:'CLT',cat:'Manutenção',dias:3,
+   desc:'Responsável pela manutenção preventiva e corretiva de equipamentos ferroviários, garantindo a operacionalidade e segurança da frota de locomotivas e vagões.',
+   horario:[{label:'Escala',valor:'12x36'},{label:'Turno',valor:'Diurno e Noturno'},{label:'Jornada',valor:'12h por turno'},{label:'Folga',valor:'36h consecutivas'}],
+   requisitos:[{texto:'Técnico em Mecânica, Elétrica ou Eletromecânica',obr:true},{texto:'Experiência em manutenção industrial',obr:true},{texto:'CNH categoria B',obr:true},{texto:'Disponibilidade para escalas noturnas',obr:true},{texto:'Experiência com locomotivas',obr:false},{texto:'Certificações NR-10 ou NR-12',obr:false}],
+   responsabilidades:['Executar manutenção preventiva e corretiva','Diagnosticar falhas mecânicas e elétricas','Registrar serviços no sistema','Garantir cumprimento das normas','Requisitar peças e materiais'],
+   beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🛒',texto:'Vale Alimentação'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'🦷',texto:'Plano Odontológico'},{icon:'🌙',texto:'Adicional Noturno'}]},
+  {id:5,titulo:'Assistente Administrativo',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Integral',tipo:'CLT',cat:'Administrativo',dias:7,
+   desc:'Suporte às atividades administrativas com atendimento ao público, organização de documentos, controle de planilhas e comunicação interna com clientes e parceiros.',
+   horario:[{label:'Jornada',valor:'Segunda a Sexta'},{label:'Horário',valor:'08h – 17h'},{label:'Regime',valor:'Presencial'},{label:'Horas semanais',valor:'40h/semana'}],
+   requisitos:[{texto:'Ensino Médio completo',obr:true},{texto:'Noções básicas de Excel',obr:true},{texto:'Organização e atenção aos detalhes',obr:true},{texto:'Boa comunicação',obr:true},{texto:'Experiência em escritório',obr:false},{texto:'Ensino Superior cursando',obr:false}],
+   responsabilidades:['Atendimento presencial e telefônico','Organizar e arquivar documentos','Controlar planilhas e relatórios','Apoiar comunicação interna','Auxiliar em processos seletivos'],
+   beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'📚',texto:'Cursos e treinamentos'},{icon:'🏖️',texto:'Férias remuneradas'},{icon:'🎯',texto:'Crescimento profissional'}]},
+  {id:6,titulo:'Inspetor de Segurança do Trabalho',empresa:'Rumo Logística',cidade:'Rondonópolis, MT',regime:'Integral',tipo:'CLT',cat:'Segurança',dias:4,
+   desc:'Fiscalizar e garantir o cumprimento das normas de segurança do trabalho nas operações logísticas e ferroviárias, preservando a integridade dos colaboradores.',
+   horario:[{label:'Jornada',valor:'Segunda a Sexta'},{label:'Horário',valor:'07h – 16h'},{label:'Regime',valor:'Presencial / Campo'},{label:'Plantão',valor:'Eventual fins de semana'}],
+   requisitos:[{texto:'Técnico em Segurança do Trabalho (registro ativo)',obr:true},{texto:'Experiência com CIPA e laudos',obr:true},{texto:'Conhecimento das NRs',obr:true},{texto:'Experiência em logística ou indústria',obr:false},{texto:'Pós em Engenharia de Segurança',obr:false}],
+   responsabilidades:['Fiscalizar normas de segurança','Realizar inspeções periódicas','Elaborar laudos e relatórios','Treinar colaboradores em SST','Investigar acidentes','Atualizar documentação de CIPA'],
+   beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🛒',texto:'Vale Alimentação'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Plano de Saúde'},{icon:'🦷',texto:'Plano Odontológico'},{icon:'💰',texto:'PLR Anual'}]},
+  {id:7,titulo:'Estoquista / Auxiliar de Logística',empresa:'Parceira confidencial',cidade:'Alto Garças, MT',regime:'Integral',tipo:'Temporário',cat:'Logística',dias:1,
+   desc:'Recebimento, armazenagem e controle de estoque. Atividades de separação, conferência e expedição de mercadorias em ambiente de armazém.',
+   horario:[{label:'Jornada',valor:'Segunda a Sábado'},{label:'Horário',valor:'07h – 16h'},{label:'Regime',valor:'Temporário (6 meses)'},{label:'Renovação',valor:'Possibilidade de efetivação'}],
+   requisitos:[{texto:'Ensino Médio completo',obr:true},{texto:'Disponibilidade de horário',obr:true},{texto:'Condicionamento físico para galpão',obr:true},{texto:'CNH categoria B',obr:false},{texto:'Experiência em estoque',obr:false}],
+   responsabilidades:['Receber e conferir mercadorias','Organizar e controlar estoque','Separar pedidos para expedição','Manter organização do armazém','Registrar entradas e saídas'],
+   beneficios:[{icon:'🍽️',texto:'Vale Refeição'},{icon:'🚌',texto:'Vale Transporte'},{icon:'❤️',texto:'Seguro de Vida'},{icon:'📋',texto:'Contrato temporário'},{icon:'🎯',texto:'Possibilidade de efetivação'},{icon:'🏖️',texto:'Férias proporcionais'}]},
+  {id:8,titulo:'Auxiliar Administrativo – Estágio',empresa:'Help Recrutamento',cidade:'Rondonópolis, MT',regime:'Meio período',tipo:'Estágio',cat:'Administrativo',dias:6,
+   desc:'Estágio remunerado para estudantes de Administração, RH ou correlatas. Apoio nas rotinas administrativas, atendimento e processos de recrutamento.',
+   horario:[{label:'Jornada',valor:'Segunda a Sexta'},{label:'Horário',valor:'13h – 17h (tarde)'},{label:'Regime',valor:'Meio período (4h/dia)'},{label:'Duração',valor:'6 meses (renovável)'}],
+   requisitos:[{texto:'Cursando Administração, RH ou correlatos',obr:true},{texto:'Comunicativo e proativo',obr:true},{texto:'Noções de informática e Office',obr:true},{texto:'Disponibilidade presencial',obr:true},{texto:'Interesse em RH',obr:false}],
+   responsabilidades:['Auxiliar nas rotinas administrativas','Apoiar na triagem de currículos','Atender candidatos','Organizar documentos e arquivos','Apoiar na divulgação de vagas'],
+   beneficios:[{icon:'💳',texto:'Bolsa-auxílio'},{icon:'🍽️',texto:'Vale Refeição'},{icon:'🚌',texto:'Vale Transporte'},{icon:'📚',texto:'Supervisão profissional'},{icon:'📜',texto:'Declaração de estágio'},{icon:'🎯',texto:'Possibilidade de efetivação'}]}
+];
+
+/* ---------- persistência ---------- */
+function carregar(){
+  try{const raw=localStorage.getItem(STORE);vagas=raw?JSON.parse(raw):JSON.parse(JSON.stringify(EXEMPLOS));}
+  catch(_){vagas=JSON.parse(JSON.stringify(EXEMPLOS));}
+  salvarLocal();
+}
+function salvarLocal(){try{localStorage.setItem(STORE,JSON.stringify(vagas));}catch(_){}}
+
+/* ---------- helpers ---------- */
+function escapeHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function linhas(t){return String(t||'').split('\n').map(l=>l.trim()).filter(Boolean);}
+function nextId(){return vagas.length?Math.max(...vagas.map(v=>v.id))+1:1;}
+function toast(msg,tipo){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(tipo?(' '+tipo):'');setTimeout(()=>t.className='toast'+(tipo?(' '+tipo):''),2600);}
+
+/* ---------- render ---------- */
+function render(){
+  document.getElementById('total').textContent=vagas.length;
+  const c=document.getElementById('lista');
+  if(!vagas.length){c.innerHTML='<div class="vazio">Nenhuma vaga cadastrada. Clique em <b>+ Nova vaga</b> para começar.</div>';return;}
+  c.innerHTML=vagas.map(v=>`
+    <div class="card">
+      <div class="emp">${escapeHtml(v.empresa)}</div>
+      <h3>${escapeHtml(v.titulo)}</h3>
+      <div class="meta">
+        <span class="chip tipo">${escapeHtml(v.tipo)}</span>
+        <span class="chip">📍 ${escapeHtml(v.cidade)}</span>
+        <span class="chip">🗂️ ${escapeHtml(v.cat)}</span>
+      </div>
+      <div class="acoes">
+        <button class="mini" onclick="editar(${v.id})">✏️ Editar</button>
+        <button class="mini del" onclick="excluir(${v.id})">🗑 Excluir</button>
+      </div>
+    </div>`).join('');
+}
+
+/* ---------- form ---------- */
+function abrirForm(){
+  editId=null;
+  document.getElementById('form-title').textContent='Nova vaga';
+  ['f-titulo','f-empresa','f-cidade','f-regime','f-desc','f-horario','f-req-obr','f-req-dif','f-resp','f-benef'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-tipo').value='CLT';
+  document.getElementById('f-cat').value='Administrativo';
+  document.getElementById('f-dias').value=1;
+  abrir('overlay-form');
+}
+function editar(id){
+  const v=vagas.find(x=>x.id===id);if(!v)return;
+  editId=id;
+  document.getElementById('form-title').textContent='Editar vaga';
+  document.getElementById('f-titulo').value=v.titulo||'';
+  document.getElementById('f-empresa').value=v.empresa||'';
+  document.getElementById('f-cidade').value=v.cidade||'';
+  document.getElementById('f-regime').value=v.regime||'';
+  document.getElementById('f-tipo').value=v.tipo||'CLT';
+  document.getElementById('f-cat').value=v.cat||'Administrativo';
+  document.getElementById('f-desc').value=v.desc||'';
+  document.getElementById('f-dias').value=v.dias!=null?v.dias:1;
+  document.getElementById('f-horario').value=(v.horario||[]).map(h=>`${h.label}: ${h.valor}`).join('\n');
+  document.getElementById('f-req-obr').value=(v.requisitos||[]).filter(r=>r.obr).map(r=>r.texto).join('\n');
+  document.getElementById('f-req-dif').value=(v.requisitos||[]).filter(r=>!r.obr).map(r=>r.texto).join('\n');
+  document.getElementById('f-resp').value=(v.responsabilidades||[]).join('\n');
+  document.getElementById('f-benef').value=(v.beneficios||[]).map(b=>`${b.icon||''} ${b.texto}`.trim()).join('\n');
+  abrir('overlay-form');
+}
+function parseBenef(linha){
+  // separa emoji inicial (se houver) do texto
+  const m=linha.match(/^([\p{Emoji_Presentation}\p{Extended_Pictographic}\u2600-\u27BF\uFE0F\u200d]+)\s*(.*)$/u);
+  if(m&&m[2])return{icon:m[1].trim(),texto:m[2].trim()};
+  return{icon:'✅',texto:linha};
+}
+function parseHorario(linha){
+  const i=linha.indexOf(':');
+  if(i>-1)return{label:linha.slice(0,i).trim(),valor:linha.slice(i+1).trim()};
+  return{label:'Info',valor:linha};
+}
+function salvar(){
+  const g=id=>document.getElementById(id).value.trim();
+  const titulo=g('f-titulo'),empresa=g('f-empresa'),cidade=g('f-cidade'),regime=g('f-regime'),desc=g('f-desc');
+  if(!titulo||!empresa||!cidade||!regime||!desc){toast('Preencha todos os campos obrigatórios (*)','err');return;}
+  const obj={
+    id: editId!=null?editId:nextId(),
+    titulo,empresa,cidade,regime,
+    tipo:g('f-tipo'),cat:g('f-cat'),
+    dias:parseInt(g('f-dias'))||0,
+    desc,
+    horario:linhas(g('f-horario')).map(parseHorario),
+    requisitos:[
+      ...linhas(g('f-req-obr')).map(t=>({texto:t,obr:true})),
+      ...linhas(g('f-req-dif')).map(t=>({texto:t,obr:false}))
+    ],
+    responsabilidades:linhas(g('f-resp')),
+    beneficios:linhas(g('f-benef')).map(parseBenef)
+  };
+  if(editId!=null){const i=vagas.findIndex(v=>v.id===editId);vagas[i]=obj;toast('Vaga atualizada ✓','ok');}
+  else{vagas.unshift(obj);toast('Vaga cadastrada ✓','ok');}
+  salvarLocal();render();fechar('overlay-form');
+}
+function excluir(id){
+  const v=vagas.find(x=>x.id===id);
+  if(!confirm(`Excluir a vaga "${v?v.titulo:''}"?`))return;
+  vagas=vagas.filter(x=>x.id!==id);salvarLocal();render();toast('Vaga excluída','err');
+}
+function restaurar(){
+  if(!confirm('Isso vai apagar suas vagas atuais e voltar para os 8 exemplos. Continuar?'))return;
+  vagas=JSON.parse(JSON.stringify(EXEMPLOS));salvarLocal();render();toast('Exemplos restaurados','ok');
+}
+
+/* ---------- exportar / importar vagas.js ---------- */
+function gerarConteudo(){
+  const cab=`/* ============================================================
+   VAGAS — Help Recrutamento
+   ------------------------------------------------------------
+   Arquivo gerado pelo painel admin.html.
+   Para alterar vagas, use o admin.html e gere este arquivo de novo.
+   ============================================================ */
+
+`;
+  return cab+'const vagas = '+JSON.stringify(vagas,null,2)+';\n';
+}
+function exportar(){
+  document.getElementById('export-code').textContent=gerarConteudo();
+  abrir('overlay-export');
+}
+function copiar(){
+  navigator.clipboard.writeText(gerarConteudo()).then(()=>toast('Conteúdo copiado ✓','ok')).catch(()=>toast('Não foi possível copiar','err'));
+}
+function baixar(){
+  const blob=new Blob([gerarConteudo()],{type:'text/javascript'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='vagas.js';a.click();
+  URL.revokeObjectURL(a.href);toast('vagas.js baixado ✓','ok');
+}
+function importarArquivo(){document.getElementById('file-import').click();}
+document.getElementById('file-import').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    try{
+      const txt=ev.target.result;
+      const m=txt.match(/const\s+vagas\s*=\s*(\[[\s\S]*\])\s*;?/);
+      const arr=m?eval('('+m[1]+')'):JSON.parse(txt);
+      if(!Array.isArray(arr))throw new Error();
+      vagas=arr;salvarLocal();render();toast('Vagas importadas ✓','ok');
+    }catch(_){toast('Arquivo inválido. Use um vagas.js válido.','err');}
+  };
+  r.readAsText(f);e.target.value='';
+});
+
+/* ---------- modais ---------- */
+function abrir(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function fechar(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)fechar(o.id);}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.overlay.open').forEach(o=>fechar(o.id));});
+
+carregar();render();
+</script>
+</body>
+</html>
