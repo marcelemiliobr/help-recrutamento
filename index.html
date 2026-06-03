@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Help Recrutamento — Especialistas em encontrar o profissional certo</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -402,7 +405,7 @@ select.form-input{appearance:none;cursor:pointer}
   <div class="hero-left">
     <div class="hero-badge"><span></span>11 vagas disponíveis agora</div>
     <h1 class="hero-h1">Encontre sua <em>próxima</em> oportunidade</h1>
-    <p class="hero-desc">Especialistas em recrutamento e seleção no Centro-Oeste. Conectamos talentos às melhores empresas do Mato Grosso.</p>
+    <p class="hero-desc">Especialistas em recrutamento e seleção. Conectamos talentos às melhores empresas do Brasil .</p>
     <div class="search-bar">
       <input type="text" placeholder="Busque por cargo, empresa ou cidade..." id="search-input" oninput="filtrarVagas()" autocomplete="off">
       <button onclick="filtrarVagas()">Buscar</button>
@@ -685,36 +688,52 @@ select.form-input{appearance:none;cursor:pointer}
           </div>
           <div class="form-row">
             <div class="form-group"><label class="form-label" for="cand-cidade">Cidade*</label><input class="form-input" id="cand-cidade" type="text" placeholder="Ex: Rondonópolis" maxlength="80"><span class="field-error-msg">Informe sua cidade.</span></div>
-            <div class="form-group"><label class="form-label" for="cand-estado">Estado*</label><select class="form-input" id="cand-estado"><option value="">Selecione</option><option>MT</option><option>GO</option><option>SP</option><option>Outro</option></select><span class="field-error-msg">Selecione seu estado.</span></div>
+            <div class="form-group"><label class="form-label" for="cand-estado">Estado*</label><select class="form-input" id="cand-estado" onchange="_toggleOutro('cand-estado','wrap-estado-outro')"><option value="">Selecione</option><option>MT</option><option>GO</option><option>MS</option><option>SP</option><option>Outro</option></select><span class="field-error-msg">Selecione seu estado.</span></div>
+          </div>
+          <div class="form-row" id="wrap-estado-outro" style="display:none">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="cand-estado-outro">Qual estado?*</label><input class="form-input" id="cand-estado-outro" type="text" placeholder="Digite a sigla do seu estado (ex: PR)" maxlength="30"><span class="field-error-msg">Informe seu estado.</span></div>
           </div>
         </div>
         <div class="form-section">
-          <div class="form-section-title">Formação</div>
+          <div class="form-section-title">Formação acadêmica</div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label" for="cand-escolar">Escolaridade*</label><select class="form-input" id="cand-escolar"><option value="">Selecione</option><option>Ensino Fundamental</option><option>Ensino Médio</option><option>Técnico</option><option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação</option></select><span class="field-error-msg">Selecione sua escolaridade.</span></div>
-            <div class="form-group"><label class="form-label" for="cand-curso">Área/Curso</label><input class="form-input" id="cand-curso" type="text" placeholder="Ex: Logística" maxlength="80"></div>
+            <div class="form-group"><label class="form-label" for="cand-escolar">Escolaridade*</label><select class="form-input" id="cand-escolar" onchange="_atualizaCursoObrigatorio()"><option value="">Selecione</option><option>Ensino Fundamental</option><option>Ensino Médio</option><option>Técnico</option><option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação</option></select><span class="field-error-msg">Selecione sua escolaridade.</span></div>
+            <div class="form-group"><label class="form-label" for="cand-curso"><span id="lbl-curso">Curso / Em que é formado(a)?</span></label><input class="form-input" id="cand-curso" type="text" placeholder="Ex: Engenharia Ambiental, Logística, Direito..." maxlength="100"><span class="field-error-msg">Informe seu curso/formação.</span></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="cand-instituicao">Instituição de ensino</label><input class="form-input" id="cand-instituicao" type="text" placeholder="Nome da escola, faculdade ou universidade (opcional)" maxlength="120"></div>
           </div>
         </div>
         <div class="form-section">
           <div class="form-section-title">Experiência profissional</div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label" for="cand-cargo">Último cargo</label><input class="form-input" id="cand-cargo" type="text" placeholder="Ex: Motorista" maxlength="80"></div>
-            <div class="form-group"><label class="form-label" for="cand-empresa-ant">Última empresa</label><input class="form-input" id="cand-empresa-ant" type="text" placeholder="Nome da empresa" maxlength="80"></div>
+            <div class="form-group"><label class="form-label" for="cand-cargo">Último cargo</label><input class="form-input" id="cand-cargo" type="text" placeholder="Ex: Motorista, Auxiliar Administrativo" maxlength="80"></div>
+            <div class="form-group"><label class="form-label" for="cand-empresa-ant">Última empresa</label><input class="form-input" id="cand-empresa-ant" type="text" placeholder="Nome da empresa onde trabalhou" maxlength="80"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label" for="cand-exp">Tempo de experiência</label><select class="form-input" id="cand-exp"><option value="">Selecione</option><option>Sem experiência</option><option>Menos de 1 ano</option><option>1 a 2 anos</option><option>2 a 5 anos</option><option>Mais de 5 anos</option></select></div>
-            <div class="form-group"><label class="form-label" for="cand-pretensao">Pretensão salarial</label><input class="form-input" id="cand-pretensao" type="text" placeholder="Ex: R$ 3.500" maxlength="30"></div>
+            <div class="form-group"><label class="form-label" for="cand-exp">Tempo de experiência*</label><select class="form-input" id="cand-exp"><option value="">Selecione</option><option>Sem experiência</option><option>Menos de 1 ano</option><option>1 a 2 anos</option><option>2 a 5 anos</option><option>Mais de 5 anos</option></select><span class="field-error-msg">Selecione seu tempo de experiência.</span></div>
+            <div class="form-group"><label class="form-label" for="cand-pretensao">Pretensão salarial</label><input class="form-input" id="cand-pretensao" type="text" placeholder="Ex: R$ 3.500 (opcional)" maxlength="30"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="cand-qualificacoes">Qualificações, cursos e resumo profissional</label><textarea class="form-input" id="cand-qualificacoes" rows="3" placeholder="Conte um pouco sobre sua experiência, cursos, certificações e habilidades..." maxlength="600" style="resize:vertical;font-family:inherit"></textarea></div>
           </div>
         </div>
         <div class="form-section">
-          <div class="form-section-title">Requisitos e disponibilidade</div>
+          <div class="form-section-title">Objetivo profissional</div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label" for="cand-cnh">CNH</label><select class="form-input" id="cand-cnh"><option value="">Não possuo</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>A/B</option></select></div>
-            <div class="form-group"><label class="form-label" for="cand-area">Área de atuação</label><select class="form-input" id="cand-area"><option value="">Selecione</option><option>Logística</option><option>Operacional</option><option>Administrativo</option><option>RH</option><option>Manutenção</option><option>Segurança</option><option>Outro</option></select></div>
+            <div class="form-group"><label class="form-label" for="cand-area">Área em que deseja trabalhar*</label><select class="form-input" id="cand-area" onchange="_toggleOutro('cand-area','wrap-area-outro')"><option value="">Selecione</option><option>Logística</option><option>Operacional</option><option>Administrativo</option><option>RH</option><option>Manutenção</option><option>Segurança</option><option>Vendas</option><option>Financeiro</option><option>Saúde</option><option>Meio Ambiente</option><option>Outro</option></select><span class="field-error-msg">Selecione a área desejada.</span></div>
+            <div class="form-group"><label class="form-label" for="cand-cnh">CNH</label><select class="form-input" id="cand-cnh"><option value="">Não possuo</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>A/B</option><option>A/D</option><option>A/E</option></select></div>
+          </div>
+          <div class="form-row" id="wrap-area-outro" style="display:none">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="cand-area-outro">Qual área você deseja trabalhar?*</label><input class="form-input" id="cand-area-outro" type="text" placeholder="Descreva a área ou cargo de interesse" maxlength="80"><span class="field-error-msg">Informe a área desejada.</span></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="cand-linkedin">LinkedIn ou link do currículo</label><input class="form-input" id="cand-linkedin" type="text" placeholder="https://linkedin.com/in/seu-perfil (opcional)" maxlength="200"></div>
           </div>
           <div class="form-checkrow"><input type="checkbox" id="cb1"><label for="cb1">Disponibilidade de horário (turnos, finais de semana)</label></div>
           <div class="form-checkrow"><input type="checkbox" id="cb2"><label for="cb2">Disponibilidade para escala (6x1, 12x36 etc.)</label></div>
           <div class="form-checkrow"><input type="checkbox" id="cb3"><label for="cb3">Disponibilidade para viagens</label></div>
+          <div class="form-checkrow"><input type="checkbox" id="cb4"><label for="cb4">Disponibilidade para mudança de cidade</label></div>
         </div>
         <div class="lgpd-note">
           <p style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:8px">🔒 Proteção de dados pessoais</p>
@@ -923,10 +942,10 @@ function _mapCandidatura(p){
   return {
     empresa:p.empresa, vaga:p.vaga, categoria:p.categoria,
     nome:p.nome, nascimento:p.nascimento||null, email:(p.email||'').toLowerCase(), whatsapp:p.whatsapp,
-    cidade:p.cidade, estado:p.estado, escolaridade:p.escolaridade, curso:p.curso,
-    ultimo_cargo:p.ultimoCargo, ultima_empresa:p.ultimaEmpresa,
-    exp_tempo:p.expTempo, pretensao:p.pretensao, cnh:p.cnh, area_atuacao:p.areaAtuacao,
-    disp_horario:p.dispHorario==='Sim', disp_escala:p.dispEscala==='Sim', disp_viagem:p.dispViagem==='Sim',
+    cidade:p.cidade, estado:p.estado, escolaridade:p.escolaridade, curso:p.curso, instituicao:p.instituicao,
+    ultimo_cargo:p.ultimoCargo, ultima_empresa:p.ultimaEmpresa, exp_tempo:p.expTempo, qualificacoes:p.qualificacoes,
+    pretensao:p.pretensao, cnh:p.cnh, area_atuacao:p.areaAtuacao, area_outro:p.areaOutro, linkedin:p.linkedin,
+    disp_horario:p.dispHorario==='Sim', disp_escala:p.dispEscala==='Sim', disp_viagem:p.dispViagem==='Sim', mudanca_cidade:p.mudancaCidade==='Sim',
     consentimento_lgpd:p.consentimentoLGPD==='Sim', data_consentimento:p.dataConsentimento
   };
 }
@@ -950,15 +969,23 @@ async function _enviarBackend(payload){
   }
   return { status:'ok' };
 }
+function _toggleOutro(selId,wrapId){var s=document.getElementById(selId),w=document.getElementById(wrapId);if(!s||!w)return;w.style.display=(s.value==='Outro')?'grid':'none';}
+function _atualizaCursoObrigatorio(){var es=document.getElementById('cand-escolar'),lbl=document.getElementById('lbl-curso');if(!es||!lbl)return;var exige=['Técnico','Superior Incompleto','Superior Completo','Pós-graduação'].includes(es.value);lbl.textContent='Curso / Em que é formado(a)?'+(exige?'*':'');}
 function validarCandidatura(){
   const e=[],V=Validation;
-  const nome=document.getElementById('cand-nome'),email=document.getElementById('cand-email'),tel=document.getElementById('cand-tel'),cidade=document.getElementById('cand-cidade'),estado=document.getElementById('cand-estado'),escolar=document.getElementById('cand-escolar'),lg=document.getElementById('lgpd-cand');
-  const nv=nome?nome.value.trim():'';const nok=V.isNotEmpty(nv)&&nv.split(' ').length>=2;V.setFieldState(nome,nok,nome?nome.nextElementSibling:null);if(!nok)e.push('nome');
+  const nome=document.getElementById('cand-nome'),email=document.getElementById('cand-email'),tel=document.getElementById('cand-tel'),cidade=document.getElementById('cand-cidade'),estado=document.getElementById('cand-estado'),escolar=document.getElementById('cand-escolar'),exp=document.getElementById('cand-exp'),area=document.getElementById('cand-area'),curso=document.getElementById('cand-curso'),lg=document.getElementById('lgpd-cand');
+  const nv=nome?nome.value.trim():'';const nok=V.isNotEmpty(nv)&&nv.split(' ').filter(Boolean).length>=2;V.setFieldState(nome,nok,nome?nome.nextElementSibling:null);if(!nok)e.push('nome');
   const emok=V.isValidEmail(email?email.value.trim():'');V.setFieldState(email,emok,email?email.nextElementSibling:null);if(!emok)e.push('email');
   const tok=V.isValidPhone(tel?tel.value.trim():'');V.setFieldState(tel,tok,tel?tel.nextElementSibling:null);if(!tok)e.push('tel');
   const cok=V.isNotEmpty(cidade?cidade.value:'');V.setFieldState(cidade,cok,cidade?cidade.nextElementSibling:null);if(!cok)e.push('cidade');
   const estok=V.isNotEmpty(estado?estado.value:'');V.setFieldState(estado,estok,estado?estado.nextElementSibling:null);if(!estok)e.push('estado');
+  if(estado&&estado.value==='Outro'){const eo=document.getElementById('cand-estado-outro');const eook=V.isNotEmpty(eo?eo.value:'');V.setFieldState(eo,eook,eo?eo.nextElementSibling:null);if(!eook)e.push('estado-outro');}
   const esok=V.isNotEmpty(escolar?escolar.value:'');V.setFieldState(escolar,esok,escolar?escolar.nextElementSibling:null);if(!esok)e.push('escolar');
+  const exigeCurso=escolar&&['Técnico','Superior Incompleto','Superior Completo','Pós-graduação'].includes(escolar.value);
+  if(exigeCurso){const cuok=V.isNotEmpty(curso?curso.value:'');V.setFieldState(curso,cuok,curso?curso.nextElementSibling:null);if(!cuok)e.push('curso');}else if(curso){V.setFieldState(curso,true,curso.nextElementSibling);}
+  const exok=V.isNotEmpty(exp?exp.value:'');V.setFieldState(exp,exok,exp?exp.nextElementSibling:null);if(!exok)e.push('exp');
+  const arok=V.isNotEmpty(area?area.value:'');V.setFieldState(area,arok,area?area.nextElementSibling:null);if(!arok)e.push('area');
+  if(area&&area.value==='Outro'){const ao=document.getElementById('cand-area-outro');const aook=V.isNotEmpty(ao?ao.value:'');V.setFieldState(ao,aook,ao?ao.nextElementSibling:null);if(!aook)e.push('area-outro');}
   if(!lg||!lg.checked){const x=document.getElementById('lgpd-cand-erro');if(x)x.style.display='block';e.push('lgpd');}else{const x=document.getElementById('lgpd-cand-erro');if(x)x.style.display='none';}
   return e;
 }
@@ -988,15 +1015,22 @@ async function submitCandidatura(){
   const S=Security.sanitize;
   const empresa=document.getElementById('modal-empresa').textContent,titulo=document.getElementById('modal-titulo').textContent;
   const vo=vagas.find(v=>v.titulo===titulo),cat=vo?vo.cat:'';
+  const _estadoSel=document.getElementById('cand-estado').value;
   const payload={tipo:'candidatura',empresa:S(empresa),vaga:S(titulo),categoria:S(cat),
     nome:S(document.getElementById('cand-nome').value),nascimento:S(document.getElementById('cand-nasc').value),
     email:S(document.getElementById('cand-email').value),whatsapp:S(document.getElementById('cand-tel').value),
-    cidade:S(document.getElementById('cand-cidade').value),estado:S(document.getElementById('cand-estado').value),
+    cidade:S(document.getElementById('cand-cidade').value),
+    estado:(_estadoSel==='Outro'?S(document.getElementById('cand-estado-outro').value):S(_estadoSel)),
     escolaridade:S(document.getElementById('cand-escolar').value),curso:S(document.getElementById('cand-curso').value),
+    instituicao:S(document.getElementById('cand-instituicao').value),
     ultimoCargo:S(document.getElementById('cand-cargo').value),ultimaEmpresa:S(document.getElementById('cand-empresa-ant').value),
     expTempo:S(document.getElementById('cand-exp').value),pretensao:S(document.getElementById('cand-pretensao').value),
-    cnh:S(document.getElementById('cand-cnh').value),areaAtuacao:S(document.getElementById('cand-area').value),
-    dispHorario:document.getElementById('cb1').checked?'Sim':'Não',dispEscala:document.getElementById('cb2').checked?'Sim':'Não',dispViagem:document.getElementById('cb3').checked?'Sim':'Não',
+    qualificacoes:S(document.getElementById('cand-qualificacoes').value),
+    cnh:S(document.getElementById('cand-cnh').value),
+    areaAtuacao:S(document.getElementById('cand-area').value),
+    areaOutro:S(document.getElementById('cand-area-outro').value),
+    linkedin:S(document.getElementById('cand-linkedin').value),
+    dispHorario:document.getElementById('cb1').checked?'Sim':'Não',dispEscala:document.getElementById('cb2').checked?'Sim':'Não',dispViagem:document.getElementById('cb3').checked?'Sim':'Não',mudancaCidade:document.getElementById('cb4').checked?'Sim':'Não',
     consentimentoLGPD:'Sim',dataConsentimento:new Date().toISOString()};
   try{
     await _enviarBackend(payload);Security.registerSubmit();
