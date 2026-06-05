@@ -950,12 +950,12 @@ function openDetalhes(id){
   document.getElementById('det-titulo').textContent=v.titulo;
   document.getElementById('det-regime').textContent=v.regime;
   const tc=v.tipo==='CLT'?'tipo-clt':v.tipo==='Estágio'?'tipo-estagio':'tipo-temp';
-  document.getElementById('det-meta').innerHTML='<span class="detalhe-badge '+tc+'">'+v.tipo+'</span><span class="detalhe-badge info">📍 '+v.cidade+'</span><span class="detalhe-badge info">🗂️ '+v.cat+'</span><span class="detalhe-badge info">📅 Há '+v.dias+' dia'+(v.dias>1?'s':'')+'</span>';
-  document.getElementById('det-horario').innerHTML=v.horario.map(h=>'<div class="horario-item"><div class="horario-label">'+h.label+'</div><div class="horario-valor">'+h.valor+'</div></div>').join('');
+  document.getElementById('det-meta').innerHTML='<span class="detalhe-badge '+tc+'">'+Security.sanitize(v.tipo)+'</span><span class="detalhe-badge info">📍 '+Security.sanitize(v.cidade)+'</span><span class="detalhe-badge info">🗂️ '+Security.sanitize(v.cat)+'</span><span class="detalhe-badge info">📅 Há '+v.dias+' dia'+(v.dias>1?'s':'')+'</span>';
+  document.getElementById('det-horario').innerHTML=v.horario.map(h=>'<div class="horario-item"><div class="horario-label">'+Security.sanitize(h.label)+'</div><div class="horario-valor">'+Security.sanitize(h.valor)+'</div></div>').join('');
   document.getElementById('det-desc').textContent=v.desc;
-  document.getElementById('det-requisitos').innerHTML=v.requisitos.map(r=>{const cls=r.obr?'req-obr':'req-des';const ic=r.obr?'✅':'⭐';const ex=r.obr?'':' <em style="font-size:11px;color:var(--text-muted)">(diferencial)</em>';return '<li class="'+cls+'"><span class="req-icon">'+ic+'</span><span>'+r.texto+ex+'</span></li>';}).join('');
-  document.getElementById('det-responsabilidades').innerHTML=v.responsabilidades.map(r=>'<li>'+r+'</li>').join('');
-  document.getElementById('det-beneficios').innerHTML=v.beneficios.map(b=>'<div class="beneficio-item"><span class="beneficio-icon">'+b.icon+'</span><span class="beneficio-text">'+b.texto+'</span></div>').join('');
+  document.getElementById('det-requisitos').innerHTML=v.requisitos.map(r=>{const cls=r.obr?'req-obr':'req-des';const ic=r.obr?'✅':'⭐';const ex=r.obr?'':' <em style="font-size:11px;color:var(--text-muted)">(diferencial)</em>';return '<li class="'+cls+'"><span class="req-icon">'+ic+'</span><span>'+Security.sanitize(r.texto)+ex+'</span></li>';}).join('');
+  document.getElementById('det-responsabilidades').innerHTML=v.responsabilidades.map(r=>'<li>'+Security.sanitize(r)+'</li>').join('');
+  document.getElementById('det-beneficios').innerHTML=v.beneficios.map(b=>'<div class="beneficio-item"><span class="beneficio-icon">'+Security.sanitize(b.icon)+'</span><span class="beneficio-text">'+Security.sanitize(b.texto)+'</span></div>').join('');
   document.getElementById('modal-detalhes').classList.add('open');
 }
 function candidatarDaVaga(){if(!vagaAtiva)return;closeModal('modal-detalhes');setTimeout(()=>openCandidaturaById(vagaAtiva.id),200);}
