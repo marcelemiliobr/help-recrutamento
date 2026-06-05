@@ -9,8 +9,8 @@ const vagas = [
   {
     "id": 11,
     "titulo": "Analista Ambiental",
-    "empresa": "Help Recrutamentos",
-    "cidade": "Rondonópolis, MT",
+    "empresa": "help recrutamentos",
+    "cidade": "Rondonópolis,MT",
     "regime": "Integral",
     "tipo": "CLT",
     "cat": "Administrativo",
@@ -124,73 +124,10 @@ const vagas = [
     ]
   },
   {
-    "id": 10,
-    "titulo": "Ajudante de Obras",
-    "empresa": "Help Recrutamentos",
-    "cidade": "Rondonópolis, MT",
-    "regime": "Integral",
-    "tipo": "CLT",
-    "cat": "Administrativo",
-    "dias": 1,
-    "desc": "Buscamos um Ajudante de Obras (CLT ou MEI),  para auxiliar nas atividades de construção, manutenção e organização do canteiro de obras. Procuramos um profissional comprometido, responsável e com disposição para atividades operacionais.",
-    "horario": [
-      {
-        "label": "Jornada",
-        "valor": "Segunda a Sexta Feira."
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "Auxiliar na execução de serviços de construção civil.",
-        "obr": true
-      },
-      {
-        "texto": "Preparar e transportar materiais e ferramentas.",
-        "obr": true
-      },
-      {
-        "texto": "Apoiar pedreiros e demais profissionais da obra.",
-        "obr": true
-      },
-      {
-        "texto": "Realizar limpeza e organização do canteiro.",
-        "obr": true
-      },
-      {
-        "texto": "Carregar e descarregar materiais.",
-        "obr": true
-      },
-      {
-        "texto": "Seguir normas de segurança do trabalho.",
-        "obr": true
-      }
-    ],
-    "responsabilidades": [
-      "Ensino fundamental completo.",
-      "Experiência em atividades de construção civil será um diferencial.",
-      "Disponibilidade para trabalho presencial.",
-      "Comprometimento e responsabilidade."
-    ],
-    "beneficios": [
-      {
-        "icon": "✅",
-        "texto": "Vale Refeição: R$ 225,00"
-      },
-      {
-        "icon": "✅",
-        "texto": "Cartão Multibenefício: R$ 250,00"
-      },
-      {
-        "icon": "✅",
-        "texto": "MEi: R$ 120,00 por dia"
-      }
-    ]
-  },
-  {
     "id": 9,
     "titulo": "Analista de Meio Ambiente Sênior",
     "empresa": "Rumo",
-    "cidade": "Primavera do Leste, MT",
+    "cidade": "Primavera do Leste,MT",
     "regime": "Turnos",
     "tipo": "CLT",
     "cat": "Administrativo",
@@ -355,7 +292,7 @@ const vagas = [
     "id": 8,
     "titulo": "Analista Planejamento Pl",
     "empresa": "Rumo",
-    "cidade": "Primavera do Leste, MT",
+    "cidade": "Primavera do Leste,MT",
     "regime": "Turnos",
     "tipo": "CLT",
     "cat": "Administrativo",
@@ -400,7 +337,7 @@ const vagas = [
     "id": 7,
     "titulo": "Supervisor Conservação",
     "empresa": "Rumo",
-    "cidade": "Primavera do Leste, MT",
+    "cidade": "Primavera do Leste,MT",
     "regime": "Turnos",
     "tipo": "CLT",
     "cat": "Operacional",
@@ -893,7 +830,7 @@ const vagas = [
     "id": 3,
     "titulo": "Analista PCM Pleno",
     "empresa": "Rumo",
-    "cidade": "Primavera do Leste, MT",
+    "cidade": "Primavera do leste, MT",
     "regime": "Integral",
     "tipo": "CLT",
     "cat": "Administrativo",
@@ -1046,8 +983,8 @@ const vagas = [
   {
     "id": 2,
     "titulo": "Auxiliar Administrativo",
-    "empresa": "Help Recrutamentos",
-    "cidade": "Rondonópolis, MT",
+    "empresa": "Help recrutamentos",
+    "cidade": "Rondonópilis,MT",
     "regime": "Integral",
     "tipo": "CLT",
     "cat": "Administrativo",
