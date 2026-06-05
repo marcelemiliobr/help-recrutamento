@@ -767,24 +767,61 @@ select.form-input{appearance:none;cursor:pointer}
         <div class="form-section">
           <div class="form-section-title">Dados pessoais</div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label" for="banco-nome">Nome completo*</label><input class="form-input" id="banco-nome" type="text" placeholder="Seu nome" maxlength="120"><span class="field-error-msg">Informe seu nome.</span></div>
-            <div class="form-group"><label class="form-label" for="banco-tel">WhatsApp*</label><input class="form-input" id="banco-tel" type="tel" placeholder="(65) 99999-9999" maxlength="20"><span class="field-error-msg">Informe um WhatsApp válido.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-nome">Nome completo*</label><input class="form-input" id="banco-nome" type="text" placeholder="Seu nome completo" maxlength="120" autocomplete="name"><span class="field-error-msg">Informe seu nome completo.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-nasc">Data de nascimento*</label><input class="form-input" id="banco-nasc" type="date" autocomplete="bday"><span class="field-error-msg">Informe sua data de nascimento.</span></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label" for="banco-email">E-mail*</label><input class="form-input" id="banco-email" type="email" placeholder="seu@email.com" maxlength="150"><span class="field-error-msg">Informe um e-mail válido.</span></div>
-            <div class="form-group"><label class="form-label" for="banco-cidade">Cidade/Estado*</label><input class="form-input" id="banco-cidade" type="text" placeholder="Ex: Rondonópolis, MT" maxlength="80"><span class="field-error-msg">Informe cidade e estado.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-email">E-mail*</label><input class="form-input" id="banco-email" type="email" placeholder="seu@email.com" maxlength="150" autocomplete="email"><span class="field-error-msg">Informe um e-mail válido.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-tel">WhatsApp*</label><input class="form-input" id="banco-tel" type="tel" placeholder="(65) 99999-9999" maxlength="20" autocomplete="tel"><span class="field-error-msg">Informe um WhatsApp válido.</span></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="banco-cidade">Cidade*</label><input class="form-input" id="banco-cidade" type="text" placeholder="Ex: Rondonópolis" maxlength="80"><span class="field-error-msg">Informe sua cidade.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-estado">Estado*</label><select class="form-input" id="banco-estado" onchange="_toggleOutro('banco-estado','wrap-banco-estado-outro')"><option value="">Selecione</option><option>MT</option><option>GO</option><option>MS</option><option>SP</option><option>Outro</option></select><span class="field-error-msg">Selecione seu estado.</span></div>
+          </div>
+          <div class="form-row" id="wrap-banco-estado-outro" style="display:none">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="banco-estado-outro">Qual estado?*</label><input class="form-input" id="banco-estado-outro" type="text" placeholder="Digite a sigla do seu estado (ex: PR)" maxlength="30"><span class="field-error-msg">Informe seu estado.</span></div>
           </div>
         </div>
         <div class="form-section">
-          <div class="form-section-title">Perfil profissional</div>
+          <div class="form-section-title">Formação acadêmica</div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label" for="banco-area">Área de interesse*</label><select class="form-input" id="banco-area"><option value="">Selecione</option><option>Logística</option><option>Operacional</option><option>Administrativo</option><option>RH</option><option>Manutenção</option><option>Segurança</option><option>Outro</option></select><span class="field-error-msg">Selecione uma área.</span></div>
-            <div class="form-group"><label class="form-label" for="banco-escolar">Escolaridade*</label><select class="form-input" id="banco-escolar"><option value="">Selecione</option><option>Ensino Médio</option><option>Técnico</option><option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação</option></select><span class="field-error-msg">Selecione sua escolaridade.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-escolar">Escolaridade*</label><select class="form-input" id="banco-escolar" onchange="_atualizaCursoBanco()"><option value="">Selecione</option><option>Ensino Fundamental</option><option>Ensino Médio</option><option>Técnico</option><option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação</option></select><span class="field-error-msg">Selecione sua escolaridade.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-curso"><span id="lbl-curso-banco">Curso / Em que é formado(a)?</span></label><input class="form-input" id="banco-curso" type="text" placeholder="Ex: Engenharia Ambiental, Logística, Direito..." maxlength="100"><span class="field-error-msg">Informe seu curso/formação.</span></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label class="form-label" for="banco-pretensao">Pretensão salarial</label><input class="form-input" id="banco-pretensao" type="text" placeholder="Ex: R$ 2.500" maxlength="30"></div>
-            <div class="form-group"><label class="form-label" for="banco-cnh">CNH</label><select class="form-input" id="banco-cnh"><option value="">Não possuo</option><option>A/B</option><option>C</option><option>D</option><option>E</option></select></div>
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="banco-instituicao">Instituição de ensino</label><input class="form-input" id="banco-instituicao" type="text" placeholder="Nome da escola, faculdade ou universidade (opcional)" maxlength="120"></div>
           </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">Experiência profissional</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="banco-cargo">Último cargo</label><input class="form-input" id="banco-cargo" type="text" placeholder="Ex: Motorista, Auxiliar Administrativo" maxlength="80"></div>
+            <div class="form-group"><label class="form-label" for="banco-empresa-ant">Última empresa</label><input class="form-input" id="banco-empresa-ant" type="text" placeholder="Nome da empresa onde trabalhou" maxlength="80"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="banco-exp">Tempo de experiência*</label><select class="form-input" id="banco-exp"><option value="">Selecione</option><option>Sem experiência</option><option>Menos de 1 ano</option><option>1 a 2 anos</option><option>2 a 5 anos</option><option>Mais de 5 anos</option></select><span class="field-error-msg">Selecione seu tempo de experiência.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-pretensao">Pretensão salarial</label><input class="form-input" id="banco-pretensao" type="text" placeholder="Ex: R$ 2.500 (opcional)" maxlength="30"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="banco-qualificacoes">Qualificações, cursos e resumo profissional</label><textarea class="form-input" id="banco-qualificacoes" rows="3" placeholder="Conte um pouco sobre sua experiência, cursos, certificações e habilidades..." maxlength="600" style="resize:vertical;font-family:inherit"></textarea></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">Objetivo profissional</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="banco-area">Área em que deseja trabalhar*</label><select class="form-input" id="banco-area" onchange="_toggleOutro('banco-area','wrap-banco-area-outro')"><option value="">Selecione</option><option>Logística</option><option>Operacional</option><option>Administrativo</option><option>RH</option><option>Manutenção</option><option>Segurança</option><option>Vendas</option><option>Financeiro</option><option>Saúde</option><option>Meio Ambiente</option><option>Outro</option></select><span class="field-error-msg">Selecione a área desejada.</span></div>
+            <div class="form-group"><label class="form-label" for="banco-cnh">CNH</label><select class="form-input" id="banco-cnh"><option value="">Não possuo</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>A/B</option><option>A/D</option><option>A/E</option></select></div>
+          </div>
+          <div class="form-row" id="wrap-banco-area-outro" style="display:none">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="banco-area-outro">Qual área você deseja trabalhar?*</label><input class="form-input" id="banco-area-outro" type="text" placeholder="Descreva a área ou cargo de interesse" maxlength="80"><span class="field-error-msg">Informe a área desejada.</span></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1"><label class="form-label" for="banco-linkedin">LinkedIn ou link do currículo</label><input class="form-input" id="banco-linkedin" type="text" placeholder="https://linkedin.com/in/seu-perfil (opcional)" maxlength="200"></div>
+          </div>
+          <div class="form-checkrow"><input type="checkbox" id="bcb1"><label for="bcb1">Disponibilidade de horário (turnos, finais de semana)</label></div>
+          <div class="form-checkrow"><input type="checkbox" id="bcb2"><label for="bcb2">Disponibilidade para escala (6x1, 12x36 etc.)</label></div>
+          <div class="form-checkrow"><input type="checkbox" id="bcb3"><label for="bcb3">Disponibilidade para viagens</label></div>
+          <div class="form-checkrow"><input type="checkbox" id="bcb4"><label for="bcb4">Disponibilidade para mudança de cidade</label></div>
         </div>
         <div class="lgpd-note">
           <p style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:8px">🔒 Proteção de dados pessoais</p>
@@ -951,9 +988,11 @@ function _mapCandidatura(p){
 }
 function _mapBanco(p){
   return {
-    nome:p.nome, whatsapp:p.whatsapp, email:(p.email||'').toLowerCase(),
-    cidade_estado:p.cidadeEstado, area_interesse:p.areaInteresse,
-    escolaridade:p.escolaridade, pretensao:p.pretensao, cnh:p.cnh,
+    nome:p.nome, nascimento:p.nascimento||null, email:(p.email||'').toLowerCase(), whatsapp:p.whatsapp,
+    cidade:p.cidade, estado:p.estado, escolaridade:p.escolaridade, curso:p.curso, instituicao:p.instituicao,
+    ultimo_cargo:p.ultimoCargo, ultima_empresa:p.ultimaEmpresa, exp_tempo:p.expTempo, qualificacoes:p.qualificacoes,
+    pretensao:p.pretensao, cnh:p.cnh, area_atuacao:p.areaAtuacao, area_outro:p.areaOutro, linkedin:p.linkedin,
+    disp_horario:p.dispHorario==='Sim', disp_escala:p.dispEscala==='Sim', disp_viagem:p.dispViagem==='Sim', mudanca_cidade:p.mudancaCidade==='Sim',
     consentimento_lgpd:p.consentimentoLGPD==='Sim', data_consentimento:p.dataConsentimento
   };
 }
@@ -989,15 +1028,22 @@ function validarCandidatura(){
   if(!lg||!lg.checked){const x=document.getElementById('lgpd-cand-erro');if(x)x.style.display='block';e.push('lgpd');}else{const x=document.getElementById('lgpd-cand-erro');if(x)x.style.display='none';}
   return e;
 }
+function _atualizaCursoBanco(){var es=document.getElementById('banco-escolar'),lbl=document.getElementById('lbl-curso-banco');if(!es||!lbl)return;var exige=['Técnico','Superior Incompleto','Superior Completo','Pós-graduação'].includes(es.value);lbl.textContent='Curso / Em que é formado(a)?'+(exige?'*':'');}
 function validarBanco(){
   const e=[],V=Validation;
-  const nome=document.getElementById('banco-nome'),email=document.getElementById('banco-email'),tel=document.getElementById('banco-tel'),cidade=document.getElementById('banco-cidade'),area=document.getElementById('banco-area'),escolar=document.getElementById('banco-escolar'),lg=document.getElementById('lgpd-banco');
-  const nv=nome?nome.value.trim():'';const nok=V.isNotEmpty(nv)&&nv.split(' ').length>=2;V.setFieldState(nome,nok,nome?nome.nextElementSibling:null);if(!nok)e.push('nome');
+  const nome=document.getElementById('banco-nome'),email=document.getElementById('banco-email'),tel=document.getElementById('banco-tel'),cidade=document.getElementById('banco-cidade'),estado=document.getElementById('banco-estado'),area=document.getElementById('banco-area'),escolar=document.getElementById('banco-escolar'),exp=document.getElementById('banco-exp'),curso=document.getElementById('banco-curso'),lg=document.getElementById('lgpd-banco');
+  const nv=nome?nome.value.trim():'';const nok=V.isNotEmpty(nv)&&nv.split(' ').filter(Boolean).length>=2;V.setFieldState(nome,nok,nome?nome.nextElementSibling:null);if(!nok)e.push('nome');
   const emok=V.isValidEmail(email?email.value.trim():'');V.setFieldState(email,emok,email?email.nextElementSibling:null);if(!emok)e.push('email');
   const tok=V.isValidPhone(tel?tel.value.trim():'');V.setFieldState(tel,tok,tel?tel.nextElementSibling:null);if(!tok)e.push('tel');
   const cok=V.isNotEmpty(cidade?cidade.value:'');V.setFieldState(cidade,cok,cidade?cidade.nextElementSibling:null);if(!cok)e.push('cidade');
-  const aok=V.isNotEmpty(area?area.value:'');V.setFieldState(area,aok,area?area.nextElementSibling:null);if(!aok)e.push('area');
+  const estok=V.isNotEmpty(estado?estado.value:'');V.setFieldState(estado,estok,estado?estado.nextElementSibling:null);if(!estok)e.push('estado');
+  if(estado&&estado.value==='Outro'){const eo=document.getElementById('banco-estado-outro');const eook=V.isNotEmpty(eo?eo.value:'');V.setFieldState(eo,eook,eo?eo.nextElementSibling:null);if(!eook)e.push('estado-outro');}
   const esok=V.isNotEmpty(escolar?escolar.value:'');V.setFieldState(escolar,esok,escolar?escolar.nextElementSibling:null);if(!esok)e.push('escolar');
+  const exigeCurso=escolar&&['Técnico','Superior Incompleto','Superior Completo','Pós-graduação'].includes(escolar.value);
+  if(exigeCurso){const cuok=V.isNotEmpty(curso?curso.value:'');V.setFieldState(curso,cuok,curso?curso.nextElementSibling:null);if(!cuok)e.push('curso');}else if(curso){V.setFieldState(curso,true,curso.nextElementSibling);}
+  const exok=V.isNotEmpty(exp?exp.value:'');V.setFieldState(exp,exok,exp?exp.nextElementSibling:null);if(!exok)e.push('exp');
+  const aok=V.isNotEmpty(area?area.value:'');V.setFieldState(area,aok,area?area.nextElementSibling:null);if(!aok)e.push('area');
+  if(area&&area.value==='Outro'){const ao=document.getElementById('banco-area-outro');const aook=V.isNotEmpty(ao?ao.value:'');V.setFieldState(ao,aook,ao?ao.nextElementSibling:null);if(!aook)e.push('area-outro');}
   if(!lg||!lg.checked){const x=document.getElementById('lgpd-banco-erro');if(x)x.style.display='block';e.push('lgpd');}else{const x=document.getElementById('lgpd-banco-erro');if(x)x.style.display='none';}
   return e;
 }
@@ -1047,10 +1093,22 @@ async function submitBanco(){
   if(validarBanco().length>0){showBanner('banco-error-banner','⚠️ Corrija os campos destacados para continuar.');return;}
   setLoading('btn-banco-submit','banco-spinner',true);
   const S=Security.sanitize;
-  const payload={tipo:'banco',nome:S(document.getElementById('banco-nome').value),whatsapp:S(document.getElementById('banco-tel').value),
-    email:S(document.getElementById('banco-email').value),cidadeEstado:S(document.getElementById('banco-cidade').value),
-    areaInteresse:S(document.getElementById('banco-area').value),escolaridade:S(document.getElementById('banco-escolar').value),
-    pretensao:S(document.getElementById('banco-pretensao').value),cnh:S(document.getElementById('banco-cnh').value),
+  const _bestado=document.getElementById('banco-estado').value;
+  const payload={tipo:'banco',
+    nome:S(document.getElementById('banco-nome').value),nascimento:S(document.getElementById('banco-nasc').value),
+    email:S(document.getElementById('banco-email').value),whatsapp:S(document.getElementById('banco-tel').value),
+    cidade:S(document.getElementById('banco-cidade').value),
+    estado:(_bestado==='Outro'?S(document.getElementById('banco-estado-outro').value):S(_bestado)),
+    escolaridade:S(document.getElementById('banco-escolar').value),curso:S(document.getElementById('banco-curso').value),
+    instituicao:S(document.getElementById('banco-instituicao').value),
+    ultimoCargo:S(document.getElementById('banco-cargo').value),ultimaEmpresa:S(document.getElementById('banco-empresa-ant').value),
+    expTempo:S(document.getElementById('banco-exp').value),pretensao:S(document.getElementById('banco-pretensao').value),
+    qualificacoes:S(document.getElementById('banco-qualificacoes').value),
+    cnh:S(document.getElementById('banco-cnh').value),
+    areaAtuacao:S(document.getElementById('banco-area').value),
+    areaOutro:S(document.getElementById('banco-area-outro').value),
+    linkedin:S(document.getElementById('banco-linkedin').value),
+    dispHorario:document.getElementById('bcb1').checked?'Sim':'Não',dispEscala:document.getElementById('bcb2').checked?'Sim':'Não',dispViagem:document.getElementById('bcb3').checked?'Sim':'Não',mudancaCidade:document.getElementById('bcb4').checked?'Sim':'Não',
     consentimentoLGPD:'Sim',dataConsentimento:new Date().toISOString()};
   try{
     await _enviarBackend(payload);Security.registerSubmit();
