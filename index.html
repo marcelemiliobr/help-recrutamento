@@ -49,8 +49,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.9
 .hero-h1{font-family:var(--serif);font-weight:600;font-size:clamp(46px,5.5vw,76px);line-height:1.02;letter-spacing:-0.01em;margin-bottom:1.5rem}
 .hero-h1 em{color:var(--gold);font-style:italic}
 .hero-desc{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.75;max-width:460px;margin-bottom:2rem;font-weight:300}
-.hero-cadastrar{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--black);border:none;padding:18px 34px;border-radius:12px;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:0.01em;font-family:var(--sans);box-shadow:0 8px 28px rgba(201,162,75,0.28);transition:transform 0.15s,background 0.2s,box-shadow 0.2s}
-.hero-cadastrar:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 34px rgba(201,162,75,0.38)}
+.hero-cadastrar{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--black);border:none;padding:18px 34px;border-radius:12px;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:0.01em;font-family:var(--sans);box-shadow:0 8px 28px rgba(201,162,75,0.28);transition:transform 0.15s,background 0.2s,box-shadow 0.2s;animation:cadGlow 2.6s ease-in-out infinite}
+.hero-cadastrar:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 34px rgba(201,162,75,0.45);animation-play-state:paused}
+.hero-cadastrar .seta{display:inline-block;transition:transform 0.2s}
+.hero-cadastrar:hover .seta{transform:translateX(4px)}
+@keyframes cadGlow{0%,100%{box-shadow:0 8px 28px rgba(201,162,75,0.28);transform:translateY(0)}50%{box-shadow:0 12px 36px rgba(201,162,75,0.5);transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.hero-cadastrar{animation:none}}
 .search-bar{display:flex;background:var(--black3);border:1px solid var(--gray2);border-radius:10px;overflow:hidden;margin-bottom:1.5rem;transition:border-color 0.2s;max-width:520px}
 .search-bar:focus-within{border-color:var(--gold)}
 .search-bar input{flex:1;background:transparent;border:none;outline:none;padding:15px 18px;font-size:14px;color:var(--white);font-family:var(--sans)}
@@ -410,7 +414,7 @@ select.form-input{appearance:none;cursor:pointer}
     <div class="hero-badge"><span></span>Rápido, fácil e gratuito</div>
     <h1 class="hero-h1">Cadastre seu <em>currículo</em></h1>
     <p class="hero-desc">Leva menos de 2 minutos. Cadastre-se e a gente entra em contato quando surgir a vaga certa para você.</p>
-    <button class="hero-cadastrar" onclick="openBancoModal()">Cadastrar meu currículo agora →</button>
+    <button class="hero-cadastrar" onclick="openBancoModal()">Cadastrar meu currículo agora <span class="seta">→</span></button>
     <div class="search-bar" style="margin-top:1.75rem">
       <input type="text" placeholder="Ou busque por cargo, empresa ou cidade..." id="search-input" oninput="filtrarVagas()" autocomplete="off">
       <button onclick="filtrarVagas()">Buscar</button>
