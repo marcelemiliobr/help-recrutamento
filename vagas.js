@@ -7,6 +7,1116 @@
 
 const vagas = [
   {
+    "id": 16,
+    "titulo": "Técnico Mecânico I",
+    "empresa": "RUMO",
+    "cidade": "Rio Claro, SP",
+    "regime": "Turno",
+    "tipo": "CLT",
+    "cat": "Manutenção",
+    "dias": 1,
+    "desc": "Técnico Mecânico I realiza análise de falhas identificando a causa da falha de algum equipamento ou componente além de fazer a manutenção preventiva e corretiva de ativos e componentes mecânicos/pneumáticos para assegurar a confiabilidade e a performance dos equipamentos em toda a malha RUMO.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Domingo"
+      },
+      {
+        "label": "Horário",
+        "valor": "Turno"
+      },
+      {
+        "label": "Escala",
+        "valor": "6x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino técnico completo;",
+        "obr": true
+      },
+      {
+        "texto": "CNH A ou superior.",
+        "obr": true
+      },
+      {
+        "texto": "Metrologia;",
+        "obr": true
+      },
+      {
+        "texto": "Calderaria (oxicorte);",
+        "obr": true
+      },
+      {
+        "texto": "Solda.",
+        "obr": true
+      },
+      {
+        "texto": "NR34, NR11, NR35, NR12, NR33",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Executar montagem e desmotagem de componentes mecânicos e pneumáticos por meio de ferramentas manuais e eletroportáteis",
+      "Realizar a lubrificação de componentes mecânicos afim de evitar o seu desgaste prematuro",
+      "Realizar medições, por meio de instrumentos adequados, afim de checar parâmetros definidos em procedimento",
+      "Zelar pelo seu local de trabalho, realizando rotina de 5S (manutenção e limpeza de equipamentos, pintura e demarcação de área) e responsabilizar-se por todos os ativos, ferramentas, utensílios fornecidos pela Rumo para desenvolver a sua atividade.",
+      "Auxiliar em atividades de manutenção de maior complexidade realizadas por cargos superiores",
+      "Realizar o controle de Kanban de sua área, identificando ferramentas e componentes, apontando falta de material/ferramenta;",
+      "Conduzir/Operar veículos ou equipamentos especiais (munck, empilhadeira, etc)  tendo os treinamentos e habilitações necessárias a atividade",
+      "Realizar movimentação de veículos ferroviários dentro e fora de oficina de manutenção por meio de equipamentos apropriados para atividade.",
+      "Realizar atividades de trabalho a quente, por meio de oxicorte e solda",
+      "Detectar anomalias em sistemas mecânicos e pneumáticos por meio de testes com equipamentos específicos com objetivo de garantir a confiabilidade do ativo",
+      "Realizar e lançar check list de equipamentos, ativos e ferramentas afim de identificar possíveis desvios a serem corrigidos",
+      "Realizar interface com áreas pares com objetivo de preparar/organizar determinadas atividades a serem executadas",
+      "Avaliar e qualificar atividades realizadas por cargos de níveis anteriores, afim de garantir a confiabilidade do processo",
+      "Treinar/orientar cargos de níveis anteriores, afim de qualificar outros colaboradores",
+      "Auxiliar no desenvolvimento de novos processos da área visando melhoria contínua",
+      "Avaliar condições mecânicas de componentes e tomar decisão em relação a liberação de ativos",
+      "Realizar atividades de gestão operacional e atendimento de ocorrências emergenciais em qualquer local da malha RUMO, conforme necessidade, tomando decisões, programando e direcionando equipes à atividades a serem realizadas",
+      "Divulgar novos procedimentos operacionais, alertas e documentos afins, disseminando informação para cargos inferiores",
+      "Interpretar desenhos de esquemas mecânicos e pneumáticos afim de identificar falhas e solucioná-las",
+      "Auxiliar na elaboração de materiais informativos técnicos e desdobramento dos mesmos afim de disseminar conhecimento"
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Vale Alimentação"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Refeição"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Transporte"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Participação nos Resultados (PPR)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus de Segurança Ferroviária"
+      },
+      {
+        "icon": "✅",
+        "texto": "Previdência Privada"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cooperativa de Crédito"
+      },
+      {
+        "icon": "✅",
+        "texto": "Empréstimo Consignado"
+      },
+      {
+        "icon": "✅",
+        "texto": "Wellhub (Benefício que apoia o bem-estar)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de Saúde"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano Odontológica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Instrumentação Cirúrgica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Farmácia"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de Vida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Funeral"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa Assistencial da gestação até o pós-parto"
+      },
+      {
+        "icon": "✅",
+        "texto": "Licença Parental Estendida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Material Escolar"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Creche"
+      },
+      {
+        "icon": "✅",
+        "texto": "Brinquedo de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Kit de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Assistência Psicológica, Jurídica e Financeira"
+      },
+      {
+        "icon": "✅",
+        "texto": "Clube de Vantagens e Descontos"
+      },
+      {
+        "icon": "✅",
+        "texto": "Universidade Corporativa"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "titulo": "Soldador II",
+    "empresa": "RUMO",
+    "cidade": "Rio Claro",
+    "regime": "Turnos",
+    "tipo": "CLT",
+    "cat": "Manutenção",
+    "dias": 1,
+    "desc": "Soldador II é responsável por realizar serviços de soldagem e montagem de estruturas metálicas e componentes, garantindo a integridade e segurança das operações da empresa. Este profissional atuará em projetos de manutenção, reparo e montagem de equipamentos e infraestruturas, seguindo normas técnicas e de segurança.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Domingo"
+      },
+      {
+        "label": "Horários",
+        "valor": "Turnos"
+      },
+      {
+        "label": "Escala",
+        "valor": "6x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino médio completo (ter finalizado o 3º ano do ensino médio);",
+        "obr": true
+      },
+      {
+        "texto": "Curso de soldador;",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento em Metrologia;",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento em Calderaria (oxicorte).",
+        "obr": true
+      },
+      {
+        "texto": "Desejável CNH A ou superior.",
+        "obr": false
+      },
+      {
+        "texto": "NR34, NR12, NR33, NR35, interpretação de desenho técnico",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Realiza medições, por meio de instrumentos adequados, afim de checar parâmetros definidos em procedimento",
+      "Zelar pelo seu local de trabalho, realizando rotina de 5S (manutenção e limpeza de equipamentos, pintura e demarcação de área) e responsabilizar-se por todos os ativos, ferramentas, utensílios fornecidos pela Rumo para desenvolver a sua atividade.",
+      "Auxiliar em atividades de manutenção de maior complexidade realizadas por cargos superiores",
+      "Realiza o controle de Kanban de sua área, identificando ferramentas e componentes, apontando falta de material/ferramenta;",
+      "Realizar a manutenção metalúrgica de equipamentos, componentes mecânicos e estruturas da linha de produção através dos processos de oxicorte e soldagem por eletrodo revestido, MIG/MAG, plasma e grafite",
+      "Realizar operação de equipamentos ou máquinas especiais, conforme habilitação / treinamentos específicos quando necessário",
+      "Realizar soldagem nas posições plana, horizontal, vertical ascendente e sobrecabeça",
+      "Conduzir/Operar veículos ou equipamentos especiais (munck, empilhadeira, etc)  tendo os treinamentos e habilitações necessárias a atividade",
+      "Realizar o preparo de peças, componentes e juntas a serem soldadas utilizando equipamentos rotativos (ex. esmerilhadeira, lixadeira e retifica.",
+      "Realizar e lançar check list de equipamentos, ativos e ferramentas afim de identificar possíveis desvios a serem corrigidos",
+      "Treinar/orientar cargos de níveis anteriores, afim de qualificar novos colaboradores",
+      "Ler e interpretar desenhos técnicos e especificações, garantindo a correta execução das atividades.",
+      "Divulgar novos procedimentos operacionais, alertas e documentos afins, disseminando informação para cargos inferiores"
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Vale Alimentação"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Refeição"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Transporte"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Participação nos Resultados (PPR)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus de Segurança Ferroviária"
+      },
+      {
+        "icon": "✅",
+        "texto": "Previdência Privada"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cooperativa de Crédito"
+      },
+      {
+        "icon": "✅",
+        "texto": "Empréstimo Consignado"
+      },
+      {
+        "icon": "✅",
+        "texto": "Wellhub (Benefício que apoia o bem-estar)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de Saúde"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano Odontológica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Instrumentação Cirúrgica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Farmácia"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de Vida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Funeral"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa Assistencial da gestação até o pós-parto"
+      },
+      {
+        "icon": "✅",
+        "texto": "Licença Parental Estendida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Material Escolar"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Creche"
+      },
+      {
+        "icon": "✅",
+        "texto": "Brinquedo de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Kit de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Assistência Psicológica, Jurídica e Financeira"
+      },
+      {
+        "icon": "✅",
+        "texto": "Clube de Vantagens e Descontos"
+      },
+      {
+        "icon": "✅",
+        "texto": "Universidade Corporativa"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "titulo": "Soldador I",
+    "empresa": "RUMO",
+    "cidade": "Rio Claro, SP",
+    "regime": "Turnos",
+    "tipo": "CLT",
+    "cat": "Manutenção",
+    "dias": 1,
+    "desc": "Soldador I é responsável por realizar serviços de soldagem e montagem de estruturas metálicas e componentes, garantindo a integridade e segurança das operações da empresa. Este profissional atuará em projetos de manutenção, reparo e montagem de equipamentos e infraestruturas, seguindo normas técnicas e de segurança.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Sexta"
+      },
+      {
+        "label": "Horário",
+        "valor": "Turnos"
+      },
+      {
+        "label": "Escala",
+        "valor": "6x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino médio completo (ter finalizado o 3º ano do ensino médio);",
+        "obr": true
+      },
+      {
+        "texto": "Curso de soldador;",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento em Metrologia;",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento em Calderaria (oxicorte).",
+        "obr": true
+      },
+      {
+        "texto": "Desejável CNH A ou superior.",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Realiza medições, por meio de instrumentos adequados, afim de checar parâmetros definidos em procedimento",
+      "Zelar pelo seu local de trabalho, realizando rotina de 5S (manutenção e limpeza de equipamentos, pintura e demarcação de área) e responsabilizar-se por todos os ativos, ferramentas, utensílios fornecidos pela Rumo para desenvolver a sua atividade.",
+      "Auxiliar em atividades de manutenção de maior complexidade realizadas por cargos superiores",
+      "Realiza o controle de Kanban de sua área, identificando ferramentas e componentes, apontando falta de material/ferramenta;",
+      "Realizar a manutenção metalúrgica de equipamentos, componentes mecânicos e estruturas da linha de produção através dos processos de oxicorte e soldagem por eletrodo revestido, MIG/MAG, plasma e grafite",
+      "Realizar soldagem nas posições plana, horizontal, vertical ascendente e sobrecabeça. Ler e interpretar desenhos e especificações, garantindo a correta execução das atividades.",
+      "Conduzir/Operar veículos ou equipamentos especiais (munck, empilhadeira, etc)  tendo os treinamentos e habilitações necessárias a atividade",
+      "Realizar o preparo de peças, componentes e juntas a serem soldadas utilizando equipamentos rotativos (ex. esmerilhadeira, lixadeira e retifica. Realizar e lançar checklist de equipamentos, ativos e ferramentas afim de identificar possíveis desvios a serem corrigidos"
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Vale Alimentação"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Refeição"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Transporte"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Participação nos Resultados (PPR)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus de Segurança Ferroviária"
+      },
+      {
+        "icon": "✅",
+        "texto": "Previdência Privada"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cooperativa de Crédito"
+      },
+      {
+        "icon": "✅",
+        "texto": "Empréstimo Consignado"
+      },
+      {
+        "icon": "✅",
+        "texto": "Wellhub (Benefício que apoia o bem-estar)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de Saúde"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano Odontológica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Instrumentação Cirúrgica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Farmácia"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de Vida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Funeral"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa Assistencial da gestação até o pós-parto"
+      },
+      {
+        "icon": "✅",
+        "texto": "Licença Parental Estendida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Material Escolar"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Creche"
+      },
+      {
+        "icon": "✅",
+        "texto": "Brinquedo de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Kit de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Assistência Psicológica, Jurídica e Financeira"
+      },
+      {
+        "icon": "✅",
+        "texto": "Clube de Vantagens e Descontos"
+      },
+      {
+        "icon": "✅",
+        "texto": "Universidade Corporativa"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "titulo": "Soldador III",
+    "empresa": "Rumo",
+    "cidade": "Alto Taquari, MT e Rio Claro, SP",
+    "regime": "Turnos",
+    "tipo": "CLT",
+    "cat": "Manutenção",
+    "dias": 1,
+    "desc": "Soldador III é responsável por realizar serviços de soldagem e montagem de estruturas metálicas e componentes, garantindo a integridade e segurança das operações da empresa. Este profissional atuará em projetos de manutenção, reparo e montagem de equipamentos e infraestruturas, seguindo normas técnicas e de segurança.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Domingo"
+      },
+      {
+        "label": "Horário",
+        "valor": "Turnos"
+      },
+      {
+        "label": "Escala",
+        "valor": "6x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino médio completo (ter finalizado o 3º ano do ensino médio);",
+        "obr": true
+      },
+      {
+        "texto": "Curso de soldador;",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento em Metrologia;",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento em Calderaria (oxicorte)",
+        "obr": true
+      },
+      {
+        "texto": "Desejável CNH A ou superior.",
+        "obr": false
+      },
+      {
+        "texto": "NR34, NR12, NR33, NR35, interpretação de desenho técnico, inspetor de solda.",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Realiza medições, por meio de instrumentos adequados, afim de checar parâmetros definidos em procedimento",
+      "Zelar pelo seu local de trabalho, realizando rotina de 5S (manutenção e limpeza de equipamentos, pintura e demarcação de área) e responsabilizar-se por todos os ativos, ferramentas, utensílios fornecidos pela Rumo para desenvolver a sua atividade.",
+      "Realiza o controle de Kanban de sua área, identificando ferramentas e componentes, apontando falta de material/ferramenta;",
+      "Realizar a manutenção metalúrgica de equipamentos, componentes mecânicos e estruturas da linha de produção através dos processos de oxicorte e soldagem por eletrodo revestido, MIG/MAG, plasma e grafite",
+      "Realizar operação de equipamentos ou máquinas especiais, conforme habilitação / treinamentos específicos",
+      "Realizar soldagem nas posições plana, horizontal, vertical ascendente e sobrecabeçaLer e interpretar desenhos técnicos e especificações, garantindo a correta execução das atividades.",
+      "Conduzir/Operar veículos ou equipamentos especiais (munck, empilhadeira, etc)  tendo os treinamentos e habilitações necessárias a atividadeRealizar o preparo de peças, componentes e juntas a serem soldadas utilizando equipamentos rotativos (ex. esmerilhadeira, lixadeira e retifica.",
+      "Realizar e lançar check list de equipamentos, ativos e ferramentas afim de identificar possíveis desvios a serem corrigidos",
+      "Treinar/orientar cargos de níveis anteriores, afim de qualificar novos colaboradoresLer e interpretar desenhos técnicos e especificações, garantindo a correta execução das atividades.",
+      "Divulgar novos procedimentos operacionais, alertas e documentos afins, disseminando informação para cargos inferiores",
+      "Realizar processo de auditoria e certificação de qualidade das atividades executadas por cargos de nível inferior afim de garantir confiabilidade dos ativos",
+      "Realizar atividades de gestão operacional e atendimento de ocorrências de alta complexidade, tomando decisões, programando e direcionando equipes à atividades a serem realizadas"
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Vale Alimentação"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Refeição"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Transporte"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Participação nos Resultados (PPR)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus de Segurança Ferroviária"
+      },
+      {
+        "icon": "✅",
+        "texto": "Previdência Privada"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cooperativa de Crédito"
+      },
+      {
+        "icon": "✅",
+        "texto": "Empréstimo Consignado"
+      },
+      {
+        "icon": "✅",
+        "texto": "Wellhub (Benefício que apoia o bem-estar)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de Saúde"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano Odontológica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Instrumentação Cirúrgica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Farmácia"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de Vida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Funeral"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa Assistencial da gestação até o pós-parto"
+      },
+      {
+        "icon": "✅",
+        "texto": "Licença Parental Estendida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Material Escolar"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Creche"
+      },
+      {
+        "icon": "✅",
+        "texto": "Brinquedo de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Kit de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Assistência Psicológica, Jurídica e Financeira"
+      },
+      {
+        "icon": "✅",
+        "texto": "Clube de Vantagens e Descontos"
+      },
+      {
+        "icon": "✅",
+        "texto": "Universidade Corporativa"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "titulo": "Eletromecânico I",
+    "empresa": "Rumo",
+    "cidade": "Alto taquari, MT",
+    "regime": "Turnos",
+    "tipo": "CLT",
+    "cat": "Manutenção",
+    "dias": 1,
+    "desc": "Eletromecânico I realiza a manutenção preventiva e corretiva de ativos e componentes mecânicos, pneumáticos e elétricos para assegurar a confiabilidade e a performance dos equipamentos em toda a malha RUMO.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Domingo"
+      },
+      {
+        "label": "Horário",
+        "valor": "Turnos"
+      },
+      {
+        "label": "Escala",
+        "valor": "6x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino médio completo (ter finalizado o 3º ano do ensino médio);",
+        "obr": true
+      },
+      {
+        "texto": "CNH A ou superior/",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento em Metrologia.",
+        "obr": true
+      },
+      {
+        "texto": "Desejável NR10",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Executar montagem e desmontagem de componentes mecânicos, pneumáticos e elétricos por meio de ferramentas manuais e eletroportáteis.",
+      "Realizar a lubrificação e manutenção de componentes mecânicos, pneumáticos e elétricos, a fim de evitar o seu desgaste prematuro.",
+      "Realizar medições por meio de instrumentos adequados, a fim de checar parâmetros definidos em procedimento.",
+      "Zelar pelo local de trabalho, realizando a rotina de 5S (manutenção e limpeza de equipamentos, pintura e demarcação de área) e responsabilizar-se por todos os ativos, ferramentas e utensílios fornecidos para desenvolver a atividade.",
+      "Auxiliar em atividades de manutenção de maior complexidade realizadas por cargos superiores.",
+      "Realizar o controle de Kanban de sua área, identificando ferramentas e componentes, e apontando a falta de materiais ou ferramentas.",
+      "Conduzir e operar veículos ou equipamentos especiais (como munck e empilhadeira), desde que possua os treinamentos e habilitações necessárias para a atividade.",
+      "Realizar movimentação de veículos ferroviários dentro e fora da oficina de manutenção, por meio de equipamentos apropriados para a atividade.",
+      "Realizar atividades de trabalho a quente, por meio de oxicorte e solda.",
+      "Detectar anomalias em sistemas mecânicos, pneumáticos e elétricos por meio de testes com equipamentos específicos, com o objetivo de garantir a confiabilidade do ativo.",
+      "Realizar e lançar checklists de equipamentos, ativos e ferramentas, a fim de identificar possíveis desvios a serem corrigidos."
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Vale Alimentação"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Refeição"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Transporte"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Participação nos Resultados (PPR)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus de Segurança Ferroviária"
+      },
+      {
+        "icon": "✅",
+        "texto": "Previdência Privada"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cooperativa de Crédito"
+      },
+      {
+        "icon": "✅",
+        "texto": "Empréstimo Consignado"
+      },
+      {
+        "icon": "✅",
+        "texto": "Wellhub (Benefício que apoia o bem-estar)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de Saúde"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano Odontológica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Instrumentação Cirúrgica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Farmácia"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de Vida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Funeral"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa Assistencial da gestação até o pós-parto"
+      },
+      {
+        "icon": "✅",
+        "texto": "Licença Parental Estendida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Material Escolar"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Creche"
+      },
+      {
+        "icon": "✅",
+        "texto": "Brinquedo de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Kit de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Assistência Psicológica, Jurídica e Financeira"
+      },
+      {
+        "icon": "✅",
+        "texto": "Clube de Vantagens e Descontos"
+      },
+      {
+        "icon": "✅",
+        "texto": "Universidade Corporativa"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "titulo": "Mecânico II",
+    "empresa": "RUMO",
+    "cidade": "Alto Taquari, MT e Rio Claro, SP",
+    "regime": "Turnos",
+    "tipo": "CLT",
+    "cat": "Manutenção",
+    "dias": 1,
+    "desc": "Executar manutenções mecânicas de média e alta complexidade em equipamentos e sistemas industriais, assegurando o desempenho, a confiabilidade e a segurança das operações. Atua de forma mais autônoma em toda a planta industrial, apoiando na análise de falhas, na identificação de causas raízes e na implementação de melhorias técnicas. Seu trabalho impacta diretamente na otimização da performance dos equipamentos, na redução de custos com manutenção corretiva e no aumento da eficiência e disponibilidade dos ativos produtivos.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Domingo"
+      },
+      {
+        "label": "Horário",
+        "valor": "Turnos"
+      },
+      {
+        "label": "Escala",
+        "valor": "6x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino Médio Completo",
+        "obr": true
+      },
+      {
+        "texto": "Técnico em Mecânica, Técnico em Manutenção Industrial, Técnico em Eletromecânica.",
+        "obr": true
+      },
+      {
+        "texto": "Disponibilidade para trabalho em turnos.",
+        "obr": true
+      },
+      {
+        "texto": "NRs ((12, 35, 33, 6), Leitura de Desenho, Metrologia, Lubrificação, Análise de Vibração, Alinhamento e RCM, TPM / 5S, Soldagem, Caldeiraria, SAP/CMMS, Manutenção Preditiva, Excel, Comunicação e Liderança Técnica)",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Executar manutenções preventivas, preditivas e corretivas, diagnosticando causas de falhas e propondo soluções técnicas para otimizar o desempenho dos equipamentos.",
+      "Realizar análises de falhas e propor melhorias mecânicas, aplicando técnicas de manutenção de confiabilidade, para aumentar a disponibilidade e vida útil dos ativos industriais.",
+      "Interpretar desenhos técnicos, manuais e especificações, assegurando a correta execução dos reparos e a conformidade com os padrões de qualidade e segurança.",
+      "Orientar e apoiar mecânicos de nível I, repassando conhecimento técnico e boas práticas de manutenção, para promover o desenvolvimento da equipe.",
+      "Registrar e reportar intervenções e melhorias realizadas, mantendo atualizados os históricos de manutenção e contribuindo para a tomada de decisão baseada em dados."
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Vale Alimentação"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Refeição"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Transporte"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Participação nos Resultados (PPR)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus de Segurança Ferroviária"
+      },
+      {
+        "icon": "✅",
+        "texto": "Previdência Privada"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cooperativa de Crédito"
+      },
+      {
+        "icon": "✅",
+        "texto": "Empréstimo Consignado"
+      },
+      {
+        "icon": "✅",
+        "texto": "Wellhub (Benefício que apoia o bem-estar)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de Saúde"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano Odontológica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Instrumentação Cirúrgica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Farmácia"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de Vida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Funeral"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa Assistencial da gestação até o pós-parto"
+      },
+      {
+        "icon": "✅",
+        "texto": "Licença Parental Estendida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Material Escolar"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Creche"
+      },
+      {
+        "icon": "✅",
+        "texto": "Brinquedo de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Kit de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Assistência Psicológica, Jurídica e Financeira"
+      },
+      {
+        "icon": "✅",
+        "texto": "Clube de Vantagens e Descontos"
+      },
+      {
+        "icon": "✅",
+        "texto": "Universidade Corporativa"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "titulo": "Mecânico I",
+    "empresa": "RUMO",
+    "cidade": "Alto Taquari, MT e Rio Claro, SP",
+    "regime": "Turnos",
+    "tipo": "CLT",
+    "cat": "Manutenção",
+    "dias": 1,
+    "desc": "Trabalhar na Rumo é viver o movimento acontecendo. Na operação, cada manobra, cada viagem e cada cuidado com a via faz diferença no resultado do nosso negócio; a operação conecta regiões e leva o Brasil mais longe. Valorizamos quem aprende fazendo, quem trabalha com atenção e segurança, e quem sabe que o resultado nasce do esforço coletivo. Se você gosta de desafios  quer sentir orgulho do que constrói todos os dias, a Rumo é o seu lugar!",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Domingo."
+      },
+      {
+        "label": "Horário",
+        "valor": "Turnos"
+      },
+      {
+        "label": "Escala",
+        "valor": "6x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino médio completo (ter finalizado o 3º ano do ensino médio)",
+        "obr": true
+      },
+      {
+        "texto": "Curso de Mecânico Industrial",
+        "obr": true
+      },
+      {
+        "texto": "Experiência como mecânico (manutenção de máquinas e equipamentos)",
+        "obr": false
+      },
+      {
+        "texto": "Disponibilidade para trabalhar em turnos",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Fazer manutenção mecânica em máquinas e equipamentos, sempre seguindo os padrões de segurança",
+      "Ler e preencher ordens de manutenção (registro do serviço realizado)",
+      "Montar e desmontar peças e equipamentos",
+      "Acompanhar o funcionamento das máquinas durante a operação",
+      "Fazer troca de peças e componentes quando necessário",
+      "Realizar lubrificação dos equipamentos",
+      "Interpretar desenhos técnicos (mecânicos, hidráulicos e pneumáticos)",
+      "Cuidar das ferramentas e equipamentos da oficina, mantendo tudo organizado e em bom estado",
+      "Apoiar na limpeza e conservação do ambiente de trabalho",
+      "Operar máquinas ou equipamentos específicos, conforme treinamento recebido",
+      "Seguir os procedimentos da área e evoluir conforme a trilha de carreira",
+      "Atuar em atividades da função conforme necessidade da operação"
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Vale Alimentação"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Refeição"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Transporte"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Participação nos Resultados (PPR)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus de Segurança Ferroviária"
+      },
+      {
+        "icon": "✅",
+        "texto": "Previdência Privada"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cooperativa de Crédito"
+      },
+      {
+        "icon": "✅",
+        "texto": "Empréstimo Consignado"
+      },
+      {
+        "icon": "✅",
+        "texto": "Wellhub (Benefício que apoia o bem-estar)"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de Saúde"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano Odontológica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Instrumentação Cirúrgica"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Farmácia"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de Vida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Funeral"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa Assistencial da gestação até o pós-parto"
+      },
+      {
+        "icon": "✅",
+        "texto": "Licença Parental Estendida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Material Escolar"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Creche"
+      },
+      {
+        "icon": "✅",
+        "texto": "Brinquedo de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Kit de Natal"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa de Assistência Psicológica, Jurídica e Financeira"
+      },
+      {
+        "icon": "✅",
+        "texto": "Clube de Vantagens e Descontos"
+      },
+      {
+        "icon": "✅",
+        "texto": "Universidade Corporativa"
+      }
+    ]
+  },
+  {
     "id": 9,
     "titulo": "Técnico(a) de Segurança do Trabalho",
     "empresa": "HELP RECRUTAMENTOS",
@@ -91,696 +1201,6 @@ const vagas = [
       {
         "icon": "💰",
         "texto": "PLR"
-      }
-    ]
-  },
-  {
-    "id": 1,
-    "titulo": "Condutor Auto de Linha (Motorista)",
-    "empresa": "Rumo Logística",
-    "cidade": "Rondonópolis, MT",
-    "regime": "Integral",
-    "tipo": "CLT",
-    "cat": "Logística",
-    "dias": 2,
-    "desc": "Responsável pela condução de veículos de linha para transporte de cargas em rotas intermunicipais e estaduais, em conformidade com as normas de trânsito e segurança da empresa.",
-    "horario": [
-      {
-        "label": "Jornada",
-        "valor": "Segunda a Sábado"
-      },
-      {
-        "label": "Turno",
-        "valor": "Integral (8h/dia)"
-      },
-      {
-        "label": "Escala",
-        "valor": "6x1"
-      },
-      {
-        "label": "Horas semanais",
-        "valor": "44h/semana"
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "CNH categoria D ou E",
-        "obr": true
-      },
-      {
-        "texto": "Experiência mínima de 2 anos na função",
-        "obr": true
-      },
-      {
-        "texto": "Ensino Médio completo",
-        "obr": true
-      },
-      {
-        "texto": "Disponibilidade de horário e finais de semana",
-        "obr": true
-      },
-      {
-        "texto": "Curso de transporte de cargas",
-        "obr": false
-      },
-      {
-        "texto": "Experiência com rastreamento veicular",
-        "obr": false
-      }
-    ],
-    "responsabilidades": [
-      "Conduzir veículos de linha nas rotas determinadas",
-      "Realizar inspeção diária do veículo antes da saída",
-      "Cumprir prazos de entrega e normas de segurança",
-      "Registrar ocorrências e comunicar à supervisão",
-      "Zelar pela conservação do veículo"
-    ],
-    "beneficios": [
-      {
-        "icon": "🍽️",
-        "texto": "Vale Refeição"
-      },
-      {
-        "icon": "🛒",
-        "texto": "Vale Alimentação"
-      },
-      {
-        "icon": "🚌",
-        "texto": "Vale Transporte"
-      },
-      {
-        "icon": "❤️",
-        "texto": "Plano de Saúde"
-      },
-      {
-        "icon": "🦷",
-        "texto": "Plano Odontológico"
-      },
-      {
-        "icon": "💰",
-        "texto": "PLR Anual"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "titulo": "Operador de Via Permanente",
-    "empresa": "Rumo Logística",
-    "cidade": "Campo Verde, MT",
-    "regime": "Escala 6x1",
-    "tipo": "CLT",
-    "cat": "Operacional",
-    "dias": 2,
-    "desc": "Atuar na manutenção e operação de via permanente ferroviária, garantindo segurança e eficiência nas operações logísticas. Trabalho externo em ambientes ferroviários.",
-    "horario": [
-      {
-        "label": "Escala",
-        "valor": "6x1"
-      },
-      {
-        "label": "Turno",
-        "valor": "Diurno / Noturno"
-      },
-      {
-        "label": "Jornada",
-        "valor": "12h por turno"
-      },
-      {
-        "label": "Folga",
-        "valor": "1 dia por semana"
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "Ensino Médio completo",
-        "obr": true
-      },
-      {
-        "texto": "Boa condição física para trabalho externo",
-        "obr": true
-      },
-      {
-        "texto": "Disponibilidade para escalas",
-        "obr": true
-      },
-      {
-        "texto": "Experiência em manutenção",
-        "obr": false
-      },
-      {
-        "texto": "Curso de NR-10 ou NR-35",
-        "obr": false
-      }
-    ],
-    "responsabilidades": [
-      "Monitorar e inspecionar a via permanente",
-      "Executar manutenção preventiva e corretiva",
-      "Sinalizar e isolar áreas de trabalho",
-      "Reportar anomalias ao supervisor",
-      "Utilizar EPIs conforme normas"
-    ],
-    "beneficios": [
-      {
-        "icon": "🍽️",
-        "texto": "Vale Refeição"
-      },
-      {
-        "icon": "🛒",
-        "texto": "Vale Alimentação"
-      },
-      {
-        "icon": "🚌",
-        "texto": "Vale Transporte"
-      },
-      {
-        "icon": "❤️",
-        "texto": "Plano de Saúde"
-      },
-      {
-        "icon": "🦺",
-        "texto": "EPI Fornecido"
-      },
-      {
-        "icon": "🌙",
-        "texto": "Adicional Noturno"
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "titulo": "Analista de RH – Recrutamento",
-    "empresa": "Help Recrutamento",
-    "cidade": "Rondonópolis, MT",
-    "regime": "Integral",
-    "tipo": "CLT",
-    "cat": "RH",
-    "dias": 5,
-    "desc": "Responsável pelo processo completo de recrutamento e seleção: atração, triagem, entrevistas e integração de novos colaboradores para nossas empresas parceiras.",
-    "horario": [
-      {
-        "label": "Jornada",
-        "valor": "Segunda a Sexta"
-      },
-      {
-        "label": "Horário",
-        "valor": "08h – 17h"
-      },
-      {
-        "label": "Regime",
-        "valor": "Presencial"
-      },
-      {
-        "label": "Horas semanais",
-        "valor": "40h/semana"
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "Superior completo em RH, Psicologia ou Administração",
-        "obr": true
-      },
-      {
-        "texto": "Experiência em Recrutamento e Seleção",
-        "obr": true
-      },
-      {
-        "texto": "Domínio do Pacote Office",
-        "obr": true
-      },
-      {
-        "texto": "Boa comunicação",
-        "obr": true
-      },
-      {
-        "texto": "Experiência com ATS",
-        "obr": false
-      },
-      {
-        "texto": "Pós-graduação em Gestão de Pessoas",
-        "obr": false
-      }
-    ],
-    "responsabilidades": [
-      "Conduzir processos seletivos end-to-end",
-      "Triagem e análise de currículos",
-      "Realizar entrevistas por competências",
-      "Aplicar testes e dinâmicas",
-      "Manter banco de talentos atualizado",
-      "Elaborar relatórios e indicadores"
-    ],
-    "beneficios": [
-      {
-        "icon": "🍽️",
-        "texto": "Vale Refeição"
-      },
-      {
-        "icon": "🚌",
-        "texto": "Vale Transporte"
-      },
-      {
-        "icon": "❤️",
-        "texto": "Plano de Saúde"
-      },
-      {
-        "icon": "📚",
-        "texto": "Treinamentos"
-      },
-      {
-        "icon": "🏖️",
-        "texto": "Férias remuneradas"
-      },
-      {
-        "icon": "🤝",
-        "texto": "Ambiente colaborativo"
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "titulo": "Técnico de Manutenção Ferroviária",
-    "empresa": "Rumo Logística",
-    "cidade": "Campo Verde, MT",
-    "regime": "Escala 12x36",
-    "tipo": "CLT",
-    "cat": "Manutenção",
-    "dias": 3,
-    "desc": "Responsável pela manutenção preventiva e corretiva de equipamentos ferroviários, garantindo a operacionalidade e segurança da frota de locomotivas e vagões.",
-    "horario": [
-      {
-        "label": "Escala",
-        "valor": "12x36"
-      },
-      {
-        "label": "Turno",
-        "valor": "Diurno e Noturno"
-      },
-      {
-        "label": "Jornada",
-        "valor": "12h por turno"
-      },
-      {
-        "label": "Folga",
-        "valor": "36h consecutivas"
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "Técnico em Mecânica, Elétrica ou Eletromecânica",
-        "obr": true
-      },
-      {
-        "texto": "Experiência em manutenção industrial",
-        "obr": true
-      },
-      {
-        "texto": "CNH categoria B",
-        "obr": true
-      },
-      {
-        "texto": "Disponibilidade para escalas noturnas",
-        "obr": true
-      },
-      {
-        "texto": "Experiência com locomotivas",
-        "obr": false
-      },
-      {
-        "texto": "Certificações NR-10 ou NR-12",
-        "obr": false
-      }
-    ],
-    "responsabilidades": [
-      "Executar manutenção preventiva e corretiva",
-      "Diagnosticar falhas mecânicas e elétricas",
-      "Registrar serviços no sistema",
-      "Garantir cumprimento das normas",
-      "Requisitar peças e materiais"
-    ],
-    "beneficios": [
-      {
-        "icon": "🍽️",
-        "texto": "Vale Refeição"
-      },
-      {
-        "icon": "🛒",
-        "texto": "Vale Alimentação"
-      },
-      {
-        "icon": "🚌",
-        "texto": "Vale Transporte"
-      },
-      {
-        "icon": "❤️",
-        "texto": "Plano de Saúde"
-      },
-      {
-        "icon": "🦷",
-        "texto": "Plano Odontológico"
-      },
-      {
-        "icon": "🌙",
-        "texto": "Adicional Noturno"
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "titulo": "Assistente Administrativo",
-    "empresa": "Help Recrutamento",
-    "cidade": "Rondonópolis, MT",
-    "regime": "Integral",
-    "tipo": "CLT",
-    "cat": "Administrativo",
-    "dias": 7,
-    "desc": "Suporte às atividades administrativas com atendimento ao público, organização de documentos, controle de planilhas e comunicação interna com clientes e parceiros.",
-    "horario": [
-      {
-        "label": "Jornada",
-        "valor": "Segunda a Sexta"
-      },
-      {
-        "label": "Horário",
-        "valor": "08h – 17h"
-      },
-      {
-        "label": "Regime",
-        "valor": "Presencial"
-      },
-      {
-        "label": "Horas semanais",
-        "valor": "40h/semana"
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "Ensino Médio completo",
-        "obr": true
-      },
-      {
-        "texto": "Noções básicas de Excel",
-        "obr": true
-      },
-      {
-        "texto": "Organização e atenção aos detalhes",
-        "obr": true
-      },
-      {
-        "texto": "Boa comunicação",
-        "obr": true
-      },
-      {
-        "texto": "Experiência em escritório",
-        "obr": false
-      },
-      {
-        "texto": "Ensino Superior cursando",
-        "obr": false
-      }
-    ],
-    "responsabilidades": [
-      "Atendimento presencial e telefônico",
-      "Organizar e arquivar documentos",
-      "Controlar planilhas e relatórios",
-      "Apoiar comunicação interna",
-      "Auxiliar em processos seletivos"
-    ],
-    "beneficios": [
-      {
-        "icon": "🍽️",
-        "texto": "Vale Refeição"
-      },
-      {
-        "icon": "🚌",
-        "texto": "Vale Transporte"
-      },
-      {
-        "icon": "❤️",
-        "texto": "Plano de Saúde"
-      },
-      {
-        "icon": "📚",
-        "texto": "Cursos e treinamentos"
-      },
-      {
-        "icon": "🏖️",
-        "texto": "Férias remuneradas"
-      },
-      {
-        "icon": "🎯",
-        "texto": "Crescimento profissional"
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "titulo": "Inspetor de Segurança do Trabalho",
-    "empresa": "Rumo Logística",
-    "cidade": "Rondonópolis, MT",
-    "regime": "Integral",
-    "tipo": "CLT",
-    "cat": "Segurança",
-    "dias": 4,
-    "desc": "Fiscalizar e garantir o cumprimento das normas de segurança do trabalho nas operações logísticas e ferroviárias, preservando a integridade dos colaboradores.",
-    "horario": [
-      {
-        "label": "Jornada",
-        "valor": "Segunda a Sexta"
-      },
-      {
-        "label": "Horário",
-        "valor": "07h – 16h"
-      },
-      {
-        "label": "Regime",
-        "valor": "Presencial / Campo"
-      },
-      {
-        "label": "Plantão",
-        "valor": "Eventual fins de semana"
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "Técnico em Segurança do Trabalho (registro ativo)",
-        "obr": true
-      },
-      {
-        "texto": "Experiência com CIPA e laudos",
-        "obr": true
-      },
-      {
-        "texto": "Conhecimento das NRs",
-        "obr": true
-      },
-      {
-        "texto": "Experiência em logística ou indústria",
-        "obr": false
-      },
-      {
-        "texto": "Pós em Engenharia de Segurança",
-        "obr": false
-      }
-    ],
-    "responsabilidades": [
-      "Fiscalizar normas de segurança",
-      "Realizar inspeções periódicas",
-      "Elaborar laudos e relatórios",
-      "Treinar colaboradores em SST",
-      "Investigar acidentes",
-      "Atualizar documentação de CIPA"
-    ],
-    "beneficios": [
-      {
-        "icon": "🍽️",
-        "texto": "Vale Refeição"
-      },
-      {
-        "icon": "🛒",
-        "texto": "Vale Alimentação"
-      },
-      {
-        "icon": "🚌",
-        "texto": "Vale Transporte"
-      },
-      {
-        "icon": "❤️",
-        "texto": "Plano de Saúde"
-      },
-      {
-        "icon": "🦷",
-        "texto": "Plano Odontológico"
-      },
-      {
-        "icon": "💰",
-        "texto": "PLR Anual"
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "titulo": "Estoquista / Auxiliar de Logística",
-    "empresa": "Parceira confidencial",
-    "cidade": "Alto Garças, MT",
-    "regime": "Integral",
-    "tipo": "Temporário",
-    "cat": "Logística",
-    "dias": 1,
-    "desc": "Recebimento, armazenagem e controle de estoque. Atividades de separação, conferência e expedição de mercadorias em ambiente de armazém.",
-    "horario": [
-      {
-        "label": "Jornada",
-        "valor": "Segunda a Sábado"
-      },
-      {
-        "label": "Horário",
-        "valor": "07h – 16h"
-      },
-      {
-        "label": "Regime",
-        "valor": "Temporário (6 meses)"
-      },
-      {
-        "label": "Renovação",
-        "valor": "Possibilidade de efetivação"
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "Ensino Médio completo",
-        "obr": true
-      },
-      {
-        "texto": "Disponibilidade de horário",
-        "obr": true
-      },
-      {
-        "texto": "Condicionamento físico para galpão",
-        "obr": true
-      },
-      {
-        "texto": "CNH categoria B",
-        "obr": false
-      },
-      {
-        "texto": "Experiência em estoque",
-        "obr": false
-      }
-    ],
-    "responsabilidades": [
-      "Receber e conferir mercadorias",
-      "Organizar e controlar estoque",
-      "Separar pedidos para expedição",
-      "Manter organização do armazém",
-      "Registrar entradas e saídas"
-    ],
-    "beneficios": [
-      {
-        "icon": "🍽️",
-        "texto": "Vale Refeição"
-      },
-      {
-        "icon": "🚌",
-        "texto": "Vale Transporte"
-      },
-      {
-        "icon": "❤️",
-        "texto": "Seguro de Vida"
-      },
-      {
-        "icon": "📋",
-        "texto": "Contrato temporário"
-      },
-      {
-        "icon": "🎯",
-        "texto": "Possibilidade de efetivação"
-      },
-      {
-        "icon": "🏖️",
-        "texto": "Férias proporcionais"
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "titulo": "Auxiliar Administrativo – Estágio",
-    "empresa": "Help Recrutamento",
-    "cidade": "Rondonópolis, MT",
-    "regime": "Meio período",
-    "tipo": "Estágio",
-    "cat": "Administrativo",
-    "dias": 6,
-    "desc": "Estágio remunerado para estudantes de Administração, RH ou correlatas. Apoio nas rotinas administrativas, atendimento e processos de recrutamento.",
-    "horario": [
-      {
-        "label": "Jornada",
-        "valor": "Segunda a Sexta"
-      },
-      {
-        "label": "Horário",
-        "valor": "13h – 17h (tarde)"
-      },
-      {
-        "label": "Regime",
-        "valor": "Meio período (4h/dia)"
-      },
-      {
-        "label": "Duração",
-        "valor": "6 meses (renovável)"
-      }
-    ],
-    "requisitos": [
-      {
-        "texto": "Cursando Administração, RH ou correlatos",
-        "obr": true
-      },
-      {
-        "texto": "Comunicativo e proativo",
-        "obr": true
-      },
-      {
-        "texto": "Noções de informática e Office",
-        "obr": true
-      },
-      {
-        "texto": "Disponibilidade presencial",
-        "obr": true
-      },
-      {
-        "texto": "Interesse em RH",
-        "obr": false
-      }
-    ],
-    "responsabilidades": [
-      "Auxiliar nas rotinas administrativas",
-      "Apoiar na triagem de currículos",
-      "Atender candidatos",
-      "Organizar documentos e arquivos",
-      "Apoiar na divulgação de vagas"
-    ],
-    "beneficios": [
-      {
-        "icon": "💳",
-        "texto": "Bolsa-auxílio"
-      },
-      {
-        "icon": "🍽️",
-        "texto": "Vale Refeição"
-      },
-      {
-        "icon": "🚌",
-        "texto": "Vale Transporte"
-      },
-      {
-        "icon": "📚",
-        "texto": "Supervisão profissional"
-      },
-      {
-        "icon": "📜",
-        "texto": "Declaração de estágio"
-      },
-      {
-        "icon": "🎯",
-        "texto": "Possibilidade de efetivação"
       }
     ]
   }
