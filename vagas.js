@@ -18,8 +18,16 @@ const vagas = [
     "desc": "proativo(a) e com foco na prevenção de acidentes e promoção da saúde ocupacional. O profissional será responsável por garantir o cumprimento das normas de segurança, realizar inspeções, orientar colaboradores e contribuir para a construção de um ambiente de trabalho seguro.",
     "horario": [
       {
-        "label": "Info",
-        "valor": "Integral"
+        "label": "Jornada",
+        "valor": "Segunda a Sábado"
+      },
+      {
+        "label": "Turno",
+        "valor": "Integral (8h/dia)"
+      },
+      {
+        "label": "Escala",
+        "valor": "6x1"
       }
     ],
     "requisitos": [
@@ -65,27 +73,23 @@ const vagas = [
     ],
     "beneficios": [
       {
-        "icon": "✅",
-        "texto": "Refeição na empresa"
-      },
-      {
-        "icon": "✅",
+        "icon": "🚌",
         "texto": "Transporte fretado"
       },
       {
-        "icon": "✅",
+        "icon": "🏥",
         "texto": "Assistência médica e odontológica"
       },
       {
-        "icon": "✅",
+        "icon": "💪",
         "texto": "Wellhub/Gympass"
       },
       {
-        "icon": "✅",
+        "icon": "🎁",
         "texto": "Cesta básica + cesta natalina"
       },
       {
-        "icon": "✅",
+        "icon": "💰",
         "texto": "PLR"
       }
     ]
