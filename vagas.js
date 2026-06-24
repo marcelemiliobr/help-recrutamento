@@ -7,6 +7,111 @@
 
 const vagas = [
   {
+    "id": 17,
+    "titulo": "Supervisor de Manutenção",
+    "empresa": "Brado",
+    "cidade": "Rondonópolis,MT",
+    "regime": "Turnos",
+    "tipo": "CLT",
+    "cat": "Manutenção",
+    "dias": 1,
+    "desc": "upervisionar, coordenar e garantir à execução eficiente das atividades de manutenção preventiva, corretiva e preditiva em equipamentos de transportes (caminhões, empilhadeiras, pórticos) e máquinas do setor de granel (tombadores, correias, motores, sensores). Responsável por liderar uma equipe de mecânicos e eletromecânicos, assegurar conformidade com cronogramas de manutenção e eletromecânicos, assegurar conformidade com cronogramas de manutenção eletrônica, garantir segurança operacional e contribuir para a otimização dos tempos de parada dos equipamentos.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Turnos"
+      },
+      {
+        "label": "horário",
+        "valor": "Integral"
+      },
+      {
+        "label": "escala",
+        "valor": "6x1 ou 6x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino médio completo (obrigatório)",
+        "obr": true
+      },
+      {
+        "texto": "Técnico em Mecânica, Eletromecânica ou Eletricidade (obrigatório)",
+        "obr": true
+      },
+      {
+        "texto": "Ensino Superior Completo ou cursando em engenharia mecânica, elétrica ou mecatrônica (desejável)",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Ensino médio completo (obrigatório)",
+      "Técnico em Mecânica, Eletromecânica ou Eletricidade (obrigatório)"
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Plano de Saúde"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano Odontológico"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio Farmácia"
+      },
+      {
+        "icon": "✅",
+        "texto": "Gympass: Atividade física com a Wellhub"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Alimentação"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale Refeição"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio materno"
+      },
+      {
+        "icon": "✅",
+        "texto": "Licença Parental Estendida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Programa PraVC : Programa de Bem-estar Emocional"
+      },
+      {
+        "icon": "✅",
+        "texto": "Pingo de Gente: Kit para bebês a bordo"
+      },
+      {
+        "icon": "✅",
+        "texto": "Brindes anuais: Kit Natal, Brinquedo, Material Escolar"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de Vida"
+      },
+      {
+        "icon": "✅",
+        "texto": "Previdência Privada"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cooperativa de Crédito"
+      },
+      {
+        "icon": "✅",
+        "texto": "Empréstimo Consignado"
+      }
+    ]
+  },
+  {
     "id": 16,
     "titulo": "Técnico Mecânico I",
     "empresa": "RUMO",
