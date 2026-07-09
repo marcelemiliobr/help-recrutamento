@@ -7,6 +7,262 @@
 
 const vagas = [
   {
+    "id": 20,
+    "titulo": "Consultor(a) de Vendas – Móveis Rústicos",
+    "empresa": "HELP",
+    "cidade": "Rondonópolis, MT",
+    "regime": "Integral",
+    "tipo": "CLT",
+    "cat": "Vendas",
+    "dias": 1,
+    "desc": "Estamos em busca de um(a) Consultor(a) de Vendas apaixonado(a) por atendimento ao cliente e por vendas para integrar nossa equipe. Procuramos um profissional comunicativo, proativo e focado em resultados, que tenha facilidade para criar relacionamento com os clientes e oferecer um atendimento consultivo, auxiliando na escolha dos móveis ideais.\n\nSe você gosta de trabalhar com pessoas, possui experiência em vendas e busca crescimento profissional, venha fazer parte do nosso time!",
+    "horario": [
+      {
+        "label": "Jornada de trabalho",
+        "valor": "Será informada durante o processo seletivo."
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino Médio completo;",
+        "obr": true
+      },
+      {
+        "texto": "Experiência anterior com vendas;",
+        "obr": true
+      },
+      {
+        "texto": "Boa comunicação e relacionamento interpessoal;",
+        "obr": true
+      },
+      {
+        "texto": "Facilidade para negociação;",
+        "obr": true
+      },
+      {
+        "texto": "Perfil proativo e comprometido;",
+        "obr": true
+      },
+      {
+        "texto": "Disponibilidade para trabalhar de segunda a sábado.",
+        "obr": true
+      },
+      {
+        "texto": "Experiência no segmento de móveis, decoração ou varejo;",
+        "obr": false
+      },
+      {
+        "texto": "Conhecimento em técnicas de vendas consultivas;",
+        "obr": false
+      },
+      {
+        "texto": "Facilidade com redes sociais e atendimento via WhatsApp.",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Realizar atendimento presencial e consultivo aos clientes;",
+      "Identificar as necessidades dos clientes e oferecer as melhores soluções;",
+      "Apresentar os produtos, características e diferenciais dos móveis;",
+      "Elaborar orçamentos e negociar condições comerciais;",
+      "Acompanhar clientes durante todo o processo de venda e pós-venda;",
+      "Organizar e manter a exposição dos produtos na loja;",
+      "Cumprir metas de vendas e indicadores comerciais;",
+      "Apoiar ações promocionais e campanhas da empresa;",
+      "Manter o ambiente de trabalho organizado e acolhedor."
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Salário a combinar;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Premiação/comissão por desempenho (caso a empresa ofereça);"
+      },
+      {
+        "icon": "✅",
+        "texto": "Oportunidade de crescimento profissional."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "titulo": "Motorista Carreteiro – Veículos Câmara Fria/Containers",
+    "empresa": "Monique Transporte",
+    "cidade": "Rondonópolis, MT",
+    "regime": "Integral",
+    "tipo": "CLT",
+    "cat": "Outro",
+    "dias": 1,
+    "desc": "A Monique Transportes está em busca de um(a) Motorista Carreteiro para integrar nossa equipe. Procuramos profissionais comprometidos, responsáveis e com experiência em transporte de cargas refrigeradas e/ou containers, que prezem pela segurança, pontualidade e qualidade na prestação dos serviços.\n\nSe você possui experiência na função, disponibilidade para viagens e deseja fazer parte de uma empresa sólida e em constante crescimento, essa oportunidade é para você!",
+    "horario": [
+      {
+        "label": "Jornada de trabalho",
+        "valor": "Será informada durante o processo seletivo."
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino Fundamental completo;",
+        "obr": true
+      },
+      {
+        "texto": "CNH categoria E válida;",
+        "obr": true
+      },
+      {
+        "texto": "Curso MOPP atualizado (desejável ou conforme exigência da operação);",
+        "obr": true
+      },
+      {
+        "texto": "Experiência comprovada em carteira como motorista carreteiro;",
+        "obr": true
+      },
+      {
+        "texto": "Disponibilidade para viagens estaduais e interestaduais;",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento em direção defensiva e legislação de trânsito;",
+        "obr": true
+      },
+      {
+        "texto": "Responsabilidade, comprometimento e pontualidade.",
+        "obr": true
+      },
+      {
+        "texto": "Experiência com transporte frigorificado;",
+        "obr": false
+      },
+      {
+        "texto": "Experiência com transporte de containers;",
+        "obr": false
+      },
+      {
+        "texto": "Conhecimento em rastreamento e tecnologias embarcadas.",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Conduzir veículos de carga (carreta) com segurança e responsabilidade;",
+      "Realizar transporte de cargas refrigeradas e containers;",
+      "Cumprir rotas e prazos de entrega estabelecidos;",
+      "Zelar pela conservação, limpeza e manutenção básica do veículo;",
+      "Conferir documentação da carga e do veículo antes das viagens;",
+      "Seguir as normas de trânsito e os procedimentos internos da empresa;",
+      "Comunicar qualquer ocorrência durante o transporte;",
+      "Cumprir as normas de segurança e qualidade da empresa."
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Salário compatível com a função;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Cartão alimentação;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de vida;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de saúde (coparticipação)."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "titulo": "Consultor Comercial",
+    "empresa": "TETR4 EDUCAÇÃO",
+    "cidade": "Rondonópils.MT",
+    "regime": "integral",
+    "tipo": "CLT",
+    "cat": "Vendas",
+    "dias": 1,
+    "desc": "A Tetr4 Educação está em busca de pessoas comunicativas, determinadas e que gostem de trabalhar com metas para fazer parte do nosso time de alta performance!\nSe você acredita no poder da educação e quer crescer profissionalmente em um ambiente que valoriza resultados e desenvolvimento, essa oportunidade é para",
+    "horario": [
+      {
+        "label": "Horário de trabalho",
+        "valor": "Será informado durante o processo seletivo."
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino Médio completo (ensino superior cursando ou concluído será um diferencial);",
+        "obr": true
+      },
+      {
+        "texto": "Experiência com vendas, atendimento ao cliente ou área comercial;",
+        "obr": true
+      },
+      {
+        "texto": "Boa comunicação verbal e escrita;",
+        "obr": true
+      },
+      {
+        "texto": "Disponibilidade para trabalho presencial em Rondonópolis/MT;",
+        "obr": true
+      },
+      {
+        "texto": "Vontade de aprender, crescer profissionalmente e atuar em equipe.",
+        "obr": true
+      },
+      {
+        "texto": "Experiência com vendas consultivas;",
+        "obr": false
+      },
+      {
+        "texto": "Experiência na área educacional (escolas, faculdades ou cursos);",
+        "obr": false
+      },
+      {
+        "texto": "Conhecimento em CRM;",
+        "obr": false
+      },
+      {
+        "texto": "Boa comunicação verbal e escrita;",
+        "obr": false
+      },
+      {
+        "texto": "Facilidade com tecnologia e atendimento digital.",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Prospectar novos alunos por telefone, WhatsApp, redes sociais e atendimento presencial;",
+      "Realizar atendimento consultivo, identificando as necessidades de cada cliente;",
+      "Apresentar cursos, programas e soluções educacionais de forma clara e personalizada;",
+      "Conduzir negociações e efetivar matrículas;",
+      "Fazer acompanhamento (follow-up) de leads até o fechamento da venda;",
+      "Alimentar e atualizar o CRM com todas as informações dos atendimentos;",
+      "Cumprir metas individuais e da equipe comercial;",
+      "Participar de ações externas, eventos e campanhas de captação de alunos;",
+      "Manter relacionamento com alunos e interessados, buscando fidelização e novas indicações;",
+      "Participar de treinamentos e reuniões para aprimoramento das técnicas de vendas e conhecimento dos produtos."
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Salário fixo + premiação variável por desempenho;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de saúde;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Vale-transporte;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio educação."
+      }
+    ]
+  },
+  {
     "id": 17,
     "titulo": "Supervisor de Manutenção",
     "empresa": "Brado",
