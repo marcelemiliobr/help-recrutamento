@@ -7,6 +7,157 @@
 
 const vagas = [
   {
+    "id": 10,
+    "titulo": "Operador de Empilhadeira",
+    "empresa": "COOPERCOTTON",
+    "cidade": "Rondonópolis, MT",
+    "regime": "Integral",
+    "tipo": "CLT",
+    "cat": "Operacional",
+    "dias": 1,
+    "desc": "A Coopercotton está em busca de um Operador de Empilhadeira para atuar no Armazém de Defensivos, em Rondonópolis – MT.\nBuscamos um profissional responsável, organizado e comprometido com a segurança, que tenha experiência na operação de empilhadeiras e atenção aos procedimentos de movimentação e armazenagem de produtos.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Sexta-feira"
+      },
+      {
+        "label": "Horário",
+        "valor": "07h00 às 17h30."
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Experiência na operação de empilhadeira;",
+        "obr": true
+      },
+      {
+        "texto": "Curso de Operador de Empilhadeira válido;",
+        "obr": true
+      },
+      {
+        "texto": "Conhecimento das normas e procedimentos de segurança relacionados à operação de empilhadeiras;",
+        "obr": true
+      },
+      {
+        "texto": "Disponibilidade para contratação imediata.",
+        "obr": true
+      },
+      {
+        "texto": "Responsabilidade e comprometimento;",
+        "obr": false
+      },
+      {
+        "texto": "Organização;",
+        "obr": false
+      },
+      {
+        "texto": "Atenção e cuidado na movimentação de produtos;",
+        "obr": false
+      },
+      {
+        "texto": "Proatividade;",
+        "obr": false
+      },
+      {
+        "texto": "Bom relacionamento interpessoal.",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Operar empilhadeira, realizando carga, descarga, embarque e desembarque de produtos;",
+      "Auxiliar na separação, organização e conferência de mercadorias;",
+      "Apoiar na conferência e controle de estoque quando necessário;",
+      "Zelar pela conservação e pelo adequado funcionamento das empilhadeiras;",
+      "Acompanhar as necessidades de manutenção dos equipamentos;",
+      "Elaborar e acompanhar o cronograma de manutenção preventiva das empilhadeiras;",
+      "Atuar como backup do responsável pelo estoque durante férias e ausências;",
+      "Cumprir os procedimentos internos de segurança e as normas aplicáveis à atividade."
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Auxílio alimentação:"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio combustível:"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de saúde;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus mediante avaliação de desempenho."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "titulo": "Auxiliar de Faturamento",
+    "empresa": "COOPERCOTTON",
+    "cidade": "Rondonópolis, MT",
+    "regime": "Integral",
+    "tipo": "CLT",
+    "cat": "Administrativo",
+    "dias": 1,
+    "desc": "A Coopercotton está em busca de um(a) Auxiliar de Faturamento para integrar o setor Fiscal em Rondonópolis – MT. Buscamos um profissional organizado, responsável e atento aos detalhes, que tenha experiência com rotinas de faturamento e lançamentos fiscais e queira fazer parte de uma equipe comprometida e colaborativa.",
+    "horario": [
+      {
+        "label": "Jornada",
+        "valor": "Segunda a Sexta"
+      },
+      {
+        "label": "Horário",
+        "valor": "07:00 as 17:30"
+      },
+      {
+        "label": "Escala",
+        "valor": "5x2"
+      }
+    ],
+    "requisitos": [
+      {
+        "texto": "Ensino médio completo;",
+        "obr": true
+      },
+      {
+        "texto": "Desejável formação técnica ou superior em áreas relacionadas à Administração, Contabilidade ou áreas afins.",
+        "obr": false
+      }
+    ],
+    "responsabilidades": [
+      "Realizar atividades relacionadas ao faturamento;",
+      "Efetuar lançamentos e conferências fiscais;",
+      "Emitir e conferir notas fiscais;",
+      "Apoiar as rotinas fiscais e administrativas do setor;",
+      "Realizar demais atividades pertinentes à função."
+    ],
+    "beneficios": [
+      {
+        "icon": "✅",
+        "texto": "Auxílio alimentação;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Auxílio transporte;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Plano de saúde;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Seguro de vida;"
+      },
+      {
+        "icon": "✅",
+        "texto": "Bônus mediante avaliação de desempenho."
+      }
+    ]
+  },
+  {
     "id": 1,
     "titulo": "Condutor Auto de Linha (Motorista)",
     "empresa": "HELP RECRUTMANETOS",
